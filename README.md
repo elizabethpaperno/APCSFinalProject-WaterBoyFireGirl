@@ -1,4 +1,4 @@
 # APCSFinalProject-WaterBoyFireGirl
-Team Shark Boy and Lava Girl \n
-Team Members: Elizabeth Paperno and Katherine Zhao \n
-This project replicates the iconic WaterBoy and FireGirl platforming game. It is 2-player game where the objective is to get through the obstacles and eventually reach the doors that mark the goal of every board/level. As you increase in levels, the obstacles gets more difficult. Scattered throughout every level are gems that should be collected by the player with the corresponding color, as it provides them powers and point when piled up. 
+Team Shark Boy and Lava Girl <br />
+Team Members: Elizabeth Paperno and Katherine Zhao </br />
+Our project aims to replicate the ever-so iconic computer game, FireBoy and WaterGirl. This two-player game has a simple premise. For every level, get to the doors, while moving through the maze-like structure, avoiding all of the obstacles, and collecting gems. The challenge is having the two players work together in order to defeat the obstacles, which can contain anything from toxic lava to sliding levers.
