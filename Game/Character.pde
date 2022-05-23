@@ -1,4 +1,4 @@
-public class Character {
+class Character{
   color a; 
   int x;
   int y;
@@ -7,15 +7,19 @@ public class Character {
   final float velocity = 15;
   final int right = 1;
   final int left = -1;
-  final int up = 2;
-  final int down =  -2; 
+  final int up = 1;
+  final int down =  -1; 
   //constructor
   public Character(color cool, int x, int y) {
     this.x = x;
     this.y =y;
     a = cool;
     gemsCollected =  0;
+    rect(x, y, x-10, y-20);
   }
+  
+  //displaying characters
+  public display(){}
   //Accessor Methods
   public color getColor() {
     return a;
@@ -37,9 +41,15 @@ public class Character {
 
   //Movement Methods
   public void moveH(int direction) {
+    x += direction * velocity;
   }
-  public void moveV(int direction) {
+  //jump straight up(con gravity)/ or fall down (gravity), as long as there is nothing blocking it 
+  public void jumpV(int direction) {
+    if (maze.get(x) != 1){}
   }
+  //jump with x, as long as nothing is blockng it 
   public void jump(int Hdirection, int Vdirection) {
   }
+
+  //Obstacle methods
 }
