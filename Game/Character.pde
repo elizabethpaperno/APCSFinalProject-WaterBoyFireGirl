@@ -1,4 +1,8 @@
-class Character {
+<<<<<<< HEAD
+public class Character {
+=======
+public class Character{
+>>>>>>> Main
   color a; 
   int x;
   int y;
