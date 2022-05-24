@@ -1,4 +1,3 @@
-import java.util.Scanner;
 public class Maze {
   private int rows;
   private int cols;
@@ -12,13 +11,15 @@ public class Maze {
   }
 
   void readFileAndConstruct() throws FileNotFoundException{
-    board = new int[rows][cols]; 
-    File input = new File(fname);
-    Scanner s = new Scanner(input);
-    for (int row = 0; row < width(); row++) {
-      for (int col = 0; col < height(); col++) {
-        board[row][col] = s.nextInt();
+    board = new int[rows][cols];
+    String[] lines = loadStrings(fname);
+    for (int i = 0; i < lines.length; i++){
+      String[] rowStr = lines[i].split(" ");   
+      int[] row = new int[rowStr.length]; 
+      for (int j = 0; j < row.length; j++){
+        row[i] = Integer.parseInt(rowStr[i]); 
       }
+      board[i] = row; 
     }
   }
 
