@@ -4,7 +4,8 @@ class Character {
   int y;
   boolean living;
   int gemsCollected;
-  final float velocity = 15;
+  final float xVelocity = 15;
+  final float yVelocity= 15;
   final int right = 1;
   final int left = -1;
   final int up = 1;
@@ -46,15 +47,16 @@ class Character {
 
   //Movement Methods
   public void moveH(int direction) {
-    x += direction * velocity;
+    x += direction * xVelocity;
   }
   //jump straight up(con gravity)/ or fall down (gravity), as long as there is nothing blocking it 
   public void jumpV(int direction) {
-    if (Maze.get(x) != 1) {
+    if (Maze.get(x) != 1 && Maze.geet(y) != 1) {
     }
   }
   //jump with x, as long as nothing is blockng it 
   public void jump(int Hdirection, int Vdirection) {
+    if (x != Maze.get(1))
   }
 
   //Obstacle methods
