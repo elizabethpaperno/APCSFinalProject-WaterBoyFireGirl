@@ -10,6 +10,7 @@ class Character {
   final int left = -1;
   final int up = 1;
   final int down =  -1; 
+  //(x,y) = top left???? yeah that makes sense 
   //constructor
   public Character(color cool, int x, int y) {
     this.x = x;
@@ -51,8 +52,10 @@ class Character {
   }
   //jump straight up(con gravity)/ or fall down (gravity), as long as there is nothing blocking it 
   public void jumpV(int direction) {
-    if (Maze.get(x) != 1 && Maze.geet(y) != 1) {
+    if (Maze.isEmpty(x,y) == false) {
+      yVelocity *= -1;
     }
+    else{yVelocity += 1;}
   }
   //jump with x, as long as nothing is blockng it 
   public void jump(int Hdirection, int Vdirection) {
