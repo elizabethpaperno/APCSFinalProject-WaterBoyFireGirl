@@ -9,6 +9,7 @@ public class Character {
   final int left = -1;
   final int up = 1;
   final int down =  -1; 
+  final float acceleration = -0.5; 
   //(x,y) = top left???? yeah that makes sense 
   //constructor
   public Character(color cool, int x, int y) {
@@ -44,11 +45,10 @@ public class Character {
     gemsCollected +=1;
   }
 
-  //Movement Methods
-  public void run(int xD, int yD) {
-    if (Level.isEmpty(Location.x, Location.y)== true && Level.isEmpty(Location.x, Location.y) == false) {
-    }
+  public void changeV(float hor, float ver) {
+    Velocity = new PVector(hor, ver);
   }
+  //Movement Methods
   public void moveH(int direction) {
     if (Level.isEmpty(Location.x, Location.y) == true && Level.isEmpty(Location.x +11, Location.y-20) == true) {
       Location.x += direction * Velocity.x;
@@ -56,19 +56,26 @@ public class Character {
   }
   //jump straight up(con gravity)/ or fall down (gravity), as long as there is nothing blocking it 
   public void jumpUP() {
+    //if u hit somethhing above u, go back down
     if (Level.isEmpty(Location.x, Location.y) == false) {
       Velocity.y *= -1;
-    } else {  
+    } 
+    Velocity.y += .5;
+    else {  
       Location.y += Velocity.y;
-      Velocity.y += 1;
     }
   }
   public void dropDown() {
+    //if there is space to drop down
+    if (Level.isEmptyy(Location.x, Location.y) == true) {
+      y -= Velocity.y; 
+      Velocity.y += acceleration;
+    }
   }
   //jump with x, as long as nothing is blockng it 
   public void jump(int Hdirection, int Vdirection) {
     if (Level.isEmpty(Location.x, Location.y) == false && Level.isEmpty(Location.x, Location.y - 20) == true) {
-      Velocity.y *= -1; 
+      Velocity.y *= -1;
     }
   }
 
