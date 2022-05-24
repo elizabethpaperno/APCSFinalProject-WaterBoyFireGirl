@@ -3,7 +3,7 @@ public class Character {
   PVector Location;
   boolean living;
   int gemsCollected;
-  PVector Velocityy(15,15);
+  PVector Velocity = new PVector(10, 10);
   final int right = 1;
   final int left = -1;
   final int up = 1;
@@ -11,17 +11,17 @@ public class Character {
   //(x,y) = top left???? yeah that makes sense 
   //constructor
   public Character(color cool, int x, int y) {
-    Location= new PVector(x,y);
+    Location= new PVector(x, y);
     a = cool;
     gemsCollected =  0;
-    rect(x, y, x-10, y-20);
+    rect(Location.x, Location.y, Location.x-10, Location.y-20);
   }
 
   //displaying characters
   void display() {
     fill(a);
     noStroke();
-    rect(x, y, x+10, y+20);
+    rect(Location.x, Location.y, Location.x+10, Location.y+20);
     stroke(1);
   }
   //Accessor Methods
@@ -44,22 +44,26 @@ public class Character {
   }
 
   //Movement Methods
-  public void run(int xD, int yD){}
+  public void run(int xD, int yD) {
+    if (Level.isEmpty(Location.x, Location.y)== true && Level.isEmpty(Location.x,Location.y) == false) {
+    }
+  }
   public void moveH(int direction) {
-    x += direction * xVelocity;
+    Location.x += direction * Velocity.x;
   }
   //jump straight up(con gravity)/ or fall down (gravity), as long as there is nothing blocking it 
   public void jumpV(int direction) {
-    if (Level.isEmpty(x,y) == false) {
-      yVelocity *= -1;
+    if (Level.isEmpty(Location.x, Location.y) == false) {
+      Velocity.y *= -1;
+    } else {
+      Location.y += Velocity.y;
+      Velocity.y += 1;
     }
-    else{
-    y += yVelocity;
-    yVelocity += 1;}
   }
   //jump with x, as long as nothing is blockng it 
   public void jump(int Hdirection, int Vdirection) {
-    if (Level.isEmpty(x,y) == false){}
+    if (Level.isEmpty(x, y) == false) {
+    }
   }
 
   //Obstacle methods
