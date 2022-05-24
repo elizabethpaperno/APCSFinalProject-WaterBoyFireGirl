@@ -11,7 +11,7 @@
 5/23: 
 * Elizabeth: 
   * Created the Maze class and completed the methods outlined in the UML
-  * Not yet tested due to issues testing with a file --> continures FileNotFound exception, eventhough it was present in the directory
+  * Not yet tested due to issues testing with a file --> continuous FileNotFound exception, eventhough it was present in the directory
   * Next step is to build the Level class
 
 
