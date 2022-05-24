@@ -1,5 +1,6 @@
 public class Character {
   color a; 
+  //top left corner of rectangle 
   PVector Location;
   boolean living;
   int gemsCollected;
@@ -51,10 +52,10 @@ public class Character {
   public void moveH(int direction) {
     if (Level.isEmpty(Location.x, Location.y) == true && Level.isEmpty(Location.x +11, Location.y-20) == true) {
       Location.x += direction * Velocity.x;
-    } 
+    }
   }
   //jump straight up(con gravity)/ or fall down (gravity), as long as there is nothing blocking it 
-  public void jumpV(int direction) {
+  public void jumpUP() {
     if (Level.isEmpty(Location.x, Location.y) == false) {
       Velocity.y *= -1;
     } else {  
@@ -62,9 +63,12 @@ public class Character {
       Velocity.y += 1;
     }
   }
+  public void dropDown() {
+  }
   //jump with x, as long as nothing is blockng it 
   public void jump(int Hdirection, int Vdirection) {
-    if (Level.isEmpty(Location.x, Location.y) == false) {
+    if (Level.isEmpty(Location.x, Location.y) == false && Level.isEmpty(Location.x, Location.y - 20) == true) {
+      Velocity.y *= -1; 
     }
   }
 
