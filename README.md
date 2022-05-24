@@ -8,6 +8,11 @@
 **Design Document**: https://docs.google.com/document/d/1iK45Qwn9qvfcaNxFyKv3e3qwPiR3SknMaFlGl36e-hc/edit?usp=sharing
 
 ## Development Log
-5/23
+5/23: 
+* Elizabeth: 
+  * Created the Maze class and completed the methods outlined in the UML
+  * Not yet tested due to issues testing with a file --> continures FileNotFound exception, eventhough it was present in the directory
+  * Next step is to build the Level class
+
 
 ## Running Instructions
