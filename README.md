@@ -13,6 +13,9 @@
   * Created the Maze class and completed the methods outlined in the UML
   * Not yet tested due to issues testing with a file --> continuous FileNotFound exception, eventhough it was present in the directory
   * Next step is to build the Level class
-
+* Katherine:
+  * Created the Character class, changed some of the instance variablees/methods based on what would be most help 
+  * Trying to full understand the most straightforward way to do jump down, up, or simply jump 
+  * Next Step is to get all the movement methods working
 
 ## Running Instructions
