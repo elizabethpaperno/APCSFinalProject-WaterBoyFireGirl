@@ -1,15 +1,9 @@
-<<<<<<< HEAD
 public class Character {
-=======
-public class Character{
->>>>>>> Main
   color a; 
-  int x;
-  int y;
+  PVector Location;
   boolean living;
   int gemsCollected;
-  final float xVelocity = 15;
-  final float yVelocity= 15;
+  PVector Velocityy(15,15);
   final int right = 1;
   final int left = -1;
   final int up = 1;
@@ -17,8 +11,7 @@ public class Character{
   //(x,y) = top left???? yeah that makes sense 
   //constructor
   public Character(color cool, int x, int y) {
-    this.x = x;
-    this.y =y;
+    Location= new PVector(x,y);
     a = cool;
     gemsCollected =  0;
     rect(x, y, x-10, y-20);
@@ -51,19 +44,22 @@ public class Character{
   }
 
   //Movement Methods
+  public void run(int xD, int yD){}
   public void moveH(int direction) {
     x += direction * xVelocity;
   }
   //jump straight up(con gravity)/ or fall down (gravity), as long as there is nothing blocking it 
   public void jumpV(int direction) {
-    if (Maze.isEmpty(x,y) == false) {
+    if (Level.isEmpty(x,y) == false) {
       yVelocity *= -1;
     }
-    else{yVelocity += 1;}
+    else{
+    y += yVelocity;
+    yVelocity += 1;}
   }
   //jump with x, as long as nothing is blockng it 
   public void jump(int Hdirection, int Vdirection) {
-    if (x != Maze.get(1))
+    if (Level.isEmpty(x,y) == false){}
   }
 
   //Obstacle methods
