@@ -82,26 +82,47 @@ public class Character {
   public void changeV(float hor, float ver) {
     vel = new PVector(hor, ver);
   }
-  
+
   //collision check 
-  //if horizontally it isnt empty return false (something blocking it)
-  public boolean checkXRange(int xBegin, int xEnd) {
+  //returns if there is somethinng blocking it 
+  public boolean checkXRange(int xBegin, int xEnd, int yCor) {
     for (int i = xBegin; i <= xEnd; i++) {
-      if (Level.isEmptySpace(i, pos.y) == false) return false;
+      if (Level.isEmptySpace(i, yCor) == false) return false;
     }
     return true;
   }
   //if vertically it isnt empty return false (something blocking it)
-  public boolean checkYRange(int yBegin, int yEnd) {
+  public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
-      if (Level.isEmptySpace(pos.x, i) == false) return false;
+      if (Level.isEmptySpace(xCor, i) == false) return false;
     } 
     return true;
   }
   //Movement Methods
   public void move(PVector dir) {
-    if (checkXRange(pos.x, pos.x +10) == 
-      vel.add(dir.mult(dirFactor));
+    if (checkXRange(pos.x, pos.x +10, pos.y-20) == false && Velocity >0) {
+      Velocity.y -=.5;
+    }//accerleration cuz its not on ground, accereration will descrease speed
+    if (checkXRange(pos.x, pos.x +10, pos.y) != false && Velocity <=0) {
+      Velocity.y +=.5;
+    }//acceleration cuz it isnt on the ground and is returniing down
+    if (checkYRange(pos.y, pos.y -20) != false){
+    }//if 
+    if (checkYRange(pos.y, pos.y -20) != false && Velocity <=0){}
+    //vel.add(dir.mult(dirFactor));
+    if (dir == <1, 1>) {
+      jump(right);
+    }
+    if (dir == <-1, 1>) {
+      jump(left);
+    }
+    if(dir == <0,1>){}
+    if(dir == <1,0>){}
   }
+  public void jump(int dir) {
+    pos.x += Velocity.x * dir;
+    pos.y +=Velocity.y;
+  }
+  public void move(int dir){}
   //Obstacle methods
 }
