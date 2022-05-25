@@ -20,10 +20,10 @@
  
  5/24
  * Elizabeth:
-  * Use processing method loadFromFIle instead of Scanner to read in the base board from the file --> solve the issue from yesterday
-  * Complete Maze class, merge back to main, solve merge conflicts in Game 
-  * Decide to build Item class instead of Level class, as Item is necessary for Level
-  * Create new branch titled "P1-Elizabeth" to work on Item
-  * Write skeleton for Item class based on UML --> fill in all method except adding the item to level
+   * Use processing method loadFromFIle instead of Scanner to read in the base board from the file --> solve the issue from yesterday
+   * Complete Maze class, merge back to main, solve merge conflicts in Game 
+   * Decide to build Item class instead of Level class, as Item is necessary for Level
+   * Create new branch titled "P1-Elizabeth" to work on Item
+   * Write skeleton for Item class based on UML --> fill in all method except adding the item to level
 
 ## Running Instructions
