@@ -1,30 +1,59 @@
 public class Character {
   color a; 
   //top left corner of rectangle 
-  PVector Location;
+  
   boolean living;
   int gemsCollected;
-  PVector Velocity = new PVector(10, 10);
+  int dirFactor = 15;
+  PVector accel;
+  PVector vel;
+  PVector pos;
+  float leftS;
+  float rightS;
+  float bottom;
+  float top;
   final int right = 1;
   final int left = -1;
   final int up = 1;
   final int down =  -1; 
   final float acceleration = -0.5; 
+  final int width = 15;
+  final int height = 3f  0;
+  
   //(x,y) = top left???? yeah that makes sense 
   //constructor
   public Character(color cool, int x, int y) {
-    Location= new PVector(x, y);
+    leftS = x; 
+    rightS = x+10;
+    top = y;
+    bottom = y-20;
+    pos= new PVector(x, y);
+    vel = new PVector(0, 0);
     a = cool;
     gemsCollected =  0;
-    rect(Location.x, Location.y, Location.x+10, Location.y-20);
   }
 
   //displaying characters
   void display() {
     fill(a);
     noStroke();
-    rect(Location.x, Location.y, Location.x+10, Location.y+20);
+    rect(pos.x, pos.y, 10, 20);
     stroke(1);
+  }
+  
+  void run(){
+    accel.add(new PVector(0, 2)); //gravity
+    vel.add(accel);
+    
+    pos.add(vel);
+    if(pos.x >= width || pos.x <= 0){
+      vel.set(0, vel.y);
+    }
+    if(pos.y >= height || pos.y <= 0){
+      vel.set(vel.x, 0);
+    }
+    
+    accel.setMag(0);
   }
   //Accessor Methods
   public color getColor() {
@@ -36,6 +65,8 @@ public class Character {
   public int gemsTotal() {
     return gemsCollected;
   }
+  
+  public boolean checkCollision(PVector a){}
 
   //Mutator Methods
   public void justice(boolean change) {
@@ -44,40 +75,17 @@ public class Character {
   public void addGem() {
     gemsCollected +=1;
   }
+  public void changePos(PVector a){
+    pos = a;
+  }
 
   public void changeV(float hor, float ver) {
-    Velocity = new PVector(hor, ver);
+    vel = new PVector(hor, ver);
   }
+  public void setLeft(float p){}
   //Movement Methods
-  public void moveH(int direction) {
-    if (Level.isEmpty(Location.x, Location.y) == true && Level.isEmpty(Location.x +11, Location.y-20) == true) {
-      Location.x += direction * Velocity.x;
-    }
+  public void move(PVector dir) {
+    vel.add(dir.mult(dirFactor));
   }
-  //jump straight up(con gravity)/ or fall down (gravity), as long as there is nothing blocking it 
-  public void jumpUP() {
-    //if u hit somethhing above u, go back down
-    if (Level.isEmpty(Location.x, Location.y) == false) {
-      Velocity.y *= -1;
-    } 
-    Velocity.y += .5;
-    else {  
-      Location.y += Velocity.y;
-    }
-  }
-  public void dropDown() {
-    //if there is space to drop down
-    if (Level.isEmptyy(Location.x, Location.y) == true) {
-      y -= Velocity.y; 
-      Velocity.y += acceleration;
-    }
-  }
-  //jump with x, as long as nothing is blockng it 
-  public void jump(int Hdirection, int Vdirection) {
-    if (Level.isEmpty(Location.x, Location.y) == false && Level.isEmpty(Location.x, Location.y - 20) == true) {
-      Velocity.y *= -1;
-    }
-  }
-
   //Obstacle methods
 }
