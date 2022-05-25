@@ -25,5 +25,9 @@
    * Decide to build Item class instead of Level class, as Item is necessary for Level
    * Create new branch titled "P1-Elizabeth" to work on Item
    * Write skeleton for Item class based on UML --> fill in all method except adding the item to level
+ * Katherine:
+   * Starting to understand how pvectors can help with moving. 
+   * collision detecting to see when to stop the avatar from moving. 
+   * will make a method running through every block surrounding character to see how it shouold movee. 
 
 ## Running Instructions
