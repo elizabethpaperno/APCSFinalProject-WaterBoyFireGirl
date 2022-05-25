@@ -1,7 +1,7 @@
 public class Character {
   color a; 
   //top left corner of rectangle 
-  
+
   boolean living;
   int gemsCollected;
   int dirFactor = 15;
@@ -19,7 +19,7 @@ public class Character {
   final float acceleration = -0.5; 
   final int width = 15;
   final int height = 3f  0;
-  
+
   //(x,y) = top left???? yeah that makes sense 
   //constructor
   public Character(color cool, int x, int y) {
@@ -40,19 +40,19 @@ public class Character {
     rect(pos.x, pos.y, 10, 20);
     stroke(1);
   }
-  
-  void run(){
+
+  void run() {
     accel.add(new PVector(0, 2)); //gravity
     vel.add(accel);
-    
+
     pos.add(vel);
-    if(pos.x >= width || pos.x <= 0){
+    if (pos.x >= width || pos.x <= 0) {
       vel.set(0, vel.y);
     }
-    if(pos.y >= height || pos.y <= 0){
+    if (pos.y >= height || pos.y <= 0) {
       vel.set(vel.x, 0);
     }
-    
+
     accel.setMag(0);
   }
   //Accessor Methods
@@ -65,8 +65,25 @@ public class Character {
   public int gemsTotal() {
     return gemsCollected;
   }
-  
-  public boolean checkCollision(PVector a){}
+
+  // random method 
+  public boolean checkCollision(PVector a) {
+    if (Level.isEmpty(a.x, a.y) == false) {
+      if (rightS > a.x) {
+        return false;
+      }
+      if (leftS > a.x) {
+      }
+      return false;
+      if (bottom <a.y) {
+        return false;
+      }
+      if (top > bottom) {
+        return false;
+      }
+    }
+  }
+  public boolean checkColisionList(ArrayList<PVector> d ){}
 
   //Mutator Methods
   public void justice(boolean change) {
@@ -75,14 +92,15 @@ public class Character {
   public void addGem() {
     gemsCollected +=1;
   }
-  public void changePos(PVector a){
+  public void changePos(PVector a) {
     pos = a;
   }
 
   public void changeV(float hor, float ver) {
     vel = new PVector(hor, ver);
   }
-  public void setLeft(float p){}
+  public void setLeft(float p) {
+  }
   //Movement Methods
   public void move(PVector dir) {
     vel.add(dir.mult(dirFactor));
