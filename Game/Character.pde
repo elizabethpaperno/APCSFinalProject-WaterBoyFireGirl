@@ -1,25 +1,60 @@
-public class Character{
+public class Character {
   color a; 
-  int x;
-  int y;
+  //top left corner of rectangle 
+
   boolean living;
   int gemsCollected;
-  final float velocity = 15;
+  int dirFactor = 15;
+  PVector accel;
+  PVector vel;
+  PVector pos;
+  float leftS;
+  float rightS;
+  float bottom;
+  float top;
   final int right = 1;
   final int left = -1;
   final int up = 1;
   final int down =  -1; 
+  final float acceleration = -0.5; 
+  final int width = 15;
+  final int height = 3f  0;
+
+  //(x,y) = top left???? yeah that makes sense 
   //constructor
   public Character(color cool, int x, int y) {
-    this.x = x;
-    this.y =y;
+    leftS = x; 
+    rightS = x+10;
+    top = y;
+    bottom = y-20;
+    pos= new PVector(x, y);
+    vel = new PVector(0, 0);
     a = cool;
     gemsCollected =  0;
-    rect(x, y, x-10, y-20);
   }
-  
+
   //displaying characters
-  public display(){}
+  void display() {
+    fill(a);
+    noStroke();
+    rect(pos.x, pos.y, 10, 20);
+    stroke(1);
+  }
+
+  void run() {
+    accel.add(new PVector(0, 2)); //gravity
+    vel.add(accel);
+
+    pos.add(vel);
+    if (pos.x >= width || pos.x <= 0) {
+      vel.set(0, vel.y);
+    }
+    if (pos.y >= height || pos.y <= 0) {
+      vel.set(vel.x, 0);
+    }
+
+    accel.setMag(0);
+  }
   //Accessor Methods
   public color getColor() {
     return a;
@@ -31,6 +66,8 @@ public class Character{
     return gemsCollected;
   }
 
+
+
   //Mutator Methods
   public void justice(boolean change) {
     living = change;
@@ -38,18 +75,33 @@ public class Character{
   public void addGem() {
     gemsCollected +=1;
   }
+  public void changePos(PVector a) {
+    pos = a;
+  }
 
+  public void changeV(float hor, float ver) {
+    vel = new PVector(hor, ver);
+  }
+  
+  //collision check 
+  //if horizontally it isnt empty return false (something blocking it)
+  public boolean checkXRange(int xBegin, int xEnd) {
+    for (int i = xBegin; i <= xEnd; i++) {
+      if (Level.isEmptySpace(i, pos.y) == false) return false;
+    }
+    return true;
+  }
+  //if vertically it isnt empty return false (something blocking it)
+  public boolean checkYRange(int yBegin, int yEnd) {
+    for (int i = yBegin; i <=yEnd; i ++) {
+      if (Level.isEmptySpace(pos.x, i) == false) return false;
+    } 
+    return true;
+  }
   //Movement Methods
-  public void moveH(int direction) {
-    x += direction * velocity;
+  public void move(PVector dir) {
+    if (checkXRange(pos.x, pos.x +10) == 
+      vel.add(dir.mult(dirFactor));
   }
-  //jump straight up(con gravity)/ or fall down (gravity), as long as there is nothing blocking it 
-  public void jumpV(int direction) {
-    if (maze.get(x) != 1){}
-  }
-  //jump with x, as long as nothing is blockng it 
-  public void jump(int Hdirection, int Vdirection) {
-  }
-
   //Obstacle methods
 }
