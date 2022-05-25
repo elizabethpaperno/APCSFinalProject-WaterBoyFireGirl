@@ -68,42 +68,43 @@ public class Character {
 
   // random method 
   public boolean checkCollision(PVector a) {
-    if (Level.isEmpty(a.x, a.y) == false) {
-      if (rightS > a.x) {
-        return false;
-      }
-      if (leftS > a.x) {
-      }
+    if (rightS > a.x) {
       return false;
-      if (bottom <a.y) {
-        return false;
-      }
-      if (top > bottom) {
-        return false;
-      }
     }
-  }
-  public boolean checkColisionList(ArrayList<PVector> d ){}
-
-  //Mutator Methods
-  public void justice(boolean change) {
-    living = change;
-  }
-  public void addGem() {
-    gemsCollected +=1;
-  }
-  public void changePos(PVector a) {
-    pos = a;
+    if (leftS > a.x) {
+    }
+    return false;
+    if (bottom <a.y) {
+      return false;
+    }
+    if (top > bottom) {
+      return false;
+    }
+    return true;
   }
 
-  public void changeV(float hor, float ver) {
-    vel = new PVector(hor, ver);
+  public boolean checkColisionList(Maze d ) {}
+    //for every block in maze, checkk if it is colliding withh the thing }
+
+    //Mutator Methods
+    public void justice(boolean change) {
+      living = change;
+    }
+    public void addGem() {
+      gemsCollected +=1;
+    }
+    public void changePos(PVector a) {
+      pos = a;
+    }
+
+    public void changeV(float hor, float ver) {
+      vel = new PVector(hor, ver);
+    }
+    public void setLeft(float p) {
+    }
+    //Movement Methods
+    public void move(PVector dir) {
+      vel.add(dir.mult(dirFactor));
+    }
+    //Obstacle methods
   }
-  public void setLeft(float p) {
-  }
-  //Movement Methods
-  public void move(PVector dir) {
-    vel.add(dir.mult(dirFactor));
-  }
-  //Obstacle methods
-}
