@@ -66,45 +66,42 @@ public class Character {
     return gemsCollected;
   }
 
-  // random method 
-  public boolean checkCollision(PVector a) {
-    if (rightS > a.x) {
-      return false;
-    }
-    if (leftS > a.x) {
-    }
-    return false;
-    if (bottom <a.y) {
-      return false;
-    }
-    if (top > bottom) {
-      return false;
+
+
+  //Mutator Methods
+  public void justice(boolean change) {
+    living = change;
+  }
+  public void addGem() {
+    gemsCollected +=1;
+  }
+  public void changePos(PVector a) {
+    pos = a;
+  }
+
+  public void changeV(float hor, float ver) {
+    vel = new PVector(hor, ver);
+  }
+  
+  //collision check 
+  //if horizontally it isnt empty return false (something blocking it)
+  public boolean checkXRange(int xBegin, int xEnd) {
+    for (int i = xBegin; i <= xEnd; i++) {
+      if (Level.isEmptySpace(i, pos.y) == false) return false;
     }
     return true;
   }
-
-  public boolean checkColisionList(Maze d ) {}
-    //for every block in maze, checkk if it is colliding withh the thing }
-
-    //Mutator Methods
-    public void justice(boolean change) {
-      living = change;
-    }
-    public void addGem() {
-      gemsCollected +=1;
-    }
-    public void changePos(PVector a) {
-      pos = a;
-    }
-
-    public void changeV(float hor, float ver) {
-      vel = new PVector(hor, ver);
-    }
-    public void setLeft(float p) {
-    }
-    //Movement Methods
-    public void move(PVector dir) {
-      vel.add(dir.mult(dirFactor));
-    }
-    //Obstacle methods
+  //if vertically it isnt empty return false (something blocking it)
+  public boolean checkYRange(int yBegin, int yEnd) {
+    for (int i = yBegin; i <=yEnd; i ++) {
+      if (Level.isEmptySpace(pos.x, i) == false) return false;
+    } 
+    return true;
   }
+  //Movement Methods
+  public void move(PVector dir) {
+    if (checkXRange(pos.x, pos.x +10) == 
+      vel.add(dir.mult(dirFactor));
+  }
+  //Obstacle methods
+}
