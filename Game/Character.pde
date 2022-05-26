@@ -12,13 +12,6 @@ public class Character {
   float rightS;
   float bottom;
   float top;
-  final int right = 1;
-  final int left = -1;
-  final int up = 1;
-  final int down =  -1; 
-  final float acceleration = -0.5; 
-  final int width = 15;
-  final int height = 3f  0;
 
   //(x,y) = top left???? yeah that makes sense 
   //constructor
@@ -101,16 +94,11 @@ public class Character {
   //Movement Methods
   public void move(PVector dir) {
     if (checkXRange(pos.x, pos.x +10, pos.y) == false) {
-      Velocity.y *= -1;
+      vel.y *= -1;
     }
     if (checkXRange(pos.x, pos.x +10, pos.y-20) == false) {
-      Velocity.y += .15;
+      vel.y += .15;
     }
-    if (checkYRange(pos.y, pos.y -20) != false) {
-    }//if 
-    if (checkYRange(pos.y, pos.y -20) != false && Velocity <=0) {
-    }
-    //vel.add(dir.mult(dirFactor));
     if (dir == <1, 1>) {
       jump(right);
     }
@@ -125,8 +113,12 @@ public class Character {
     }
   }
   public void jump(int dir) {
-    pos.x += Velocity.x * dir;
-    pos.y +=Velocity.y;
+    pos.x += vel.x * dir;
+    pos.y +=vel.y;
   }
   //Obstacle methods
+  public void moveWithPlatform(int vel) {
+    pos.x += vel;
+  }
+  public void moveWithBlock(Block b, int velocity
 }
