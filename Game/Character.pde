@@ -91,7 +91,7 @@ public class Character {
     }
     return true;
   }
-  //if vertically it isnt empty return false (something blocking it)
+  // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
       if (Level.isEmptySpace(xCor, i) == false) return false;
@@ -100,15 +100,16 @@ public class Character {
   }
   //Movement Methods
   public void move(PVector dir) {
-    if (checkXRange(pos.x, pos.x +10, pos.y-20) == false && Velocity >0) {
-      Velocity.y -=.5;
-    }//accerleration cuz its not on ground, accereration will descrease speed
-    if (checkXRange(pos.x, pos.x +10, pos.y) != false && Velocity <=0) {
-      Velocity.y +=.5;
-    }//acceleration cuz it isnt on the ground and is returniing down
-    if (checkYRange(pos.y, pos.y -20) != false){
+    if (checkXRange(pos.x, pos.x +10, pos.y) == false) {
+      Velocity.y *= -1;
+    }
+    if (checkXRange(pos.x, pos.x +10, pos.y-20) == false) {
+      Velocity.y += .15;
+    }
+    if (checkYRange(pos.y, pos.y -20) != false) {
     }//if 
-    if (checkYRange(pos.y, pos.y -20) != false && Velocity <=0){}
+    if (checkYRange(pos.y, pos.y -20) != false && Velocity <=0) {
+    }
     //vel.add(dir.mult(dirFactor));
     if (dir == <1, 1>) {
       jump(right);
@@ -116,13 +117,16 @@ public class Character {
     if (dir == <-1, 1>) {
       jump(left);
     }
-    if(dir == <0,1>){}
-    if(dir == <1,0>){}
+    if (dir == <1, 0>) {
+      pos.x += Velocty.x;
+    }
+    if (dir == <-1, 0>) {
+      pos.x -= Velocty.x;
+    }
   }
   public void jump(int dir) {
     pos.x += Velocity.x * dir;
     pos.y +=Velocity.y;
   }
-  public void move(int dir){}
   //Obstacle methods
 }
