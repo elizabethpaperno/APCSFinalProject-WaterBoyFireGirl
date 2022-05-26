@@ -28,6 +28,12 @@
  * Katherine:
    * Starting to understand how pvectors can help with moving. 
    * collision detecting to see when to stop the avatar from moving. 
-   * will make a method running through every block surrounding character to see how it shouold movee. 
+   * will make a method running through every block surrounding character to see how it shouold move. 
+ 
+ 5/25
+ * Katherine:
+   * Wrote out an overall movement method that consistently applies gravity as long as the area around a character is not in contact with a block
+   * PVectors for speed and position, easily accessible and returnable to other classes
+   * Starting to set up the actual game class itself, and methods that will run continously.
 
 ## Running Instructions
