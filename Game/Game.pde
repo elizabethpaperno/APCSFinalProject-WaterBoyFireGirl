@@ -18,9 +18,12 @@ void setup() {
     System.out.println("Invalid filename");
   }
 }
-void press() {
+void keyPressed() {
+ if (keyCode == 37){}
+ else if (keyCode == 38){}
+ else if (keyCode == 40){}
 }
-void release() {
+void keyReleased() {
 }
 void draw() {
   
