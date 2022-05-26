@@ -32,6 +32,7 @@ public class Character {
     noStroke();
     rect(pos.x, pos.y, 10, 20);
     stroke(1);
+    if (checkYRange(x,x+10,y-20)== true){vel.y +=.15;}
   }
 
   void run() {
@@ -106,10 +107,10 @@ public class Character {
       jump(left);
     }
     if (dir == <1, 0>) {
-      pos.x += Velocty.x;
+      pos.x += Velocity.x;
     }
     if (dir == <-1, 0>) {
-      pos.x -= Velocty.x;
+      pos.x -= Velocity.x;
     }
   }
   public void jump(int dir) {
@@ -120,5 +121,7 @@ public class Character {
   public void moveWithPlatform(int vel) {
     pos.x += vel;
   }
-  public void moveWithBlock(Block b, int velocity
+  public void moveWithBlock(Block b, int velocity){}
+  public void gemCollects(PVector collect){
+  if (PVector ) }
 }
