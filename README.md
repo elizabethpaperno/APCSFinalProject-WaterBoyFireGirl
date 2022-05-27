@@ -50,4 +50,10 @@
  * Katherine:
    * Started working on the main game class so we have a way to test all of the code out.
 
+5/27: 
+* Elizabeth:
+   * Continue working on Level
+   * figure out way to store and access methods of subclasses of Item --> ArrayLists of all subclasses
+   * add/remove necessary methods from item and maze
+
 ## Running Instructions
