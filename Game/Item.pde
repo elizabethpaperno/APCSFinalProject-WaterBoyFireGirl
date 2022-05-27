@@ -26,6 +26,13 @@ public class Item{
    return y;
  }
  
+ void setX(int newX){
+   x = newX;
+ }
+ 
+ void sety(int newY){
+   y = newY;
+ }
  int getWidth(){
    return width;
  }
