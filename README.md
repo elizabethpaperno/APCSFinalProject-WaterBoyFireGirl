@@ -47,5 +47,7 @@
    * Begin writing method to read in and initalize items from a file and add them to the ArrayList 
    * Attempt to figure out how to store all Items in one place but still maintain access to all their methods that are not part of the subclass --> still unclear (Interface??)
    * Try to figure out how to structure file in a way that I can link a Lever to a Platform --> figured out
+ * Katherine:
+   * Started working on the main game class so we have a way to test all of the code out.
 
 ## Running Instructions
