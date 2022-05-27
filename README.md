@@ -31,9 +31,21 @@
    * will make a method running through every block surrounding character to see how it shouold move. 
  
  5/25
+ * Elizabeth:
+   * Creation of class Item
+   * Setup the skeleton, and accessor methods
+   * Figure out how the Item class with work within Level to create a board with obstacles --> conceptual
+   * Begin working on level
  * Katherine:
    * Wrote out an overall movement method that consistently applies gravity as long as the area around a character is not in contact with a block
    * PVectors for speed and position, easily accessible and returnable to other classes
    * Starting to set up the actual game class itself, and methods that will run continously.
+
+ 5/26
+ * Elizabeth:
+   * Continue working on Level
+   * Begin writing method to read in and initalize items from a file and add them to the ArrayList 
+   * Attempt to figure out how to store all Items in one place but still maintain access to all their methods that are not part of the subclass --> still unclear (Interface??)
+   * Try to figure out how to structure file in a way that I can link a Lever to a Platform --> figured out
 
 ## Running Instructions
