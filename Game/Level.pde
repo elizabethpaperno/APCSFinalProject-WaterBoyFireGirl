@@ -57,8 +57,10 @@ public class Level {
     return difficulty;
   }
   
-  
-  
+  boolean isEmpty(int x, int y){
+    Maze mz = board.getBoard(); 
+    return (mz[x/PIXEL_WIDTH][y/PIXEL_LENGTH] == 0);
+  }
   void play(){
     //needs to be written much later on
   }
