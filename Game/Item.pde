@@ -39,6 +39,10 @@ public class Item{
  int getWidth(){
    return width;
  }
+ 
+ void display(){
+   rect(x,y, wdth, hgt); 
+ }
 }
  
  
