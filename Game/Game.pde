@@ -18,7 +18,7 @@ void setup() {
     System.out.println("Invalid filename");
   }
 }
-void keyPressed() {
+void press() {
   if (key == UP && key==RIGHT) {
     FireBoy.move(new PVector(1, 1));
   } else if (key == UP && key == LEFT) {

@@ -121,7 +121,10 @@ public class Character {
   public void moveWithPlatform(int vel) {
     pos.x += vel;
   }
-  public void moveWithBlock(Block b, int velocity){}
+  public void moveWithBlock(Item b, int velocity){
+  if (b.getX == pos.X){}
+  if (b.getY==pos.Y){}
+  b.setX() b.setY()}
   public void gemCollects(PVector collect){
-  if (PVector ) }
+  if (collect.equals( ) }
 }
