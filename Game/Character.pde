@@ -24,6 +24,8 @@ public class Character {
     this.y = y;
     a = cool;
     gemsCollected =  0;
+    velX= 10;
+    velY= 10;
   }
 
   //displaying characters
@@ -38,18 +40,14 @@ public class Character {
   }
 
   void run() {
-    vel.y -= acceleration //gravity
-    vel.add(accel);
-
-    pos.add(vel);
-    if (pos.x >= width || pos.x <= 0) {
-      vel.set(0, vel.y);
+    velY -= acceleration; //gravity
+    if (x >= width || x <= 0) {
+      velX = 0;
     }
-    if (pos.y >= height || pos.y <= 0) {
-      vel.set(vel.x, 0);
+    if (y >= height || y <= 0) {
+      velY = 0;;
     }
 
-    accel.setMag(0);
   }
   //Accessor Methods
   public color getColor() {
@@ -83,48 +81,45 @@ public class Character {
   //returns if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
     for (int i = xBegin; i <= xEnd; i++) {
-      if (Level.isEmptySpace(i, yCor) == false) return false;
+      if (Level.isEmptySpace(i, y) == false) return false;
     }
     return true;
   }
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
-      if (Level.isEmptySpace(xCor, i) == false) return false;
+      if (Level.isEmptySpace(x, i) == false) return false;
     } 
     return true;
   }
   //Movement Methods
-  public void move(PVector dir) {
-    if (checkXRange(pos.x, pos.x +10, pos.y) == false) {
-      vel.y *= -1;
+  public void move(int xdir, int ydir) {
+    if (checkXRange(x, x +10,y) == false) {
+      velY *= -1;
     }
-    if (checkXRange(pos.x, pos.x +10, pos.y-20) == false) {
-      vel.y += .15;
+    if (xdir == 1 && ydir == 1) {
+      jump(1);
     }
-    if (dir == <1, 1>) {
-      jump(right);
+    if (xdir == -1 && ydir== 1) {
+      jump(-1);
     }
-    if (dir == <-1, 1>) {
-      jump(left);
+    if (xdir == 1 && ydir == 0) {
+      x += velX;
     }
-    if (dir == <1, 0>) {
-      pos.x += Velocity.x;
-    }
-    if (dir == <-1, 0>) {
-      pos.x -= Velocity.x;
+    if (xdir ==-1 && ydir == 0) {
+     x -= velX;
     }
   }
   public void jump(int dir) {
-    pos.x += vel.x * dir;
-    pos.y +=vel.y;
+    x += velX * dir;
+    y +=velY;
   }
   //Obstacle methods
   public void moveWithPlatform(int vel) {
-    pos.x += vel;
+    x += vel;
   }
   public void moveWithBlock(Item b, int velocity) {
-    if (b.getX == pos.x && b.getY == pos.y ) {
+    if (b.getX == x && b.getY == y ) {
       b.setX();
       b.setY();
     }
