@@ -1,13 +1,13 @@
 public class Character {
   color a; 
   //top left corner of rectangle 
-
+  int x;
+  int y; 
+  float velX;
+  float velY;
+  float acceleration;
   boolean living;
   int gemsCollected;
-  int dirFactor = 15;
-  PVector accel;
-  PVector vel;
-  PVector pos;
   float leftS;
   float rightS;
   float bottom;
@@ -20,8 +20,8 @@ public class Character {
     rightS = x+10;
     top = y;
     bottom = y-20;
-    pos= new PVector(x, y);
-    vel = new PVector(0, 0);
+    this.x= x;
+    this.y = y;
     a = cool;
     gemsCollected =  0;
   }
@@ -30,13 +30,15 @@ public class Character {
   void display() {
     fill(a);
     noStroke();
-    rect(pos.x, pos.y, 10, 20);
+    rect(x, y, 10, 20);
     stroke(1);
-    if (checkYRange(x,x+10,y-20)== true){vel.y +=.15;}
+    if (checkYRange(x, x+10, y-20)== true) {
+      y +=.15;
+    }
   }
 
   void run() {
-    accel.add(new PVector(0, 2)); //gravity
+    vel.y -= acceleration //gravity
     vel.add(accel);
 
     pos.add(vel);
@@ -121,10 +123,14 @@ public class Character {
   public void moveWithPlatform(int vel) {
     pos.x += vel;
   }
-  public void moveWithBlock(Item b, int velocity){
-  if (b.getX == pos.X){}
-  if (b.getY==pos.Y){}
-  b.setX() b.setY()}
-  public void gemCollects(PVector collect){
-  if (collect.equals( ) }
+  public void moveWithBlock(Item b, int velocity) {
+    if (b.getX == pos.x && b.getY == pos.y ) {
+      b.setX();
+      b.setY();
+    }
+  }
+  public void gemCollects(PVector collect) {
+    if (collect.equals(pos)){addGem();}
+  }
+  
 }

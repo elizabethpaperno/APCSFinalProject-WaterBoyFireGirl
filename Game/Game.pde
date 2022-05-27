@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.*;
 Character FireBoy; 
 Character WaterGirl;
+int PIXEL_WIDTH;
+int PIXEL_LENGTH;
 void setup() {
   size(800, 800);
   Maze m1 = new Maze("testingMaze1.txt", 4, 5);
@@ -18,7 +20,7 @@ void setup() {
     System.out.println("Invalid filename");
   }
 }
-void press() {
+void keyPressed() {
   if (key == UP && key==RIGHT) {
     FireBoy.move(new PVector(1, 1));
   } else if (key == UP && key == LEFT) {
@@ -39,8 +41,8 @@ void press() {
     WaterGirl.move(new PVector (1, 0));
   }
 }
-void keyReleased() {
-}
+//void keyReleased() {
+//}
 void draw() {
 
   FireBoy.display();
