@@ -1,10 +1,14 @@
 public class Level { 
   private int difficulty;
-  ArrayList<Item> items; 
+  ArrayList<Item> blocks; 
+  ArrayList<Lava> lavas; 
+  ArrayList<Door> doors; 
+  ArrayList<Lever> levers; 
+  ArrayList<Platform> platforms; 
+  ArrayList<Gem> gems; 
   Maze board; 
   //file should be CSV in format --> Item Sub class,x,y,h,w, additional features
-  String fname;
-  Item[][] itemBoard; 
+  String fname; 
   
   public Level(int diff, Maze linkedBoard, String filename){
     difficulty = diff;
@@ -22,24 +26,24 @@ public class Level {
     String[] lines = loadStrings(fname);
     for (int i = 0; i < lines.length; i++){
       String[] rowStr = lines[i].split(","); 
-      Item toBeAdded;
       switch (rowStr[0]){
       //subclasses of item not yet written, but will be
       case "Block":
-        toBeAdded = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]));
-        items.add(toBeAdded); 
+        Block toBeAdded = new Block(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]));
+        blocks.add(toBeAdded); 
       case "Lava":
-        toBeAdded = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
-        items.add(toBeAdded); 
+        Lava toBeAdded = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
+        lavas.add(toBeAdded); 
         // index 5: color 
       case "Door":
-        toBeAdded = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), false);
+        Door toBeAdded = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), false);
         // index 5: color, Index 6: isOpen (false)
-        items.add(toBeAdded);
+        doors.add(toBeAdded);
       case "Lever":
-      
+        
       case "Platform":
       case "Button":
+        
       case "Gem":
   }
   
