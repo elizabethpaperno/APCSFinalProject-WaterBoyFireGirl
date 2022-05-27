@@ -36,19 +36,22 @@ public class Level {
         lavas.add(toBeAdded); 
         // index 5: color 
       case "Door":
-        Door toBeAdded = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), false);
-        // index 5: color, Index 6: isOpen (false)
+        new col = color(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7])); 
+        Door toBeAdded = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), col, false);
+        // index 5,6,7: color, Index 7: isOpen (false)
         doors.add(toBeAdded);
-      case "Lever":
-        
+      /*
+      case "Lever": 
       case "Platform":
       case "Button":
-        
+       */
       case "Gem":
+        new col = color(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7])); 
+        Gem toBeAdded = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), col, false);
+        // index 5,6,7: color, Index 6: isCollected (false)
+        gems.add(toBeAdded);
   }
   
-  Item[][] getItemBoard(){
-    return 
   
   int getDifficulty{
     return difficulty;
