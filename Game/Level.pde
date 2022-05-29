@@ -13,6 +13,12 @@ public class Level {
   public Level(int diff, Maze linkedBoard, String filename){
     difficulty = diff;
     board = linkedBoard;
+    try {
+      board.readFileAndConstruct();
+    }
+    catch(FileNotFoundException e) {
+      System.out.println("Invalid filename");
+    }
     fname = filename;
   }
 
@@ -47,20 +53,22 @@ public class Level {
         Gem toBeAdded = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), col, false);
         // index 5,6,7: color, Index 6: isCollected (false)
         gems.add(toBeAdded);
+      }
   }
 
 
-  int getDifficulty{
+  int getDifficulty() {
     return difficulty;
   }
 
   //returns if the BOARD is empty in position (does not take Items into acct)
   boolean isEmptySpace(int x, int y){
-    Maze mz = board.getBoard();
+    int[][] mz = board.getBoard();
     return (mz[x/PIXEL_WIDTH][y/PIXEL_LENGTH] == 0);
   }
   void play(){
     //needs to be written much later on
+    board.display();
   }
 
   void completeLevel(){
