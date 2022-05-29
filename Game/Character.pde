@@ -124,17 +124,22 @@ public class Character {
     jumped = true;
   }
   //Obstacle methods
-  public void moveWithPlatform(int vel) {
-    pos.x += vel;
-  }
-  public void moveWithBlock(Item b, int velocity) {
-    if (b.getX == pos.x && b.getY == pos.y ) {
-      b.setX();
-      b.setY();
-    }
-  }
-  public void gemCollects(PVector collect) {
-    if (collect.equals(pos)){addGem();}
-  }
+  //public void moveWithPlatform(int vel) {
+  //  pos.x += vel;
+  //}
+  //public void moveWithBlock(Item b, int velocity) {
+  //  if (b.getX == pos.x && b.getY == pos.y ) {
+  //    b.setX();
+  //    b.setY();
+  //  }
+  //}
+  //public void gemCollects(PVector collect) {
+  //  if (collect.equals(pos)){addGem();}
+  //}
   
+  //keyboard stuff 
+  public void pressed(PVector place){
+  move(place);}
+  public void released(){
+  }
 }

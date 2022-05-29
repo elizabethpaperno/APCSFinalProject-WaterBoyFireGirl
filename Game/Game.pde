@@ -22,29 +22,23 @@ void setup() {
 }
 void keyPressed() {
   if (key == UP && key==RIGHT) {
-    FireBoy.move(new PVector(1, 1));
+    FireBoy.pressed(new PVector (1, 1));
   } else if (key == UP && key == LEFT) {
-    FireBoy.move(new PVector(-1, 1));
+    FireBoy.pressed(new PVector (-1, 1));
   } else if (key == UP) {
-    FireBoy.move(new PVector(0, 1));
-  } else if (key==LEFT) {
-    FireBoy.move(new PVector(-1, 0));
+    FireBoy.pressed(new PVector(0, 1));
   } else if (key == RIGHT) {
-    FireBoy.move(new PVector(1, 0));
-  } else if (keyCode == 65 && keyCode == 87) {
-    WaterGirl.move(new PVector(-1, 1));
-  } else if (keyCode == 68 && keyCode == 87) {
-    WaterGirl.move(new PVector(1, 1));
-  } else if (keyCode == 65) {
-    WaterGirl.move(new PVector(-1, 0));
-  } else if (keyCode == 68) {
-    WaterGirl.move(new PVector (1, 0));
-  }
+    FireBoy.pressed(new PVector(1,0));
+  } else if (key == LEFT) {
+    FireBoy.pressed(new PVector(-1,0));
+  }else if (keyCode == 87 && ke ){}
 }
-//void keyReleased() {
-//}
+void keyReleased() {
+}
 void draw() {
 
   FireBoy.display();
-  WaterGirl.display();
+  FireBoy.run()
+    WaterGirl.display();
+  WaterGirl.run();
 }
