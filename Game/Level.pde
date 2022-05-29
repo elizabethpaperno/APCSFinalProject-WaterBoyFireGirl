@@ -1,7 +1,7 @@
 public class Level {
   private int difficulty;
   ArrayList<Item> blocks;
-  ArrayList<Lava> lavas;
+  //ArrayList<Lava> lavas;
   //ArrayList<Door> doors;
   //ArrayList<Lever> levers;
   //ArrayList<Platform> platforms;
@@ -13,12 +13,6 @@ public class Level {
   public Level(int diff, Maze linkedBoard, String filename){
     difficulty = diff;
     board = linkedBoard;
-    try {
-      board.readFileAndConstruct();
-    }
-    catch(FileNotFoundException e) {
-      System.out.println("Invalid filename");
-    }
     fname = filename;
   }
 
@@ -41,7 +35,7 @@ public class Level {
   //    //case "Door":
   //    //  color col = new color(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]));
   //    //  Door toBeAdded = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), col, false);
-  //    //  // index 5,6,7: color, Index 7: isOpen (false)
+  //    //  // index 5,6,7: color, Indsex 7: isOpen (false)
   //    //  doors.add(toBeAdded);
   //    /*
   //    case "Lever":
@@ -64,7 +58,9 @@ public class Level {
   //returns if the BOARD is empty in position (does not take Items into acct)
   boolean isEmptySpace(int x, int y){
     int[][] mz = board.getBoard();
-    return (mz[x/PIXEL_WIDTH][y/PIXEL_LENGTH] == 0);
+    println(x); 
+    println(y);
+    return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 0);
   }
   void play(){
     //needs to be written much later on

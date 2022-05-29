@@ -42,11 +42,11 @@ public class Maze {
         if (board[i][j] == 0) {
           stroke(0);
           fill(51, 51, 0);
-          rect(j * PIXEL_WIDTH, i * PIXEL_HEIGHT, PIXEL_WIDTH, PIXEL_HEIGHT);
+          rect(j * PIXEL_WIDTH, i * PIXEL_LENGTH, PIXEL_WIDTH, PIXEL_LENGTH);
         } else {
           noStroke();
           fill(102, 102, 0);
-          rect(j * PIXEL_WIDTH, i * PIXEL_HEIGHT, PIXEL_WIDTH, PIXEL_HEIGHT);
+          rect(j * PIXEL_WIDTH, i * PIXEL_LENGTH, PIXEL_WIDTH, PIXEL_LENGTH);
         }
       }
     }
