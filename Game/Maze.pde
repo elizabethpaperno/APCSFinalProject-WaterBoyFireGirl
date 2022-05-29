@@ -13,13 +13,13 @@ public class Maze {
   void readFileAndConstruct() throws FileNotFoundException {
     board = new int[rows][cols];
     String[] lines = loadStrings(fname);
-    for (int i = 0; i < lines.length; i++) {
-      String[] rowStr = lines[i].split(" ");   
+    for (int i = 0; i < lines.length; i++){
+      String[] rowStr = lines[i].split(" "); 
       int[] row = new int[rowStr.length]; 
-      for (int j = 0; j < row.length; j++) {
-        row[i] = Integer.parseInt(rowStr[i]);
+      for (int j = 0; j < row.length; j++){
+        row[j] = Integer.parseInt(rowStr[j]); 
       }
-      board[i] = row;
+      board[i] = row; 
     }
   }
 
@@ -35,15 +35,17 @@ public class Maze {
     return cols;
   }
 
-  void display {
+  void display() {
     for (int i = 0; i < width(); i++) {
       for (int j = 0; j < height(); j++) {
         if (board[i][j] == 0) {
+          stroke(0);
           fill(51, 51, 0);
-          rect(rows * PIXEL_WIDTH, cols * PIXEL_HEIGHT, HEIGHT/rows, WIDTH/cols);
+          rect(i * PIXEL_WIDTH, j * PIXEL_HEIGHT, HEIGHT/rows, WIDTH/cols);
         } else
+        
           fill(102, 102, 0);
-        rect(rows * PIXEL_WIDTH, cols * PIXEL_HEIGHT, HEIGHT/rows, WIDTH/cols);
+          rect(i * PIXEL_WIDTH, j * PIXEL_HEIGHT, HEIGHT/rows, WIDTH/cols);
       }
     }
   }
