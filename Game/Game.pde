@@ -11,6 +11,12 @@ void setup() {
   size(800, 600);
   PIXEL_WIDTH = width/m1.width();
   PIXEL_LENGTH = (int)height/m1.height();
+  try {
+    m1.readFileAndConstruct();
+  }
+  catch(FileNotFoundException e) {
+    System.out.println("Invalid filename");
+  }
   FireBoy = new Character(3, 2, color(0));
   WaterGirl = new Character(3, 2, color(0));
   FireBoy.levelAccess(l1);
@@ -25,14 +31,15 @@ void keyPressed() {
     FireBoy.changeLeft(true);
     FireBoy.changeUp(true);
   } else if (key == UP) {
-     FireBoy.changeUp(true);
+    FireBoy.changeUp(true);
   } else if (key == RIGHT) {
-     FireBoy.changeRight(true);
+    FireBoy.changeRight(true);
   } else if (key == LEFT) {
-     FireBoy.changeLeft(true);
-  //} else if (keyCode == 87 && ke ) {
-  //}
-}}
+    FireBoy.changeLeft(true);
+    //} else if (keyCode == 87 && ke ) {
+    //}
+  }
+}
 //void keyReleased() {
 
 //}
@@ -42,5 +49,4 @@ void draw() {
   FireBoy.run();
   WaterGirl.display();
   WaterGirl.run();
-
 }
