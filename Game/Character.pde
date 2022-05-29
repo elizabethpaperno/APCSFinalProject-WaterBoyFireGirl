@@ -155,11 +155,16 @@ public class Character {
   //keyboard stuff 
   public void pressed() {
     if (keyP== true){
-    if(up == true && left == true){}
-    else if (up == true && right == true){}
-    else if (up == true){}
-    else if (right == true){}
-    else if (left == true){}
+    if(up == true && left == true){
+    move(new PVector(-1,1));}
+    else if (up == true && right == true){
+    move(new PVector(1,1));}
+    else if (up == true){
+    move(new PVector(0,1));}
+    else if (right == true){
+    move(new PVector(1,0));}
+    else if (left == true){
+    move(new PVector(-1,0));}
   }}
   public void released() {
     right = false;

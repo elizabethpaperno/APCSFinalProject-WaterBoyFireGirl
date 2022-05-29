@@ -37,11 +37,12 @@ void keyPressed() {
   }
 }
 void keyReleased() {
+  
 }
 void draw() {
 
   FireBoy.display();
-  FireBoy.run()
+  FireBoy.run()z
     WaterGirl.display();
   WaterGirl.run();
 }
