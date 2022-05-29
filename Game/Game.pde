@@ -13,6 +13,8 @@ void setup() {
   PIXEL_LENGTH = (int)height/m1.height();
   FireBoy = new Character(3, 2, color(0));
   WaterGirl = new Character(3, 2, color(0));
+  FireBoy.levelAccess(l1);
+  WaterGirl.levelAccess(l1);
 }
 
 void keyPressed() {

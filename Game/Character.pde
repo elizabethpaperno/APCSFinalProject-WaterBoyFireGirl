@@ -20,6 +20,7 @@ public class Character {
   int playerHeight;
   float bottom;
   float top;
+  Level b;
 
   //(x,y) = top left???? yeah that makes sense 
   //constructor
@@ -107,19 +108,21 @@ public class Character {
   public void changeUp(boolean a) { 
     up=a;
   }
+  public void levelAccess(Level a){
+  b = a;}
   public void changeKey(boolean a){keyP = a;}
   //collision check 
   //returns if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
     for (int i = xBegin; i <= xEnd; i++) {
-      if (Level.isEmptySpace(i, yCor) == false) return false;
+      if (b.isEmptySpace(i, yCor) == false) return false;
     }
     return true;
   }
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
-      if (Level.isEmptySpace(xCor, i) == false) return false;
+      if (b.isEmptySpace(xCor, i) == false) return false;
     } 
     return true;
   }
