@@ -1,53 +1,69 @@
 public class Character {
   color a; 
   //top left corner of rectangle 
-  int x;
-  int y; 
-  float velX;
-  float velY;
-  float acceleration;
+  PVector pos;
+  PVector vel;
+  final float GRAVITY;
+  final float MOVE_MAG;
+  final float MAX_XVEL;
+  final float JUMP_MAG;
+  final float FRICTION;
   boolean living;
+  boolean horizontalPressed;
+  boolean jumped;
   int gemsCollected;
-  float leftS;
-  float rightS;
+  int playerWidth;
+  int playerHeight;
   float bottom;
   float top;
 
   //(x,y) = top left???? yeah that makes sense 
   //constructor
   public Character(color cool, int x, int y) {
-    leftS = x; 
-    rightS = x+10;
     top = y;
     bottom = y-20;
-    this.x= x;
-    this.y = y;
+    pos = new PVector(x, y);
+    vel = new PVector(0, 0);
     a = cool;
     gemsCollected =  0;
-    velX= 10;
-    velY= 10;
+    GRAVITY = 0.1;
+    MOVE_MAG = 0.3;
+    MAX_XVEL = 3;
+    JUMP_MAG = 3;
+    FRICTION = 0.5;
+    playerWidth = 10;
+    playerHeight = 20;
+    
   }
 
   //displaying characters
   void display() {
     fill(a);
     noStroke();
-    rect(x, y, 10, 20);
+    rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
-    if (checkYRange(x, x+10, y-20)== true) {
-      y +=.15;
-    }
+    
   }
 
   void run() {
-    velY -= acceleration; //gravity
-    if (x >= width || x <= 0) {
-      velX = 0;
+    
+    if (!checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
+      vel.set(vel.x, 0);
+    } else if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y-playerHeight))) { //detects floor collision
+      jumped = false;
+      vel.set(vel.x, 0);
+    } else {
+      vel.add(new PVector(0, GRAVITY));
     }
-    if (y >= height || y <= 0) {
-      velY = 0;;
+    
+    if (pos.x >= width - playerWidth || pos.x <= playerWidth) {
+      vel.set(0, vel.y);
     }
-
+    if (pos.y >= height - playerHeight || pos.y <= playerHeight) {
+      vel.set(vel.x, 0);
+    }
+    
+    pos.add(vel);
   }
   //Accessor Methods
   public color getColor() {
@@ -81,45 +97,38 @@ public class Character {
   //returns if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
     for (int i = xBegin; i <= xEnd; i++) {
-      if (Level.isEmptySpace(i, y) == false) return false;
+      if (Level.isEmptySpace(i, yCor) == false) return false;
     }
     return true;
   }
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
-      if (Level.isEmptySpace(x, i) == false) return false;
+      if (Level.isEmptySpace(xCor, i) == false) return false;
     } 
     return true;
   }
   //Movement Methods
-  public void move(int xdir, int ydir) {
-    if (checkXRange(x, x +10,y) == false) {
-      velY *= -1;
+  public void move(PVector dir) {
+    if(dir.y == 1 && !jumped){
+      jump();
     }
-    if (xdir == 1 && ydir == 1) {
-      jump(1);
-    }
-    if (xdir == -1 && ydir== 1) {
-      jump(-1);
-    }
-    if (xdir == 1 && ydir == 0) {
-      x += velX;
-    }
-    if (xdir ==-1 && ydir == 0) {
-     x -= velX;
+    if (abs(dir.x) == 1) {
+      horizontalPressed = true;
+      vel.add(dir.mult(MOVE_MAG * dir.x));
+      vel.set(vel.x > 0 ? min(MAX_XVEL, vel.x) : max(MAX_XVEL, vel.x), vel.y);
     }
   }
-  public void jump(int dir) {
-    x += velX * dir;
-    y +=velY;
+  public void jump() {
+    vel.add(new PVector(0, JUMP_MAG));
+    jumped = true;
   }
   //Obstacle methods
   public void moveWithPlatform(int vel) {
-    x += vel;
+    pos.x += vel;
   }
   public void moveWithBlock(Item b, int velocity) {
-    if (b.getX == x && b.getY == y ) {
+    if (b.getX == pos.x && b.getY == pos.y ) {
       b.setX();
       b.setY();
     }
