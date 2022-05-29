@@ -22,16 +22,19 @@ void setup() {
 }
 void keyPressed() {
   if (key == UP && key==RIGHT) {
-    FireBoy.pressed(new PVector (1, 1));
+    FireBoy.changeRight(true);
+    FireBoy.changeUp(true);
   } else if (key == UP && key == LEFT) {
-    FireBoy.pressed(new PVector (-1, 1));
+    FireBoy.changeLeft(true);
+    FireBoy.changeUp(true);
   } else if (key == UP) {
-    FireBoy.pressed(new PVector(0, 1));
+     FireBoy.changeUp(true);
   } else if (key == RIGHT) {
-    FireBoy.pressed(new PVector(1,0));
+     FireBoy.changeRight(true);
   } else if (key == LEFT) {
-    FireBoy.pressed(new PVector(-1,0));
-  }else if (keyCode == 87 && ke ){}
+     FireBoy.changeLeft(true);
+  } else if (keyCode == 87 && ke ) {
+  }
 }
 void keyReleased() {
 }

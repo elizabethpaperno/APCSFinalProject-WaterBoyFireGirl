@@ -8,6 +8,10 @@ public class Character {
   final float MAX_XVEL;
   final float JUMP_MAG;
   final float FRICTION;
+  boolean left;
+  boolean right;
+  boolean up;
+  boolean keyP;
   boolean living;
   boolean horizontalPressed;
   boolean jumped;
@@ -33,7 +37,9 @@ public class Character {
     FRICTION = 0.5;
     playerWidth = 10;
     playerHeight = 20;
-    
+    up = false;
+    left = false;
+    right = false;
   }
 
   //displaying characters
@@ -42,11 +48,10 @@ public class Character {
     noStroke();
     rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
-    
   }
 
   void run() {
-    
+
     if (!checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
       vel.set(vel.x, 0);
     } else if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y-playerHeight))) { //detects floor collision
@@ -55,14 +60,14 @@ public class Character {
     } else {
       vel.add(new PVector(0, GRAVITY));
     }
-    
+
     if (pos.x >= width - playerWidth || pos.x <= playerWidth) {
       vel.set(0, vel.y);
     }
     if (pos.y >= height - playerHeight || pos.y <= playerHeight) {
       vel.set(vel.x, 0);
     }
-    
+
     pos.add(vel);
   }
   //Accessor Methods
@@ -93,6 +98,16 @@ public class Character {
     vel = new PVector(hor, ver);
   }
 
+  public void changeLeft(boolean a) {
+    left = a;
+  }
+  public void changeRight(boolean a) {
+    right = a;
+  }
+  public void changeUp(boolean a) { 
+    up=a;
+  }
+  public void changeKey(boolean a){keyP = a;}
   //collision check 
   //returns if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
@@ -110,7 +125,7 @@ public class Character {
   }
   //Movement Methods
   public void move(PVector dir) {
-    if(dir.y == 1 && !jumped){
+    if (dir.y == 1 && !jumped) {
       jump();
     }
     if (abs(dir.x) == 1) {
@@ -136,10 +151,21 @@ public class Character {
   //public void gemCollects(PVector collect) {
   //  if (collect.equals(pos)){addGem();}
   //}
-  
+
   //keyboard stuff 
-  public void pressed(PVector place){
-  move(place);}
-  public void released(){
+  public void pressed() {
+    if (keyP== true){
+    if(up == true && left == true){}
+    else if (up == true && right == true){}
+    else if (up == true){}
+    else if (right == true){}
+    else if (left == true){}
+  }}
+  public void released() {
+    right = false;
+    up = false; 
+    left = false;
+    keyP=  false;
+    
   }
 }
