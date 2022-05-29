@@ -1,25 +1,20 @@
 import java.io.*;
 import java.util.*;
-Character FireBoy; 
+Character FireBoy;
 Character WaterGirl;
-int PIXEL_WIDTH = 20;
-int PIXEL_LENGTH =20;
+int PIXEL_WIDTH;
+int PIXEL_LENGTH;
+Maze m1 = new Maze("Level1.txt", 40, 30);
+Level1 = new Level(1, m1, "needToTest.txt");
+
 void setup() {
   size(800, 600);
-  Maze m1 = new Maze("testingMaze1.txt", 4, 5);
+  PIXEL_WIDTH = width/m1.width();
+  PIXEL_HEIGHT = height/m1.height();
   FireBoy = new Character(3, 2, color(0));
   WaterGirl = new Character(3, 2, color(0));
-  try {
-    m1.readFileAndConstruct();
-    int[][] board = m1.getBoard();
-    for (int[] row : board) {
-      System.out.println(Arrays.toString(row));
-    }
-  }
-  catch(FileNotFoundException e) {
-    System.out.println("Invalid filename");
-  }
 }
+
 void keyPressed() {
   if (key == UP && key==RIGHT) {
     FireBoy.changeRight(true);
@@ -37,12 +32,13 @@ void keyPressed() {
   }
 }
 void keyReleased() {
-  
+
 }
 void draw() {
-  if(keyPressed &&key == UP && key == RIGHT){}
+
   FireBoy.display();
   FireBoy.run();
   WaterGirl.display();
   WaterGirl.run();
+
 }
