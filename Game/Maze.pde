@@ -38,14 +38,16 @@ public class Maze {
   void display() {
     for (int i = 0; i < width(); i++) {
       for (int j = 0; j < height(); j++) {
+        //print(board[i][j]);
         if (board[i][j] == 0) {
           stroke(0);
           fill(51, 51, 0);
-          rect(i * PIXEL_WIDTH, j * PIXEL_HEIGHT, HEIGHT/rows, WIDTH/cols);
-        } else
-        
+          rect(j * PIXEL_WIDTH, i * PIXEL_HEIGHT, PIXEL_WIDTH, PIXEL_HEIGHT);
+        } else {
+          noStroke();
           fill(102, 102, 0);
-          rect(i * PIXEL_WIDTH, j * PIXEL_HEIGHT, HEIGHT/rows, WIDTH/cols);
+          rect(j * PIXEL_WIDTH, i * PIXEL_HEIGHT, PIXEL_WIDTH, PIXEL_HEIGHT);
+        }
       }
     }
   }
