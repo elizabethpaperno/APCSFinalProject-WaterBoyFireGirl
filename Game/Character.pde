@@ -32,8 +32,8 @@ public class Character {
     MAX_XVEL = 3;
     JUMP_MAG = 3;
     FRICTION = 0.5;
-    playerWidth = 20;
-    playerHeight = 30;
+    playerWidth = 30;
+    playerHeight = 40;
 
     horizontalPressed = false;
   }
@@ -53,8 +53,8 @@ public class Character {
       vel.set(vel.x * FRICTION, vel.y);
     }
     vel.add(new PVector(0, GRAVITY));
-    if (!checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-      vel.set(0, vel.y);
+    if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
+      vel.set(vel.x,0);
     } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y-playerHeight))) { //detects floor collision
       jumped = false;
       vel.set(vel.x, 0);
@@ -111,19 +111,19 @@ public class Character {
     return pos;
   }
   //collision check 
-  //returns if there is somethinng blocking it 
+  //returns true if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
-    for (int i = xBegin; i <= xEnd; i++) {
+    for (int i = xBegin-5; i <= xEnd+5; i++) {
       if (b.hitGround(i, yCor) == true) return true;
     }
-    return true;
+    return false;
   }
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
-    for (int i = yBegin; i <=yEnd; i ++) {
+    for (int i = yBegin-5; i <=yEnd+5; i ++) {
       if (b.hitGround(xCor, i) == true) return true;
     } 
-    return true;
+    return false;
   }
   //Movement Methods
   public void move(PVector dir) {

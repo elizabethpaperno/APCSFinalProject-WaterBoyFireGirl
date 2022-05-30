@@ -18,10 +18,11 @@ void setup() {
   catch(FileNotFoundException e) {
     System.out.println("Invalid filename");
   }
-  FireBoy = new Character(color(255, 0, 17), 70, 550);
-  WaterGirl = new Character(color(0, 27, 255), 100, 550 );
+  FireBoy = new Character(color(255, 0, 17), 70, 520);
+  WaterGirl = new Character(color(0, 27, 255), 100, 520 );
   FireBoy.levelAccess(l1);
   WaterGirl.levelAccess(l1);
+  System.out.print(FireBoy.checkXRange(70,100,585));
 }
 
 void keyPressed(){
@@ -35,7 +36,7 @@ void keyPressed(){
     keys[2] = true;
   }
   if(keyCode == UP){
-    //println("UP");
+    println("UP");
     keys[3] = true;
   }
   if(keyCode == LEFT){
