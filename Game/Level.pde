@@ -60,8 +60,9 @@ public class Level {
     int[][] mz = board.getBoard();
     println(x); 
     println(y);
-    return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 0);
+    return (mz[x/PIXEL_WIDTH][y/PIXEL_LENGTH] == 0);
   }
+  //}
   void play(){
     //needs to be written much later on
     board.display();

@@ -36,8 +36,8 @@ public class Character {
     MAX_XVEL = 3;
     JUMP_MAG = 3;
     FRICTION = 0.5;
-    playerWidth = 10;
-    playerHeight = 20;
+    playerWidth = 20;
+    playerHeight = 30;
     up = false;
     left = false;
     right = false;
@@ -47,6 +47,8 @@ public class Character {
   void display() {
     fill(a);
     noStroke();
+    System.out.print(pos.x);
+    System.out.print(pos.y);
     rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
   }
@@ -108,9 +110,15 @@ public class Character {
   public void changeUp(boolean a) { 
     up=a;
   }
-  public void levelAccess(Level a){
-  b = a;}
-  public void changeKey(boolean a){keyP = a;}
+  public void levelAccess(Level a) {
+    b = a;
+  }
+  public PVector place() {
+    return pos;
+  }
+  public void changeKey(boolean a) {
+    keyP = a;
+  }
   //collision check 
   //returns if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
@@ -156,24 +164,5 @@ public class Character {
   //}
 
   //keyboard stuff 
-  public void pressed() {
-    if (keyP== true){
-    if(up == true && left == true){
-    move(new PVector(-1,1));}
-    else if (up == true && right == true){
-    move(new PVector(1,1));}
-    else if (up == true){
-    move(new PVector(0,1));}
-    else if (right == true){
-    move(new PVector(1,0));}
-    else if (left == true){
-    move(new PVector(-1,0));}
-  }}
-  public void released() {
-    right = false;
-    up = false; 
-    left = false;
-    keyP=  false;
-    
-  }
+
 }

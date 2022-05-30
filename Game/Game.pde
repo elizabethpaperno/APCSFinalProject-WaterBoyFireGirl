@@ -9,44 +9,47 @@ Level l1 = new Level(1, m1, "needToTest.txt");
 
 void setup() {
   size(800, 600);
-  PIXEL_WIDTH = width/m1.width();
-  PIXEL_LENGTH = (int)height/m1.height();
+  PIXEL_WIDTH = height/m1.width();
+  PIXEL_LENGTH = (int)width/m1.height();
   try {
     m1.readFileAndConstruct();
   }
   catch(FileNotFoundException e) {
     System.out.println("Invalid filename");
   }
-  FireBoy = new Character(3, 2, color(0));
-  WaterGirl = new Character(3, 2, color(0));
+  FireBoy = new Character(color(255,0,17), 70, 550);
+  WaterGirl = new Character(color(0,27,255),100, 550 );
   FireBoy.levelAccess(l1);
   WaterGirl.levelAccess(l1);
 }
 
 void keyPressed() {
-  if (key == UP && key==RIGHT) {
-    FireBoy.changeRight(true);
-    FireBoy.changeUp(true);
-  } else if (key == UP && key == LEFT) {
-    FireBoy.changeLeft(true);
-    FireBoy.changeUp(true);
-  } else if (key == UP) {
-    FireBoy.changeUp(true);
-  } else if (key == RIGHT) {
-    FireBoy.changeRight(true);
-  } else if (key == LEFT) {
-    FireBoy.changeLeft(true);
-    //} else if (keyCode == 87 && ke ) {
-    //}
-  }
+//  if (key == UP && key==RIGHT) {
+//    FireBoy.changeRight(true);
+//    FireBoy.changeUp(true);
+//  } else if (key == UP && key == LEFT) {
+//    FireBoy.changeLeft(true);
+//    FireBoy.changeUp(true);
+//  } else if (key == UP) {
+//    FireBoy.changeUp(true);
+//  } else if (key == RIGHT) {
+//    FireBoy.changeRight(true);
+//  } else if (key == LEFT) {
+//    FireBoy.changeLeft(true);
+//    //} else if (keyCode == 87 && ke ) {
+//    //}
+//  }
+
+FireBoy.move(new PVector(1,0));
 }
 //void keyReleased() {
 
 //}
 void draw() {
   l1.play();
-  FireBoy.display();
   FireBoy.run();
+  FireBoy.display();
   WaterGirl.display();
-  WaterGirl.run();
+  System.out.println((FireBoy.place()).x);
+  System.out.println((FireBoy.place()).y);
 }
