@@ -25,35 +25,55 @@ public class Level {
     for (int i = 0; i < lines.length; i++) {
       String[] rowStr = lines[i].split(",");
       println(Arrays.toString(rowStr));
-      switch (rowStr[0]) {
-       /*
-      case "Block":
-        Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
-        blocks.add(toBeAdded1);
-       */
-      case "Lava":
+      if (rowStr[0].equals("Lava")) {
         color col2 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Lava toBeAdded2 = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col2);
         lavas.add(toBeAdded2);
-    
-      case "Door":
+        println("lava:" + rowStr[0] + Arrays.toString(rowStr));
+      } else if (rowStr[0].equals("Door")) {
         color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
         doors.add(toBeAdded3);
-
-      case "Gem":
+        println("door:" + rowStr[0] + Arrays.toString(rowStr));
+      } else if (rowStr[0].equals("Gem")) {
         color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
         gems.add(toBeAdded4);
+        println("gem:" + rowStr[0] + Arrays.toString(rowStr));
+      } else if (rowStr[0].equals("Block")) {
+        Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
+        blocks.add(toBeAdded1);
       }
+
       /*
-      case "Lever":
-      case "Platform":
-      case "Button":
-      */
+      case "Block":
+       Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
+       blocks.add(toBeAdded1);
+       
+       case "Lava":
+       
+       case "Door":
+       color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
+       Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
+       doors.add(toBeAdded3);
+       println("door:" + rowStr[0] + Arrays.toString(rowStr));
+       case "Gem":
+       color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
+       Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
+       gems.add(toBeAdded4);
+       println("gem:" + rowStr[0] + Arrays.toString(rowStr));
+       default:
+       println("default");
+       }
+       
+       case "Lever":
+       case "Platform":
+       case "Button":
+       */
     }
-    println(gems.size());
-    
+    //println(gems.size());
+    //println(lavas.size());
+    //println(doors.size());
   }
 
 
@@ -74,22 +94,22 @@ public class Level {
   void play() {
     //needs to be written much later on
     board.display();
-    for (int i = 0; i < blocks.size(); i++){
+    for (int i = 0; i < blocks.size(); i++) {
       blocks.get(i).display();
     }
-    for (int i = 0; i < doors.size(); i++){
+    for (int i = 0; i < doors.size(); i++) {
       doors.get(i).display();
     }
-    for (int i = 0; i < gems.size(); i++){
+    for (int i = 0; i < gems.size(); i++) {
       gems.get(i).display();
     }
-    for (int i = 0; i < lavas.size(); i++){
+    for (int i = 0; i < lavas.size(); i++) {
       lavas.get(i).display();
     }
-    
   }
 
   void completeLevel() {
     //needs to be figured out later
+    te
   }
 }
