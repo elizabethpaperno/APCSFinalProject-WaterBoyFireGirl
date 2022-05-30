@@ -21,8 +21,8 @@ void setup() {
     System.out.println("Invalid filename");
   }
 
-  FireBoy = new Character(color(255, 0, 17), 70, 550);
-  WaterGirl = new Character(color(0, 27, 255), 100, 550 );
+  FireBoy = new Character(color(255, 0, 17), 70, 520);
+  WaterGirl = new Character(color(0, 27, 255), 70, 459 );
 
   FireBoy.levelAccess(l1);
   WaterGirl.levelAccess(l1);
@@ -82,22 +82,27 @@ void draw() {
 
   FireBoy.display();
   WaterGirl.display();
-  if (keys[1] && !keys[2]) {
-    FireBoy.move(new PVector(-1, 0));
-  } else if (keys[2] && !keys[1]) {
-    FireBoy.move(new PVector(1, 0));
-  }
-  if (keys[0]) {
-    FireBoy.move(new PVector(0, 1));
-  }
-
-  if (keys[4] && !keys[5]) {
+  if (keys[1] && !keys[2] && keys[0]) {
+    WaterGirl.move(new PVector(-1, 1));
+  } else if (!keys[1] && keys[2] && keys[0]) {
+    WaterGirl.move(new PVector(1, 1));
+  } else if (keys[1] && !keys[2]) {
     WaterGirl.move(new PVector(-1, 0));
-  } else if (keys[5] && !keys[4]) {
+  } else if (keys[2] && !keys[1]) {
     WaterGirl.move(new PVector(1, 0));
+  } else if (keys[0]) {
+    WaterGirl.move(new PVector(0, 1));
   }
-  if (keys[3]) {
-    WaterGirl.move(new PVector(1, 0));
+  if (keys[4] && !keys[5] && keys[3]) {
+    FireBoy.move(new PVector(-1, 1));
+  } else if (keys[5] && !keys[4] && keys[3]) {
+    FireBoy.move(new PVector(1, 1));
+  } else if (keys[4] && !keys[5]) {
+    FireBoy.move(new PVector(-1, 0));
+  } else if (keys[5] && !keys[4]) {
+    FireBoy.move(new PVector(1, 0));
+  } else if (keys[3]) {
+    FireBoy.move(new PVector(1, 0));
   }
   FireBoy.run();
   WaterGirl.run();

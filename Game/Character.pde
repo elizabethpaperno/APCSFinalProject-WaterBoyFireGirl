@@ -56,12 +56,12 @@ public class Character {
       //vel.add(new PVector(0, GRAVITY));
       if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
         vel.set(vel.x, 0);
-      } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y-playerHeight))) { //detects floor collision
+      } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         vel.set(vel.x, 0);
-      } else if (checkYRange(int(pos.y), int (pos.y-playerHeight), int(pos.x))) {
+      } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
         vel.set(0, vel.y);
-      } else if (checkYRange(int(pos.y), int(pos.y-playerHeight), int(pos.x +playerWidth))) {
+      } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
         vel.set(0, vel.y);
       }
       else {
@@ -131,8 +131,10 @@ public class Character {
   }
   //Movement Methods
   public void move(PVector dir) {
-    if (dir.y == 1& !jumped) { 
-      jump();
+    if (dir.y == 1&& !jumped) { 
+      vel.add(0,-JUMP_MAG);
+      pos.set(new PVector(pos.x, pos.y-30));
+      jumped = true;
     }
     if (abs(dir.x) == 1) { //if moving in either left or right dir
       vel.add(new PVector(dir.x * MOVE_MAG, 0));
@@ -140,11 +142,7 @@ public class Character {
       horizontalPressed = true;
     }
   }
-  public void jump() {
-    //pos.add(new PVector(0, -1));
-    vel.set(new PVector(vel.x, -JUMP_MAG));
-    jumped = true;
-  }
+
   //Obstacle methods
   //public void moveWithPlatform(int vel) {
   //  pos.x += vel;
