@@ -1,7 +1,7 @@
 public class Lava extends Item{
   private color col;
-  public Lava(int x_, int y_, int h, int w, color c){
-    super(x_,y_,h,w);
+  public Lava(int x_, int y_, color c){
+    super(x_,y_,1,3);
     col = c; 
   }
   void display(){
