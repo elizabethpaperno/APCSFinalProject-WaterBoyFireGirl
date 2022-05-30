@@ -110,6 +110,6 @@ public class Level {
 
   void completeLevel() {
     //needs to be figured out later
-    te
+    
   }
 }
