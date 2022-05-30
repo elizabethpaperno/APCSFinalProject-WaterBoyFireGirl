@@ -40,8 +40,13 @@ public class Item{
    return width;
  }
  
+ int getHeight(){
+   return height;
+ }
+ 
  void display(){
-   rect(x,y, wdth, hgt); 
+   fill(153);
+   rect(getY() * PIXEL_WIDTH, getX() * PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
  }
 }
  
