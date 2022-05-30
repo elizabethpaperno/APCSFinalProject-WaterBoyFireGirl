@@ -1,4 +1,8 @@
 public class Level {
+  /* Interactions with Character (for Katherine): 
+    - use ArrayLists of diff types of Items to index through whne checking for collisions 
+    - if both characters are in front of Door (at the SAME TIME) --> setCompleted(true) --> completeLevel() --> stop running (shld be done for the level using if statement in play but stops charccters also)
+  */
   private int difficulty;
   private ArrayList<Item> blocks = new ArrayList<Item>();
   private ArrayList<Lava> lavas = new ArrayList<Lava>();
@@ -9,6 +13,7 @@ public class Level {
   private Maze board;
   //file should be CSV in format --> Item Sub class,x,y,h,w, additional features
   String fname;
+  boolean isCompleted;
 
   public Level(int diff, Maze linkedBoard, String filename) {
     difficulty = diff;
@@ -93,23 +98,35 @@ public class Level {
 
   void play() {
     //needs to be written much later on
-    board.display();
-    for (int i = 0; i < blocks.size(); i++) {
-      blocks.get(i).display();
-    }
-    for (int i = 0; i < doors.size(); i++) {
-      doors.get(i).display();
-    }
-    for (int i = 0; i < gems.size(); i++) {
-      gems.get(i).display();
-    }
-    for (int i = 0; i < lavas.size(); i++) {
-      lavas.get(i).display();
+    if (!isCompleted){
+      board.display();
+      for (int i = 0; i < blocks.size(); i++) {
+        blocks.get(i).display();
+      }
+      for (int i = 0; i < doors.size(); i++) {
+        doors.get(i).display();
+      }
+      for (int i = 0; i < gems.size(); i++) {
+        gems.get(i).display();
+      }
+      for (int i = 0; i < lavas.size(); i++) {
+        lavas.get(i).display();
+      }
+    }else{
+      background(51);
     }
   }
 
+  void setCompleted(boolean comp){
+    isCompleted = comp;
+  }
+  
   void completeLevel() {
     //needs to be figured out later
-    
+    if (isCompleted) {
+      textSize(128);
+      fill(255);
+      text("LEVEL COMPLETED", 100, 200);
+    }
   }
 }
