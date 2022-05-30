@@ -163,6 +163,5 @@ public class Character {
   //  if (collect.equals(pos)){addGem();}
   //}
 
-  //keyboard stuff 
-
+  //keyboard stuff
 }
