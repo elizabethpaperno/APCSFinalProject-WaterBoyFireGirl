@@ -13,13 +13,13 @@ public class Maze {
   void readFileAndConstruct() throws FileNotFoundException {
     board = new int[rows][cols];
     String[] lines = loadStrings(fname);
-    for (int i = 0; i < lines.length; i++){
+    for (int i = 0; i < lines.length; i++) {
       String[] rowStr = lines[i].split(" "); 
       int[] row = new int[rowStr.length]; 
-      for (int j = 0; j < row.length; j++){
-        row[j] = Integer.parseInt(rowStr[j]); 
+      for (int j = 0; j < row.length; j++) {
+        row[j] = Integer.parseInt(rowStr[j]);
       }
-      board[i] = row; 
+      board[i] = row;
     }
   }
 
