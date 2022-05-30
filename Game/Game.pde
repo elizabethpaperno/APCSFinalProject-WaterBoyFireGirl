@@ -42,7 +42,7 @@ void keyReleased() {
 void draw() {
 
   FireBoy.display();
-  FireBoy.run()z
+  FireBoy.run()
     WaterGirl.display();
   WaterGirl.run();
 }
