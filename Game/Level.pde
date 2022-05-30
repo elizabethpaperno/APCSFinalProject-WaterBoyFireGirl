@@ -1,16 +1,16 @@
 public class Level {
   private int difficulty;
   ArrayList<Item> blocks;
-  //ArrayList<Lava> lavas;
-  //ArrayList<Door> doors;
+  ArrayList<Lava> lavas;
+  ArrayList<Door> doors;
   //ArrayList<Lever> levers;
   //ArrayList<Platform> platforms;
-  //ArrayList<Gem> gems;
+  ArrayList<Gem> gems;
   Maze board;
   //file should be CSV in format --> Item Sub class,x,y,h,w, additional features
   String fname;
 
-  public Level(int diff, Maze linkedBoard, String filename){
+  public Level(int diff, Maze linkedBoard, String filename) {
     difficulty = diff;
     board = linkedBoard;
     fname = filename;
@@ -18,37 +18,39 @@ public class Level {
 
 
   //1. read in file initalize all Items and add them to ArrayList items
-  //2. then place them into a 2D array of Items and return that
-  //Item[][] createLevel(){
-  //  String[] lines = loadStrings(fname);
-  //  for (int i = 0; i < lines.length; i++){
-  //    String[] rowStr = lines[i].split(",");
-  //    switch (rowStr[0]){
-  //    //subclasses of item not yet written, but will be
-  //    //case "Block":
-  //    //  Block toBeAdded = new Block(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]));
-  //    //  blocks.add(toBeAdded);
-  //    //case "Lava":
-  //    //  Lava toBeAdded = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
-  //    //  lavas.add(toBeAdded);
-  //    //  // index 5: color
-  //    //case "Door":
-  //    //  color col = new color(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]));
-  //    //  Door toBeAdded = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), col, false);
-  //    //  // index 5,6,7: color, Indsex 7: isOpen (false)
-  //    //  doors.add(toBeAdded);
-  //    /*
-  //    case "Lever":
-  //    case "Platform":
-  //    case "Button":
-  //     */
-  //    //case "Gem":
-  //    //  color col = new color(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]));
-  //    //  Gem toBeAdded = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), col, false);
-  //    //  // index 5,6,7: color, Index 6: isCollected (false)
-  //    //  gems.add(toBeAdded);
-  //    }
-  //}}
+  //
+  void createLevel() {
+    String[] lines = loadStrings(fname);
+    for (int i = 0; i < lines.length; i++) {
+      String[] rowStr = lines[i].split(",");
+      switch (rowStr[0]) {
+      case "Block":
+        Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
+        blocks.add(toBeAdded1);
+      case "Lava":
+        color col2 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
+        Lava toBeAdded2 = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col2);
+        lavas.add(toBeAdded2);
+        // index 5: color
+      case "Door":
+        color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
+        Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
+        // index 5,6,7: color, Indsex 7: isOpen (false)
+        doors.add(toBeAdded3);
+
+      case "Gem":
+        color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
+        Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
+        // index 5,6,7: color, Index 6: isCollected (false)
+        gems.add(toBeAdded4);
+      }
+      /*
+      case "Lever":
+      case "Platform":
+      case "Button":
+      */
+    }
+  }
 
 
   int getDifficulty() {
@@ -56,7 +58,7 @@ public class Level {
   }
 
   //returns if the BOARD is empty in position (does not take Items into acct)
-  boolean isEmptySpace(int x, int y){
+  boolean isEmptySpace(int x, int y) {
     //int[][] mz = board.getBoard();
     //println(x);
     //println(y);
@@ -65,12 +67,12 @@ public class Level {
   }
 
 
-  void play(){
+  void play() {
     //needs to be written much later on
     board.display();
   }
 
-  void completeLevel(){
+  void completeLevel() {
     //needs to be figured out later
   }
 }
