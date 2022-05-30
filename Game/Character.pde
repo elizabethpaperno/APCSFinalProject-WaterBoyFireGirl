@@ -47,8 +47,18 @@ public class Character {
     rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
   }
-  void check(){}
+  void check() {
+    ArrayList<Gem> gem = b.getGems();
+    for (int i = 0; i < gem.size(); i++) {
+      if (gem.get(i).getX() == pos.x && gem.get(i).getY() ==pos.y && gem.get(i).getColor() == getColor()) {
+        gem.get(i).setCollected(true);
+        gem.get(i).hide();
+        addGem();
+      }
+    }
+  }
   void run() {
+    check();
     if (survival()) {
       if (!horizontalPressed) {
         vel.set(vel.x * FRICTION, vel.y);
@@ -62,8 +72,7 @@ public class Character {
         vel.set(-vel.x, vel.y);
       } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
         vel.set(-vel.x, vel.y);
-      }
-      else {
+      } else {
         vel.add(new PVector(0, GRAVITY));
       }
 
@@ -131,8 +140,8 @@ public class Character {
   //Movement Methods
   public void move(PVector dir) {
     if (dir.y == 1&& !jumped) { 
-      vel.add(0,-JUMP_MAG);
-      pos.set(new PVector(pos.x, pos.y-40));
+      vel.add(0, -JUMP_MAG);
+      pos.set(new PVector(pos.x, pos.y-30));
       jumped = true;
     }
     if (abs(dir.x) == 1) { //if moving in either left or right dir

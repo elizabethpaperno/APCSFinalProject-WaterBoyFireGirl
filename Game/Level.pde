@@ -97,7 +97,7 @@ public class Level {
 
   }
 
-
+ArrayList<Gem> getGems(){return gems;}
   void play() {
     //needs to be written much later on
     if (!isCompleted){
