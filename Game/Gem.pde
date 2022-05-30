@@ -8,7 +8,8 @@ public class Gem extends Item{
   
   void display(){
     fill(getColor());
-    rect(getY() * PIXEL_WIDTH, getX() * PIXEL_LENGTH, PIXEL_WIDTH, PIXEL_LENGTH);
+    rect(getX() * PIXEL_WIDTH, getY() * PIXEL_LENGTH, PIXEL_WIDTH, PIXEL_LENGTH);
+    noFill();
   }
   
   void hide(){

@@ -8,7 +8,8 @@ public class Door extends Item{
   
   void display(){
     fill(getColor());
-    rect(getY() * PIXEL_WIDTH, getX() * PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
+    rect(getX() * PIXEL_WIDTH, getY() * PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
+    noFill();
   }
   
   color getColor(){

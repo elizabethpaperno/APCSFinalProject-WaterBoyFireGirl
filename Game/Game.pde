@@ -5,7 +5,7 @@ Character WaterGirl;
 int PIXEL_WIDTH;
 int PIXEL_LENGTH;
 Maze m1 = new Maze("Level1.txt", 30, 40);
-Level l1 = new Level(1, m1, "needToTest.txt");
+Level l1 = new Level(1, m1, "Level1_Items.txt");
 
 void setup() {
   size(800, 600);
@@ -13,6 +13,7 @@ void setup() {
   PIXEL_LENGTH = (int)width/m1.height();
   try {
     m1.readFileAndConstruct();
+    l1.createLevel();
   }
   catch(FileNotFoundException e) {
     System.out.println("Invalid filename");
