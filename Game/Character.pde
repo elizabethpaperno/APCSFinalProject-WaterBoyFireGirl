@@ -56,8 +56,8 @@ public class Character {
   void run() {
 
     if (!checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-      vel.set(vel.x, 0);
-    } else if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y-playerHeight))) { //detects floor collision
+      vel.set(0, vel.y);
+    } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y-playerHeight))) { //detects floor collision
       jumped = false;
       vel.set(vel.x, 0);
     } else {
