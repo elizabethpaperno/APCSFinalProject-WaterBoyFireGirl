@@ -8,13 +8,9 @@ public class Character {
   final float MAX_XVEL;
   final float JUMP_MAG;
   final float FRICTION;
-  boolean left;
-  boolean right;
-  boolean up;
-  boolean keyP;
   boolean living;
-  boolean horizontalPressed;
   boolean jumped;
+  boolean horizontalPressed;
   int gemsCollected;
   int playerWidth;
   int playerHeight;
@@ -38,23 +34,25 @@ public class Character {
     FRICTION = 0.5;
     playerWidth = 20;
     playerHeight = 30;
-    up = false;
-    left = false;
-    right = false;
+    
+    horizontalPressed = false;
   }
 
   //displaying characters
   void display() {
     fill(a);
     noStroke();
-    System.out.print(pos.x);
-    System.out.print(pos.y);
+    //System.out.print(pos.x);
+    //System.out.print(pos.y);
     rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
   }
 
   void run() {
-
+    if(!horizontalPressed){
+      vel.set(vel.x * FRICTION, vel.y);
+    }
+    vel.add(new PVector(0, GRAVITY));
     if (!checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
       vel.set(0, vel.y);
     } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y-playerHeight))) { //detects floor collision
@@ -72,6 +70,7 @@ public class Character {
     }
 
     pos.add(vel);
+    horizontalPressed = false;
   }
   //Accessor Methods
   public color getColor() {
@@ -101,23 +100,11 @@ public class Character {
     vel = new PVector(hor, ver);
   }
 
-  public void changeLeft(boolean a) {
-    left = a;
-  }
-  public void changeRight(boolean a) {
-    right = a;
-  }
-  public void changeUp(boolean a) { 
-    up=a;
-  }
   public void levelAccess(Level a) {
     b = a;
   }
   public PVector place() {
     return pos;
-  }
-  public void changeKey(boolean a) {
-    keyP = a;
   }
   //collision check 
   //returns if there is somethinng blocking it 
@@ -139,13 +126,14 @@ public class Character {
     if (dir.y == 1 && !jumped) {
       jump();
     }
-    if (abs(dir.x) == 1) {
+    if (abs(dir.x) == 1) { //if moving in either left or right dir
+      vel.add(new PVector(dir.x * MOVE_MAG, 0));
+      vel.set(vel.x > 0 ? min(MAX_XVEL, vel.x) : max(-MAX_XVEL, vel.x), vel.y);
       horizontalPressed = true;
-      vel.add(dir.mult(MOVE_MAG * dir.x));
-      vel.set(vel.x > 0 ? min(MAX_XVEL, vel.x) : max(MAX_XVEL, vel.x), vel.y);
     }
   }
   public void jump() {
+    //pos.add(new PVector(0, -1));
     vel.add(new PVector(0, JUMP_MAG));
     jumped = true;
   }
