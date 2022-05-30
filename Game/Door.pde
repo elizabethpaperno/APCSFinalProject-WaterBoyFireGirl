@@ -2,6 +2,7 @@ public class Door extends Item {
   /* Interactions with Character (for Katherine): 
     - if character is within range of the door that is the same color as it (use getColor()) --> setOpen(true) --> openDoor()
     - if character moves away from door --> setOpen(false) --> display()
+    - also checking if both r open at same time to complete level --> refer to level
   */
   private color col;
   private boolean isOpen = false; 
