@@ -47,22 +47,21 @@ public class Character {
     rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
   }
-
+  void check(){}
   void run() {
     if (survival()) {
       if (!horizontalPressed) {
         vel.set(vel.x * FRICTION, vel.y);
       }
-      //vel.add(new PVector(0, GRAVITY));
       if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-        vel.set(vel.x, 0);
+        vel.set(vel.x, -vel.y);
       } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         vel.set(vel.x, 0);
       } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
-        vel.set(0, vel.y);
+        vel.set(-vel.x, vel.y);
       } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
-        vel.set(0, vel.y);
+        vel.set(-vel.x, vel.y);
       }
       else {
         vel.add(new PVector(0, GRAVITY));
@@ -133,7 +132,7 @@ public class Character {
   public void move(PVector dir) {
     if (dir.y == 1&& !jumped) { 
       vel.add(0,-JUMP_MAG);
-      pos.set(new PVector(pos.x, pos.y-30));
+      pos.set(new PVector(pos.x, pos.y-40));
       jumped = true;
     }
     if (abs(dir.x) == 1) { //if moving in either left or right dir

@@ -89,7 +89,11 @@ public class Level {
   //returns if the BOARD is empty in position (does not take Items into acct)
   boolean hitGround(int x, int y){
     int[][] mz = board.getBoard();
-    return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 1);
+    fill(0);
+    if (y > height)return false;
+    if (x >width)return false;
+    try{
+    return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 1);}catch(Exception e){return false;}
 
   }
 
