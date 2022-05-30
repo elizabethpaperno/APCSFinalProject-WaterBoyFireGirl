@@ -10,14 +10,14 @@ public class Maze {
     fname = filename;
   }
 
-  void readFileAndConstruct() throws FileNotFoundException{
+  void readFileAndConstruct() throws FileNotFoundException {
     board = new int[rows][cols];
     String[] lines = loadStrings(fname);
     for (int i = 0; i < lines.length; i++){
-      String[] rowStr = lines[i].split(" ");   
+      String[] rowStr = lines[i].split(" "); 
       int[] row = new int[rowStr.length]; 
       for (int j = 0; j < row.length; j++){
-        row[i] = Integer.parseInt(rowStr[i]); 
+        row[j] = Integer.parseInt(rowStr[j]); 
       }
       board[i] = row; 
     }
@@ -33,5 +33,22 @@ public class Maze {
 
   int height() {
     return cols;
+  }
+
+  void display() {
+    for (int i = 0; i < width(); i++) {
+      for (int j = 0; j < height(); j++) {
+        //print(board[i][j]);
+        if (board[i][j] == 0) {
+          stroke(0);
+          fill(51, 51, 0);
+          rect(j * PIXEL_WIDTH, i * PIXEL_LENGTH, PIXEL_WIDTH, PIXEL_LENGTH);
+        } else {
+          noStroke();
+          fill(102, 102, 0);
+          rect(j * PIXEL_WIDTH, i * PIXEL_LENGTH, PIXEL_WIDTH, PIXEL_LENGTH);
+        }
+      }
+    }
   }
 } 

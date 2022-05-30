@@ -20,6 +20,7 @@ public class Character {
   int playerHeight;
   float bottom;
   float top;
+  Level b;
 
   //(x,y) = top left???? yeah that makes sense 
   //constructor
@@ -35,8 +36,8 @@ public class Character {
     MAX_XVEL = 3;
     JUMP_MAG = 3;
     FRICTION = 0.5;
-    playerWidth = 10;
-    playerHeight = 20;
+    playerWidth = 20;
+    playerHeight = 30;
     up = false;
     left = false;
     right = false;
@@ -46,6 +47,8 @@ public class Character {
   void display() {
     fill(a);
     noStroke();
+    System.out.print(pos.x);
+    System.out.print(pos.y);
     rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
   }
@@ -107,19 +110,27 @@ public class Character {
   public void changeUp(boolean a) { 
     up=a;
   }
-  public void changeKey(boolean a){keyP = a;}
+  public void levelAccess(Level a) {
+    b = a;
+  }
+  public PVector place() {
+    return pos;
+  }
+  public void changeKey(boolean a) {
+    keyP = a;
+  }
   //collision check 
   //returns if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
     for (int i = xBegin; i <= xEnd; i++) {
-      if (Level.isEmptySpace(i, yCor) == false) return false;
+      if (b.isEmptySpace(i, yCor) == false) return false;
     }
     return true;
   }
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
-      if (Level.isEmptySpace(xCor, i) == false) return false;
+      if (b.isEmptySpace(xCor, i) == false) return false;
     } 
     return true;
   }
@@ -153,24 +164,5 @@ public class Character {
   //}
 
   //keyboard stuff 
-  public void pressed() {
-    if (keyP== true){
-    if(up == true && left == true){
-    move(new PVector(-1,1));}
-    else if (up == true && right == true){
-    move(new PVector(1,1));}
-    else if (up == true){
-    move(new PVector(0,1));}
-    else if (right == true){
-    move(new PVector(1,0));}
-    else if (left == true){
-    move(new PVector(-1,0));}
-  }}
-  public void released() {
-    right = false;
-    up = false; 
-    left = false;
-    keyP=  false;
-    
-  }
+
 }

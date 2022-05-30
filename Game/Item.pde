@@ -13,10 +13,13 @@ public class Item{
    wdth = w; 
  }
  
+ /*
+ //changed sturcture of Level class, not necessay
  //Level not yet created add these methods to Level and UML as well
  void placeInLevel(Level l){
    l.getItemBoard().set(x,y, this);
  }
+ */
  
  int getX(){
    return x;
@@ -26,8 +29,19 @@ public class Item{
    return y;
  }
  
+ void setX(int newX){
+   x = newX;
+ }
+ 
+ void sety(int newY){
+   y = newY;
+ }
  int getWidth(){
    return width;
+ }
+ 
+ void display(){
+   rect(x,y, wdth, hgt); 
  }
 }
  
