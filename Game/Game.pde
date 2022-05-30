@@ -71,9 +71,9 @@ void keyReleased(){
 
 void draw() {
   l1.play();
-  FireBoy.run();
-  WaterGirl.run();
   
+  FireBoy.display();
+  WaterGirl.display();
   if(keys[1] && !keys[2]){
     FireBoy.move(new PVector(-1, 0));
   } else if(keys[2] && !keys[1]){
@@ -91,7 +91,6 @@ void draw() {
   if(keys[3]){
     WaterGirl.move(new PVector(1, 0));
   }
-  FireBoy.display();
-  
-  WaterGirl.display();
+ FireBoy.run();
+  WaterGirl.run();
 }
