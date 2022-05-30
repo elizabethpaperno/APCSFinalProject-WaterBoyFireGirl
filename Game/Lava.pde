@@ -5,6 +5,7 @@ public class Lava extends Item{
     col = c; 
   }
   void display(){
+    fill(getColor());
     rect(getY() * PIXEL_WIDTH, getX() * PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
   }
   
