@@ -8,13 +8,9 @@ public class Character {
   final float MAX_XVEL;
   final float JUMP_MAG;
   final float FRICTION;
-  boolean left;
-  boolean right;
-  boolean up;
-  boolean keyP;
   boolean living;
-  boolean horizontalPressed;
   boolean jumped;
+  boolean horizontalPressed;
   int gemsCollected;
   int playerWidth;
   int playerHeight;
@@ -36,42 +32,53 @@ public class Character {
     MAX_XVEL = 3;
     JUMP_MAG = 3;
     FRICTION = 0.5;
-    playerWidth = 20;
-    playerHeight = 30;
-    up = false;
-    left = false;
-    right = false;
+    playerWidth = 30;
+    playerHeight = 40;
+    living =  true;
+    horizontalPressed = false;
   }
 
   //displaying characters
   void display() {
     fill(a);
     noStroke();
-    System.out.print(pos.x);
-    System.out.print(pos.y);
+    //System.out.print(pos.x);
+    //System.out.print(pos.y);
     rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
   }
 
   void run() {
+    if (survival()) {
+      if (!horizontalPressed) {
+        vel.set(vel.x * FRICTION, vel.y);
+      }
+      //vel.add(new PVector(0, GRAVITY));
+      if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
+        vel.set(vel.x, 0);
+      } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y-playerHeight))) { //detects floor collision
+        jumped = false;
+        vel.set(vel.x, 0);
+      } else if (checkYRange(int(pos.y), int (pos.y-playerHeight), int(pos.x))) {
+        vel.set(0, vel.y);
+      } else if (checkYRange(int(pos.y), int(pos.y-playerHeight), int(pos.x +playerWidth))) {
+        vel.set(0, vel.y);
+      }
+      else {
+        vel.add(new PVector(0, GRAVITY));
+      }
 
-    if (!checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-      vel.set(vel.x, 0);
-    } else if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y-playerHeight))) { //detects floor collision
-      jumped = false;
-      vel.set(vel.x, 0);
-    } else {
-      vel.add(new PVector(0, GRAVITY));
-    }
+      if (pos.x >= width - playerWidth-20 || pos.x <= playerWidth-20) {
+        vel.set(-vel.x, vel.y);
+      }
+      if (pos.y >= height - playerHeight || pos.y <= playerHeight) {
+        vel.set(vel.x, 0);
+      }
 
-    if (pos.x >= width - playerWidth || pos.x <= playerWidth) {
-      vel.set(0, vel.y);
+      pos.add(vel);
+      horizontalPressed = false;
+      ////index through all f the arraylist
     }
-    if (pos.y >= height - playerHeight || pos.y <= playerHeight) {
-      vel.set(vel.x, 0);
-    }
-
-    pos.add(vel);
   }
   //Accessor Methods
   public color getColor() {
@@ -101,52 +108,41 @@ public class Character {
     vel = new PVector(hor, ver);
   }
 
-  public void changeLeft(boolean a) {
-    left = a;
-  }
-  public void changeRight(boolean a) {
-    right = a;
-  }
-  public void changeUp(boolean a) { 
-    up=a;
-  }
   public void levelAccess(Level a) {
     b = a;
   }
   public PVector place() {
     return pos;
   }
-  public void changeKey(boolean a) {
-    keyP = a;
-  }
   //collision check 
-  //returns if there is somethinng blocking it 
+  //returns true if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
     for (int i = xBegin; i <= xEnd; i++) {
-      if (b.isEmptySpace(i, yCor) == false) return false;
+      if (b.hitGround(i, yCor) == true) return true;
     }
-    return true;
+    return false;
   }
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
-      if (b.isEmptySpace(xCor, i) == false) return false;
+      if (b.hitGround(xCor, i) == true) return true;
     } 
-    return true;
+    return false;
   }
   //Movement Methods
   public void move(PVector dir) {
-    if (dir.y == 1 && !jumped) {
+    if (dir.y == 1& !jumped) { 
       jump();
     }
-    if (abs(dir.x) == 1) {
+    if (abs(dir.x) == 1) { //if moving in either left or right dir
+      vel.add(new PVector(dir.x * MOVE_MAG, 0));
+      vel.set(vel.x > 0 ? min(MAX_XVEL, vel.x) : max(-MAX_XVEL, vel.x), vel.y);
       horizontalPressed = true;
-      vel.add(dir.mult(MOVE_MAG * dir.x));
-      vel.set(vel.x > 0 ? min(MAX_XVEL, vel.x) : max(MAX_XVEL, vel.x), vel.y);
     }
   }
   public void jump() {
-    vel.add(new PVector(0, JUMP_MAG));
+    //pos.add(new PVector(0, -1));
+    vel.set(new PVector(vel.x, -JUMP_MAG));
     jumped = true;
   }
   //Obstacle methods

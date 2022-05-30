@@ -1,6 +1,6 @@
 public class Level {
-  /* Interactions with Character (for Katherine): 
-    - use ArrayLists of diff types of Items to index through whne checking for collisions 
+  /* Interactions with Character (for Katherine):
+    - use ArrayLists of diff types of Items to index through whne checking for collisions
     - if both characters are in front of Door (at the SAME TIME) --> setCompleted(true) --> completeLevel() --> stop running (shld be done for the level using if statement in play but stops charccters also)
   */
   private int difficulty;
@@ -54,9 +54,9 @@ public class Level {
       case "Block":
        Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
        blocks.add(toBeAdded1);
-       
+
        case "Lava":
-       
+
        case "Door":
        color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
        Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
@@ -70,7 +70,7 @@ public class Level {
        default:
        println("default");
        }
-       
+
        case "Lever":
        case "Platform":
        case "Button":
@@ -87,12 +87,10 @@ public class Level {
   }
 
   //returns if the BOARD is empty in position (does not take Items into acct)
-  boolean isEmptySpace(int x, int y) {
-    //int[][] mz = board.getBoard();
-    //println(x);
-    //println(y);
-    //return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 0);
-    return true;
+  boolean hitGround(int x, int y){
+    int[][] mz = board.getBoard();
+    return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 1);
+
   }
 
 
@@ -120,7 +118,7 @@ public class Level {
   void setCompleted(boolean comp){
     isCompleted = comp;
   }
-  
+
   void completeLevel() {
     //needs to be figured out later
     if (isCompleted) {

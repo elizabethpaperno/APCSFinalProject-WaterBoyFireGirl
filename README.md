@@ -55,5 +55,14 @@
    * Continue working on Level
    * figure out way to store and access methods of subclasses of Item --> ArrayLists of all subclasses
    * add/remove necessary methods from item and maze
+ 
+5/29: 
+* Elizabeth:
+   * Manually write file for base platform using a grid overlay on an image of Level1
+   * Write display for base board platforms on maze --> working
+   * Write subclasses of Item --> no issues found thus far --> still need to add interactions with Character
+   * Make necessary changes btwn my and Katherine's work to make it compatable (small fixes in file names, etc)
+   *  Write file lsiiting items and position (also using the overlay) 
+   * Begin reading in file for Items + figuring out how to display them --> not working (continue tommorow)
 
 ## Running Instructions
