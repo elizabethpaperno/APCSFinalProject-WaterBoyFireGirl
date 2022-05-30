@@ -56,12 +56,12 @@ public class Level {
   }
 
   //returns if the BOARD is empty in position (does not take Items into acct)
-  boolean isEmptySpace(int x, int y){
-    //int[][] mz = board.getBoard();
-    //println(x);
-    //println(y);
-    //return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 0);
-    return true;
+  boolean hitGround(int x, int y){
+    int[][] mz = board.getBoard();
+    println(x);
+    println(y);
+    return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 1);
+    
   }
 
 
