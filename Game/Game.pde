@@ -5,12 +5,12 @@ Character WaterGirl;
 int PIXEL_WIDTH;
 int PIXEL_LENGTH;
 Maze m1 = new Maze("Level1.txt", 30, 40);
-<<<<<<< HEAD
+//<<<<<<< HEAD
 Level l1 = new Level(1, m1, "Level1_Items.txt");
-=======
-Level l1 = new Level(1, m1, "needToTest.txt");
+//=======
+
 boolean[] keys = new boolean[6];
->>>>>>> a22c7f4cc382d34a990e2eaed30c28ddf91a624a
+//>>>>>>> a22c7f4cc382d34a990e2eaed30c28ddf91a624a
 
 void setup() {
   size(800, 600);
@@ -23,38 +23,21 @@ void setup() {
   catch(FileNotFoundException e) {
     System.out.println("Invalid filename");
   }
-<<<<<<< HEAD
+//<<<<<<< HEAD
   FireBoy = new Character(color(255, 0, 17), 70, 550);
   WaterGirl = new Character(color(0, 27, 255), 100, 550 );
-=======
+//=======
   FireBoy = new Character(color(255, 0, 17), 70, 520);
   WaterGirl = new Character(color(0, 27, 255), 100, 520 );
->>>>>>> a22c7f4cc382d34a990e2eaed30c28ddf91a624a
+
   FireBoy.levelAccess(l1);
   WaterGirl.levelAccess(l1);
   System.out.print(FireBoy.checkXRange(70,100,585));
 }
 
-<<<<<<< HEAD
-void keyPressed() {
-  //  if (key == UP && key==RIGHT) {
-  //    FireBoy.changeRight(true);
-  //    FireBoy.changeUp(true);
-  //  } else if (key == UP && key == LEFT) {
-  //    FireBoy.changeLeft(true);
-  //    FireBoy.changeUp(true);
-  //  } else if (key == UP) {
-  //    FireBoy.changeUp(true);
-  //  } else if (key == RIGHT) {
-  //    FireBoy.changeRight(true);
-  //  } else if (key == LEFT) {
-  //    FireBoy.changeLeft(true);
-  //    //} else if (keyCode == 87 && ke ) {
-  //    //}
-  //  }
 
-  FireBoy.move(new PVector(1, 0));
-=======
+
+
 void keyPressed(){
   if(key == 'w'){
     keys[0] = true;
@@ -97,7 +80,7 @@ void keyReleased(){
   if(keyCode == RIGHT){
     keys[5] = false;
   }
->>>>>>> a22c7f4cc382d34a990e2eaed30c28ddf91a624a
+
 }
 
 void draw() {
