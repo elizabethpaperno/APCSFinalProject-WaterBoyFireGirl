@@ -77,7 +77,7 @@ public class Character {
         changeC(true);
       }
       else{a.setOpen(false);
-    changeC(false);o}
+    changeC(false);}
     }
   }
   boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {

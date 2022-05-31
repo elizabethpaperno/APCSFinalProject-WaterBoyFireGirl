@@ -108,7 +108,7 @@ void draw() {
     FireBoy.run();
     WaterGirl.run();
   } 
-  if ( !FireBoy.survival() && !WaterGirl.survival()){
+  if ( !FireBoy.survival() || !WaterGirl.survival()){
    textSize(128);
       fill(255);
       text("U Done", 150, 200);
