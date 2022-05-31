@@ -22,7 +22,7 @@ void setup() {
   }
 
   FireBoy = new Character(color(255, 0, 17), 70, 520);
-  WaterGirl = new Character(color(0, 27, 255), 70, 459 );
+  WaterGirl = new Character(color(0, 27, 255), 70, 450 );
 
   FireBoy.levelAccess(l1);
   WaterGirl.levelAccess(l1);
@@ -43,7 +43,6 @@ void keyPressed() {
     keys[2] = true;
   }
   if (keyCode == UP) {
-    println("UP");
     keys[3] = true;
   }
   if (keyCode == LEFT) {
@@ -102,7 +101,7 @@ void draw() {
   } else if (keys[5] && !keys[4]) {
     FireBoy.move(new PVector(1, 0));
   } else if (keys[3]) {
-    FireBoy.move(new PVector(1, 0));
+    FireBoy.move(new PVector(0, 1));
   }
   FireBoy.run();
   WaterGirl.run();
