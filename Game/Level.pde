@@ -26,15 +26,15 @@ public class Level {
   //
   void createLevel() throws FileNotFoundException {
     String[] lines = loadStrings(fname);
-    println(Arrays.toString(lines));
+    //println(Arrays.toString(lines));
     for (int i = 0; i < lines.length; i++) {
       String[] rowStr = lines[i].split(",");
-      println(Arrays.toString(rowStr));
+      //println(Arrays.toString(rowStr));
       if (rowStr[0].equals("Lava")) {
         color col2 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Lava toBeAdded2 = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col2);
         lavas.add(toBeAdded2);
-        println("lava:" + rowStr[0] + Arrays.toString(rowStr));
+        //println("lava:" + rowStr[0] + Arrays.toString(rowStr));
       //} else if (rowStr[0].equals("Door")) {
       //  color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
       //  Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
@@ -45,7 +45,7 @@ public class Level {
         color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
         gems.add(toBeAdded4);
-        println("gem:" + rowStr[0] + Arrays.toString(rowStr));
+        //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
       } 
       //else if (rowStr[0].equals("Block")) {
       //  Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
