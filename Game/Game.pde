@@ -115,5 +115,8 @@ void draw() {
   }
   if(FireBoy.complete() && WaterGirl.complete()){
   l1.setCompleted(true);
-  l1.completeLevel();}
+   textSize(128);
+      fill(255);
+      text("LEVEL COMPLETED", 100, 200);
+}
 }

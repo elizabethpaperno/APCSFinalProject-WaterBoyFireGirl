@@ -125,6 +125,7 @@ public class Level {
       }
     } else {
       background(51);
+      completeLevel();
     }
   }
   ArrayList<Lava> getLava() {
