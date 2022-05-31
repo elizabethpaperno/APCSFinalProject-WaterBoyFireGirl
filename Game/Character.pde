@@ -91,13 +91,13 @@ public class Character {
       }
       if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
         vel.set( vel.x, -vel.y);
-      } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
+      }  else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         vel.set(vel.x, 0);
       } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
-        vel.set(-vel.x, vel.y);
+        vel.set(0, -vel.y);
       } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
-        vel.set(-vel.x, vel.y);
+        vel.set(0, -vel.y);
       } else {
         vel.add(new PVector(0, GRAVITY));
       }
@@ -162,6 +162,7 @@ public class Character {
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
+      rect(xCor,i,10,10);
       if (b.hitGround(xCor, i) == true) return true;
     } 
     return false;

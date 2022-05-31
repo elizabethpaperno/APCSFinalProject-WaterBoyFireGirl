@@ -21,8 +21,8 @@ void setup() {
     System.out.println("Invalid filename");
   }
 
-  FireBoy = new Character(color(255, 0, 0), 70, 120);
-  WaterGirl = new Character(color(0, 0, 255), 70, 150 );
+  FireBoy = new Character(color(255, 0, 0), 70, 520);
+  WaterGirl = new Character(color(0, 0, 255), 70, 450 );
 
   FireBoy.levelAccess(l1);
   WaterGirl.levelAccess(l1);
