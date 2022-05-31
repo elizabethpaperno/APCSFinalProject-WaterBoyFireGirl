@@ -91,14 +91,17 @@ public class Character {
         vel.set(vel.x * FRICTION, vel.y);
       }
       if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-        vel.set( vel.x, -vel.y);
+        vel.set( vel.x, 0);
+        vel.add(new PVector(0, GRAVITY));
       } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         vel.set(vel.x, 0);
       } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
         vel.set(-vel.x, vel.y);
+        vel.add(new PVector(0, GRAVITY));
       } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
         vel.set(-vel.x, vel.y);
+        vel.add(new PVector(0, GRAVITY));
       } else {
         vel.add(new PVector(0, GRAVITY));
       }
