@@ -63,6 +63,16 @@
    * Write subclasses of Item --> no issues found thus far --> still need to add interactions with Character
    * Make necessary changes btwn my and Katherine's work to make it compatable (small fixes in file names, etc)
    *  Write file lsiiting items and position (also using the overlay) 
-   * Begin reading in file for Items + figuring out how to display them --> not working (continue tommorow)
+   * Begin reading in file for Items + figuring out how to display them --> not working (continue tommorow) 
+* Katherine:
+   * There are issues with collision detection, and whether or not its in the rght areas 
+   * Move horizontallyy works, jumping does not 
+   * Everything is displayed correctly, characters now need to interact with them.
+
+5/30:
+* Katherine:
+   * Finally figured out jump, still some glitches and bugs. 
+   * Interacts with gems and lava (mostly)successfully- still some issues for range.
+   * Edited the board to better suit the abilities of the characters.
 
 ## Running Instructions
