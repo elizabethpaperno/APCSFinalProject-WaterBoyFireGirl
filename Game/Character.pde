@@ -161,6 +161,7 @@ public class Character {
   //returns true if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
     for (int i = xBegin; i <= xEnd; i++) {
+      rect(i,yCor,10,10);
       if (b.hitGround(i, yCor) == true) return true;
     }
     return false;
@@ -168,6 +169,7 @@ public class Character {
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
+      rect(xCor,i,10,10);
       if (b.hitGround(xCor, i) == true) return true;
     } 
     return false;

@@ -92,8 +92,7 @@ public class Level {
   boolean hitGround(int x, int y) {
     int[][] mz = board.getBoard();
     fill(0);
-    if (y > height)return false;
-    if (x >width)return false;
+    
     try {
       return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 1);
     }
