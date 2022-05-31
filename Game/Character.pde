@@ -72,9 +72,9 @@ public class Character {
         jumped = false;
         vel.set(vel.x, 0);
       } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
-        vel.set(0, vel.y);
+        vel.set(-vel.x, vel.y);
       } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
-        vel.set(0, vel.y);
+        vel.set(-vel.x, vel.y);
       } else {
         vel.add(new PVector(0, GRAVITY));
       }
