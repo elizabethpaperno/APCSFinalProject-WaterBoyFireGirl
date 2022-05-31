@@ -27,7 +27,7 @@ public class Character {
     vel = new PVector(0, 0);
     a = cool;
     gemsCollected =  0;
-    GRAVITY = 0.1;
+    GRAVITY = 0.15;
     MOVE_MAG = 0.3;
     MAX_XVEL = 3;
     JUMP_MAG = 3;
@@ -47,12 +47,15 @@ public class Character {
     rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
   }
-  void check() {
+  public void check() {
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
-      if (gem.get(i).getX() == pos.x && gem.get(i).getY() ==pos.y && gem.get(i).getColor() == getColor()) {
-        gem.get(i).setCollected(true);
-        gem.get(i).hide();
+      Gem a = gem.get(i); 
+      if (a.getPixelX() >pos.x && a.getPixelX() < pos.x + playerWidth && a.getPixelY()>pos.y && a.getPixelY() < pos.y+playerHeight&& gem.get(i).getColor() == getColor()) {
+        System.out.print(pos.y);
+        System.out.print(a.getPixelY());
+        a.setCollected(true);
+        a.hide();
         addGem();
       }
     }
@@ -64,14 +67,14 @@ public class Character {
         vel.set(vel.x * FRICTION, vel.y);
       }
       if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-        vel.set(vel.x, -vel.y);
+        vel.set( vel.x, -vel.y);
       } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         vel.set(vel.x, 0);
       } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
-        vel.set(-vel.x, vel.y);
+        vel.set(0, vel.y);
       } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
-        vel.set(-vel.x, vel.y);
+        vel.set(0, vel.y);
       } else {
         vel.add(new PVector(0, GRAVITY));
       }
@@ -141,7 +144,7 @@ public class Character {
   public void move(PVector dir) {
     if (dir.y == 1&& !jumped) { 
       vel.add(0, -JUMP_MAG);
-      pos.set(new PVector(pos.x, pos.y-30));
+      pos.set(new PVector(pos.x, pos.y-40));
       jumped = true;
     }
     if (abs(dir.x) == 1) { //if moving in either left or right dir
