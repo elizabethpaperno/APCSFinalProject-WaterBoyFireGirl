@@ -78,7 +78,7 @@ void keyReleased() {
 void draw() {
   //cgeck if borth are alive, else, backgroun(0), game over
 
-  if (FireBoy.survival() && WaterGirl.survival()) {
+  if (FireBoy.survival() && WaterGirl.survival() && !FireBoy.complete() && !WaterGirl.complete()) {
     l1.play();
 
     FireBoy.display();
@@ -110,6 +110,6 @@ void draw() {
   } else {
    textSize(128);
       fill(255);
-      text("U DED", 100, 200);
+      text("U Done", 150, 200);
   }
 }

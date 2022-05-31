@@ -10,6 +10,7 @@ public class Character {
   final float FRICTION;
   boolean living;
   boolean jumped;
+  boolean completed; 
   boolean horizontalPressed;
   int gemsCollected;
   int playerWidth;
@@ -36,6 +37,7 @@ public class Character {
     playerHeight = 40;
     living =  true;
     horizontalPressed = false;
+    completed = false;
   }
 
   //displaying characters
@@ -66,6 +68,15 @@ public class Character {
       {
         justice(false);
       }
+    }
+    ArrayList<Door> d = b.getDoors();
+    for (int i = 0; i< d.size(); i++) {
+      Door a = d.get(i);
+      if (range(pos.x, pos.x +playerWidth, pos.y, pos.y +playerHeight -5, a.getPixelX(), a.getPixelY()) && a.getColor() == getColor()) {
+        a.setOpen(true);
+        changeC(true);
+      }
+      a.setOpen(false);
     }
   }
   boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
@@ -112,7 +123,7 @@ public class Character {
   public int gemsTotal() {
     return gemsCollected;
   }
-
+  public boolean complete(){return completed;}
 
 
   //Mutator Methods
@@ -135,6 +146,9 @@ public class Character {
   }
   public PVector place() {
     return pos;
+  }
+  public void changeC(boolean a) {
+    completed = a;
   }
   //collision check 
   //returns true if there is somethinng blocking it 
