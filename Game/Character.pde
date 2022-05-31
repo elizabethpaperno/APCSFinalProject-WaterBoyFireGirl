@@ -50,7 +50,9 @@ public class Character {
     stroke(1);
   }
   void check() {
-    if(pos.x > 600 && pos.x< width && pos.y <= 100){changeC(true);}
+    if (pos.x > 600 && pos.x< width && pos.y <= 100) {
+      changeC(true);
+    }
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
       Gem a = gem.get(i); 
@@ -98,7 +100,7 @@ public class Character {
         vel.set(vel.x, 0);
       } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
         vel.set(-vel.x, 0);
-        vel.add(new PVector(0, GRAVITY)); 
+        vel.add(new PVector(0, GRAVITY));
       } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
         vel.set(-vel.x, 0);
         vel.add(new PVector(0, GRAVITY));
@@ -176,7 +178,7 @@ public class Character {
   }
   //Movement Methods
   public void move(PVector dir) {
-  
+
     if (dir.y == 1&& !jumped) { 
       vel.add(0, -JUMP_MAG);
       pos.set(new PVector(pos.x+10, pos.y-35));
