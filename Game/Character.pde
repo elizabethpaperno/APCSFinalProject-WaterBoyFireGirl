@@ -28,7 +28,7 @@ public class Character {
     vel = new PVector(0, 0);
     a = cool;
     gemsCollected =  0;
-    GRAVITY = 0.15;
+    GRAVITY = 0.2;
     MOVE_MAG = 0.3;
     MAX_XVEL = 3;
     JUMP_MAG = 3;
@@ -97,10 +97,10 @@ public class Character {
         jumped = false;
         vel.set(vel.x, 0);
       } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
-        vel.set(-vel.x, vel.y);
-        vel.add(new PVector(0, GRAVITY));
+        vel.set(-vel.x, 0);
+        vel.add(new PVector(0, GRAVITY)); 
       } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
-        vel.set(-vel.x, vel.y);
+        vel.set(-vel.x, 0);
         vel.add(new PVector(0, GRAVITY));
       } else {
         vel.add(new PVector(0, GRAVITY));
