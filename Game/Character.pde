@@ -50,7 +50,7 @@ public class Character {
     stroke(1);
   }
   void check() {
-    if(pos.x > 600 && pos.x< width && pos.y <= 150){changeC(true);}
+    if(pos.x > 600 && pos.x< width && pos.y <= 100){changeC(true);}
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
       Gem a = gem.get(i); 
