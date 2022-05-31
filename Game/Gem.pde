@@ -12,14 +12,13 @@ public class Gem extends Item {
 
   void display() {
     fill(getColor());
+    stroke(0);
     rect(getX() * PIXEL_WIDTH, getY() * PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
-    noFill();
   }
 
   void hide() {
-    if (isCollected) {
-      fill(51, 51, 0); //color of empty space 
-      rect(getX() * PIXEL_WIDTH, getY() * PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
+    if (isCollected){
+      col = color(51, 51, 0);
     }
   }
 

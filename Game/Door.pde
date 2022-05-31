@@ -23,8 +23,7 @@ public class Door extends Item {
 
   void openDoor() {
     if (isOpen) {
-      fill(51, 51, 0); //color of empty space 
-      rect(getY() * PIXEL_WIDTH, getX() * PIXEL_LENGTH, PIXEL_WIDTH, PIXEL_LENGTH);
+      col = color(51, 51, 0); //color of empty space 
     }
   }
   
