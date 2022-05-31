@@ -21,8 +21,8 @@ void setup() {
     System.out.println("Invalid filename");
   }
 
-  FireBoy = new Character(color(255, 0, 0), 70, 520);
-  WaterGirl = new Character(color(0, 0, 255), 70, 450 );
+  FireBoy = new Character(color(255, 0, 0), 70, 120);
+  WaterGirl = new Character(color(0, 0, 255), 70, 150 );
 
   FireBoy.levelAccess(l1);
   WaterGirl.levelAccess(l1);
@@ -107,9 +107,13 @@ void draw() {
     }
     FireBoy.run();
     WaterGirl.run();
-  } else {
+  } 
+  if ( !FireBoy.survival() && !WaterGirl.survival()){
    textSize(128);
       fill(255);
       text("U Done", 150, 200);
   }
+  if(FireBoy.complete() && WaterGirl.complete()){
+  l1.setCompleted(true);
+  l1.completeLevel();}
 }
