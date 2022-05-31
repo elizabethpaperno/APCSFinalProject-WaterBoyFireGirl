@@ -4,7 +4,7 @@ Character FireBoy;
 Character WaterGirl;
 int PIXEL_WIDTH;
 int PIXEL_LENGTH;
-Maze m1 = new Maze("Level1.txt", 30, 40);
+Maze m1 = new Maze("Level1Edited.txt", 30, 40);
 Level l1 = new Level(1, m1, "Level1_Items.txt");
 
 boolean[] keys = new boolean[6];
@@ -21,8 +21,8 @@ void setup() {
     System.out.println("Invalid filename");
   }
 
-  FireBoy = new Character(color(255, 0, 17), 70, 520);
-  WaterGirl = new Character(color(0, 27, 255), 70, 450 );
+  FireBoy = new Character(color(255, 0, 0), 70, 520);
+  WaterGirl = new Character(color(0, 0, 255), 70, 450 );
 
   FireBoy.levelAccess(l1);
   WaterGirl.levelAccess(l1);
@@ -76,33 +76,40 @@ void keyReleased() {
 }
 
 void draw() {
+  //cgeck if borth are alive, else, backgroun(0), game over
 
-  l1.play();
+  if (FireBoy.survival() && WaterGirl.survival()) {
+    l1.play();
 
-  FireBoy.display();
-  WaterGirl.display();
-  if (keys[1] && !keys[2] && keys[0]) {
-    WaterGirl.move(new PVector(-1, 1));
-  } else if (!keys[1] && keys[2] && keys[0]) {
-    WaterGirl.move(new PVector(1, 1));
-  } else if (keys[1] && !keys[2]) {
-    WaterGirl.move(new PVector(-1, 0));
-  } else if (keys[2] && !keys[1]) {
-    WaterGirl.move(new PVector(1, 0));
-  } else if (keys[0]) {
-    WaterGirl.move(new PVector(0, 1));
+    FireBoy.display();
+    WaterGirl.display();
+    if (keys[1] && !keys[2] && keys[0]) {
+      WaterGirl.move(new PVector(-1, 1));
+    } else if (!keys[1] && keys[2] && keys[0]) {
+      WaterGirl.move(new PVector(1, 1));
+    } else if (keys[1] && !keys[2]) {
+      WaterGirl.move(new PVector(-1, 0));
+    } else if (keys[2] && !keys[1]) {
+      WaterGirl.move(new PVector(1, 0));
+    } else if (keys[0]) {
+      WaterGirl.move(new PVector(0, 1));
+    }
+    if (keys[4] && !keys[5] && keys[3]) {
+      FireBoy.move(new PVector(-1, 1));
+    } else if (keys[5] && !keys[4] && keys[3]) {
+      FireBoy.move(new PVector(1, 1));
+    } else if (keys[4] && !keys[5]) {
+      FireBoy.move(new PVector(-1, 0));
+    } else if (keys[5] && !keys[4]) {
+      FireBoy.move(new PVector(1, 0));
+    } else if (keys[3]) {
+      FireBoy.move(new PVector(0, 1));
+    }
+    FireBoy.run();
+    WaterGirl.run();
+  } else {
+   textSize(128);
+      fill(255);
+      text("U DED", 100, 200);
   }
-  if (keys[4] && !keys[5] && keys[3]) {
-    FireBoy.move(new PVector(-1, 1));
-  } else if (keys[5] && !keys[4] && keys[3]) {
-    FireBoy.move(new PVector(1, 1));
-  } else if (keys[4] && !keys[5]) {
-    FireBoy.move(new PVector(-1, 0));
-  } else if (keys[5] && !keys[4]) {
-    FireBoy.move(new PVector(1, 0));
-  } else if (keys[3]) {
-    FireBoy.move(new PVector(0, 1));
-  }
-  FireBoy.run();
-  WaterGirl.run();
 }

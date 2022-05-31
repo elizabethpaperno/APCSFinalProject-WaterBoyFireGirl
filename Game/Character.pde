@@ -47,18 +47,29 @@ public class Character {
     rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
   }
-  public void check() {
+  void check() {
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
       Gem a = gem.get(i); 
-      if (a.getPixelX() >pos.x && a.getPixelX() < pos.x + playerWidth && a.getPixelY()>pos.y && a.getPixelY() < pos.y+playerHeight&& gem.get(i).getColor() == getColor()) {
+      if (range(pos.x, pos.x+playerWidth, pos.y, pos.y +playerHeight, a.getPixelX(), a.getPixelY()) &&  gem.get(i).getColor() == getColor()) {
         System.out.print(pos.y);
         System.out.print(a.getPixelY());
-        a.setCollected(true);
+        gem.get(i).setCollected(true);
         a.hide();
         addGem();
       }
     }
+    ArrayList<Lava> l = b.getLava();
+    for (int i = 0; i < l.size(); i++) {
+      Lava d = l.get(i);
+      if (range(d.getPixelX(), d.getPixelX() + d.getPixelWidth(), d.getPixelY(), d.getPixelY() +d.getPixelHeight(), pos.x, pos.y +playerHeight) && d.getColor() != getColor())
+      {
+        justice(false);
+      }
+    }
+  }
+  boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
+    return (oX >= x1 && oX <=x2 && oY >= y1 && oY <=y2);
   }
   void run() {
     check();
@@ -144,7 +155,7 @@ public class Character {
   public void move(PVector dir) {
     if (dir.y == 1&& !jumped) { 
       vel.add(0, -JUMP_MAG);
-      pos.set(new PVector(pos.x, pos.y-40));
+      pos.set(new PVector(pos.x+10, pos.y-35));
       jumped = true;
     }
     if (abs(dir.x) == 1) { //if moving in either left or right dir

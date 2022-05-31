@@ -45,10 +45,11 @@ public class Level {
         Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
         gems.add(toBeAdded4);
         println("gem:" + rowStr[0] + Arrays.toString(rowStr));
-      } else if (rowStr[0].equals("Block")) {
-        Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
-        blocks.add(toBeAdded1);
-      }
+      } 
+      //else if (rowStr[0].equals("Block")) {
+      //  Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
+      //  blocks.add(toBeAdded1);
+      //}
 
       /*
       case "Block":
@@ -118,7 +119,7 @@ ArrayList<Gem> getGems(){return gems;}
       background(51);
     }
   }
-
+ ArrayList<Lava> getLava(){return lavas;}
   void setCompleted(boolean comp){
     isCompleted = comp;
   }
