@@ -35,12 +35,13 @@ public class Level {
         Lava toBeAdded2 = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col2);
         lavas.add(toBeAdded2);
         println("lava:" + rowStr[0] + Arrays.toString(rowStr));
-      } else if (rowStr[0].equals("Door")) {
-        color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
-        Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
-        doors.add(toBeAdded3);
-        println("door:" + rowStr[0] + Arrays.toString(rowStr));
-      } else if (rowStr[0].equals("Gem")) {
+      //} else if (rowStr[0].equals("Door")) {
+      //  color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
+      //  Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
+      //  doors.add(toBeAdded3);
+      //  println("door:" + rowStr[0] + Arrays.toString(rowStr));
+      } 
+      else if (rowStr[0].equals("Gem")) {
         color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
         gems.add(toBeAdded4);
@@ -138,9 +139,9 @@ public class Level {
   void completeLevel() {
     //needs to be figured out later
     if (isCompleted) {
-      textSize(128);
+      textSize(75);
       fill(255);
-      text("LEVEL COMPLETED", 100, 200);
+      text("LEVEL COMPLETED", 50, 100);
     }
   }
 }

@@ -21,8 +21,8 @@ void setup() {
     System.out.println("Invalid filename");
   }
 
-  FireBoy = new Character(color(255, 0, 0), 70, 520);
-  WaterGirl = new Character(color(0, 0, 255), 70, 450 );
+  FireBoy = new Character(color(255, 0, 0), 70, 120);
+  WaterGirl = new Character(color(0, 0, 255), 70, 150 );
 
   FireBoy.levelAccess(l1);
   WaterGirl.levelAccess(l1);
@@ -78,7 +78,7 @@ void keyReleased() {
 void draw() {
   //cgeck if borth are alive, else, backgroun(0), game over
 
-  if (FireBoy.survival() && WaterGirl.survival() && !FireBoy.complete() && !WaterGirl.complete()) {
+  if (FireBoy.survival() && WaterGirl.survival() && (!FireBoy.complete() || !WaterGirl.complete())) {
     l1.play();
 
     FireBoy.display();
@@ -115,8 +115,7 @@ void draw() {
   }
   if(FireBoy.complete() && WaterGirl.complete()){
   l1.setCompleted(true);
-   textSize(128);
-      fill(255);
-      text("LEVEL COMPLETED", 100, 200);
+  l1.completeLevel();
+
 }
 }

@@ -50,6 +50,7 @@ public class Character {
     stroke(1);
   }
   void check() {
+    if(pos.x > 600 && pos.x< width && pos.y <= 150){changeC(true);}
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
       Gem a = gem.get(i); 
@@ -75,9 +76,9 @@ public class Character {
       if (range(pos.x, pos.x +playerWidth, pos.y, pos.y +playerHeight -5, a.getPixelX(), a.getPixelY()) && a.getColor() == getColor()) {
         a.setOpen(true);
         changeC(true);
+      } else {
+        a.setOpen(false);
       }
-      else{a.setOpen(false);
-    changeC(false);}
     }
   }
   boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
@@ -91,13 +92,13 @@ public class Character {
       }
       if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
         vel.set( vel.x, -vel.y);
-      }  else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
+      } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         vel.set(vel.x, 0);
       } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
-        vel.set(0, -vel.y);
+        vel.set(-vel.x, vel.y);
       } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
-        vel.set(0, -vel.y);
+        vel.set(-vel.x, vel.y);
       } else {
         vel.add(new PVector(0, GRAVITY));
       }
@@ -124,7 +125,9 @@ public class Character {
   public int gemsTotal() {
     return gemsCollected;
   }
-  public boolean complete(){return completed;}
+  public boolean complete() {
+    return completed;
+  }
 
 
   //Mutator Methods
@@ -162,7 +165,6 @@ public class Character {
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
-      rect(xCor,i,10,10);
       if (b.hitGround(xCor, i) == true) return true;
     } 
     return false;
