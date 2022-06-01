@@ -8,7 +8,7 @@ public class Door extends Item {
   private boolean isOpen = false; 
   private color ogCol;
   public Door(int x_, int y_, color c) {
-    super(x_, y_, 3, 2);
+    super(x_, y_, 4, 3);
     col = c;
     ogCol = c;
   }
@@ -30,5 +30,6 @@ public class Door extends Item {
   
   void setOpen(boolean open){
     isOpen = open;
+    println("door set:" + open);
   }
 }
