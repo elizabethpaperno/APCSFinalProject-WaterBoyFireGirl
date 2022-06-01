@@ -75,7 +75,7 @@ public class Character {
     ArrayList<Door> d = b.getDoors();
     for (int i = 0; i< d.size(); i++) {
       Door a = d.get(i);
-      if (range(pos.x, pos.x +playerWidth, pos.y, pos.y +playerHeight -5, a.getPixelX(), a.getPixelY()) && a.getColor() == getColor()) {
+      if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y)&& a.getColor() == getColor()) {
         a.setOpen(true);
         changeC(true);
       } else {
