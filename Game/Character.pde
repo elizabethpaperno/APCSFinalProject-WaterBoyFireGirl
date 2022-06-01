@@ -56,7 +56,7 @@ public class Character {
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
       Gem a = gem.get(i); 
-      if (range(pos.x, pos.x+playerWidth, pos.y, pos.y +playerHeight, a.getPixelX(), a.getPixelY()) &&  gem.get(i).getColor() == getColor()) {
+      if (range(pos.x, pos.x+playerWidth, pos.y, pos.y +playerHeight, a.getPixelX()+5, a.getPixelY()+5) &&  gem.get(i).getColor() == getColor()) {
         //System.out.print(pos.y);
         System.out.print(a.getPixelY());
         gem.get(i).setCollected(true);
@@ -67,7 +67,7 @@ public class Character {
     ArrayList<Lava> l = b.getLava();
     for (int i = 0; i < l.size(); i++) {
       Lava d = l.get(i);
-      if (range(d.getPixelX(), d.getPixelX() + d.getPixelWidth(), d.getPixelY(), d.getPixelY() +d.getPixelHeight(), pos.x, pos.y +playerHeight) && d.getColor() != getColor())
+      if (range(d.getPixelX(), d.getPixelX() + d.getPixelWidth(), d.getPixelY(), d.getPixelY() +d.getPixelHeight(), pos.x+5, pos.y +playerHeight) && d.getColor() != getColor())
       {
         justice(false);
       }
@@ -75,7 +75,7 @@ public class Character {
     ArrayList<Door> d = b.getDoors();
     for (int i = 0; i< d.size(); i++) {
       Door a = d.get(i);
-      if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y)&& a.getColor() == getColor()) {
+      if ((pos.x >= a.getPixelX() -5&& pos.x + playerWidth <= a.getPixelX() +5 +  a.getPixelWidth()) && (pos.y >= a.getPixelY() -5  && pos.y + playerHeight <= a.getPixelY() + 5 + a.getPixelHeight()) && a.getColor() == getColor()) {
         a.setOpen(true);
         changeC(true);
       } else {
@@ -98,13 +98,16 @@ public class Character {
       } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         vel.set(vel.x, 0);
-      } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
+      } 
+
+      else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
         vel.set(-vel.x, 0);
         vel.add(new PVector(0, GRAVITY));
       } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
         vel.set(-vel.x, 0);
         vel.add(new PVector(0, GRAVITY));
-      } else {
+      } 
+      else {
         vel.add(new PVector(0, GRAVITY));
       }
 
@@ -163,7 +166,7 @@ public class Character {
   //returns true if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
     for (int i = xBegin; i <= xEnd; i++) {
-      rect(i,yCor,10,10);
+      rect(i, yCor, 10, 10);
       if (b.hitGround(i, yCor) == true) return true;
     }
     return false;
@@ -171,7 +174,7 @@ public class Character {
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
     for (int i = yBegin; i <=yEnd; i ++) {
-      rect(xCor,i,10,10);
+      rect(xCor, i, 10, 10);
       if (b.hitGround(xCor, i) == true) return true;
     } 
     return false;
