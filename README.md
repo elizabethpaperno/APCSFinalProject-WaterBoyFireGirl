@@ -95,4 +95,6 @@
     * create new screen for level completed
     * create pfont to centralize text
     * future plan --> work on creating transition page between levels + some array list of levels to inde through them for the future
+ * Katherine:
+   * Modified file read in for lava- ability to jump
 ## Running Instructions
