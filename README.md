@@ -88,4 +88,11 @@
    * rewrite conditional in check()
    * continous issue with FireBoy not being able to open door? --> confusing because it works for WaterGirl
    * Weird color flashing for Door with WaterGirl --> unsure how to fix
+
+  6/1
+  * Elizabeth:
+    * Get door working
+    * create new screen for level completed
+    * create pfont to centralize text
+    * future plan --> work on creating transition page between levels + some array list of levels to inde through them for the future
 ## Running Instructions
