@@ -31,7 +31,7 @@ public class Character {
     GRAVITY = 0.2;
     MOVE_MAG = 0.3;
     MAX_XVEL = 3;
-    JUMP_MAG = 3;
+    JUMP_MAG = -5;
     FRICTION = 0.5;
     playerWidth = 30;
     playerHeight = 40;
@@ -92,25 +92,25 @@ public class Character {
       if (!horizontalPressed) {
         vel.set(vel.x * FRICTION, vel.y);
       }
+        if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
+        vel.set( vel.x, 0);
+        vel.add(new PVector(0, GRAVITY));
+      } 
       if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         vel.set(vel.x, 0);
       } 
-        if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-          vel.set( vel.x, 0);
-          //vel.add(new PVector(0, GRAVITY));
-        }  
-
-        if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) { //checks left side 
-          vel.set(-vel.x, vel.y);
-          //vel.add(new PVector(0, GRAVITY));
-        } 
-        if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x+playerWidth) )) {//check right side
-          vel.set(-vel.x, vel.y);
-          //vel.add(new PVector(0, GRAVITY));
-        } 
-        if (!checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))){
-        vel.add(new PVector(0, GRAVITY));}
+      if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {//detects left collision
+        vel.set(0, 0);
+        vel.add(new PVector(0, GRAVITY));
+      }
+      if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {//detect right collisiion
+        vel.set(0, 0);
+        vel.add(new PVector(0, GRAVITY));
+      } 
+      //else {
+      //  vel.add(new PVector(0, GRAVITY));
+      //}
       
 
       if (pos.x >= width - playerWidth-20 || pos.x <= playerWidth-20) {
@@ -185,9 +185,10 @@ public class Character {
   public void move(PVector dir) {
 
     if (dir.y == 1&& !jumped) { 
-      vel.set(0, -JUMP_MAG);
-
-      pos.set(new PVector(pos.x+10, pos.y-35));
+      pos.set(new PVector(pos.x, pos.y-1));
+      vel.add(new PVector(0, JUMP_MAG));
+      //vel.set(vel.x, -JUMP_MAG);
+      //pos.set(new PVector(pos.x, pos.y-1));
       jumped = true;
     }
     if (abs(dir.x) == 1) { //if moving in either left or right dir

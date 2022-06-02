@@ -83,8 +83,8 @@ void draw() {
 
     FireBoy.display();
     WaterGirl.display();
-    //FireBoy.run();
-    //WaterGirl.run();
+    FireBoy.run();
+    WaterGirl.run();
     if (keys[1] && !keys[2] && keys[0]) {
       WaterGirl.move(new PVector(-1, 1));
     } else if (!keys[1] && keys[2] && keys[0]) {
@@ -107,8 +107,7 @@ void draw() {
     } else if (keys[3]) {
       FireBoy.move(new PVector(0, 1));
     }
-    FireBoy.run();
-    WaterGirl.run();
+    
   } 
   if ( !FireBoy.survival() || !WaterGirl.survival()) {
     background(255);
