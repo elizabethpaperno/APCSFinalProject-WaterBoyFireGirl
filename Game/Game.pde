@@ -83,8 +83,8 @@ void draw() {
 
     FireBoy.display();
     WaterGirl.display();
-    FireBoy.run();
-    WaterGirl.run();
+    //FireBoy.run();
+    //WaterGirl.run();
     if (keys[1] && !keys[2] && keys[0]) {
       WaterGirl.move(new PVector(-1, 1));
     } else if (!keys[1] && keys[2] && keys[0]) {
@@ -107,16 +107,20 @@ void draw() {
     } else if (keys[3]) {
       FireBoy.move(new PVector(0, 1));
     }
-    
+    FireBoy.run();
+    WaterGirl.run();
   } 
-  if ( !FireBoy.survival() || !WaterGirl.survival()){
-   textSize(128);
-      fill(255);
-      text("U Done", 150, 200);
+  if ( !FireBoy.survival() || !WaterGirl.survival()) {
+    background(255);
+    textSize(128);
+    fill(0);
+    text("OH NO!", 150, 200);
+    
   }
-  if(FireBoy.complete() && WaterGirl.complete()){
-  l1.setCompleted(true);
-  l1.completeLevel();
-
-}
+  if (FireBoy.complete() && WaterGirl.complete()) {
+    l1.setCompleted(true);
+    l1.completeLevel();
+    textSize(50);
+    text("FireBoy Gems collected:" + FireBoy.gemsTotal(), 200,150);
+  }
 }

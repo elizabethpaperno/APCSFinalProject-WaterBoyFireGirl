@@ -92,29 +92,31 @@ public class Character {
       if (!horizontalPressed) {
         vel.set(vel.x * FRICTION, vel.y);
       }
-      if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-        vel.set( vel.x, 0);
-        vel.add(new PVector(0, GRAVITY));
-      } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
+      if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         vel.set(vel.x, 0);
       } 
+        if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
+          vel.set( vel.x, 0);
+          //vel.add(new PVector(0, GRAVITY));
+        }  
 
-      else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {
-        vel.set(-vel.x, 0);
-        vel.add(new PVector(0, GRAVITY));
-      } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {
-        vel.set(-vel.x, 0);
-        vel.add(new PVector(0, GRAVITY));
-      } 
-      else {
-        vel.add(new PVector(0, GRAVITY));
-      }
+        if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) { //checks left side 
+          vel.set(-vel.x, vel.y);
+          //vel.add(new PVector(0, GRAVITY));
+        } 
+        if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x+playerWidth) )) {//check right side
+          vel.set(-vel.x, vel.y);
+          //vel.add(new PVector(0, GRAVITY));
+        } 
+        if (!checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))){
+        vel.add(new PVector(0, GRAVITY));}
+      
 
       if (pos.x >= width - playerWidth-20 || pos.x <= playerWidth-20) {
         vel.set(-vel.x, vel.y);
       }
-      if (pos.y >= height - playerHeight || pos.y <= playerHeight) {
+      if (pos.y >= height - playerHeight-20 || pos.y <= playerHeight-20) {
         vel.set(vel.x, 0);
       }
 
@@ -183,7 +185,8 @@ public class Character {
   public void move(PVector dir) {
 
     if (dir.y == 1&& !jumped) { 
-      vel.add(0, -JUMP_MAG);
+      vel.set(0, -JUMP_MAG);
+
       pos.set(new PVector(pos.x+10, pos.y-35));
       jumped = true;
     }
@@ -203,9 +206,6 @@ public class Character {
   //    b.setX();
   //    b.setY();
   //  }
-  //}
-  //public void gemCollects(PVector collect) {
-  //  if (collect.equals(pos)){addGem();}
   //}
 
   //keyboard stuff
