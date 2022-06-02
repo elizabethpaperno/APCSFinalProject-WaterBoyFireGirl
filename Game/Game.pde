@@ -8,7 +8,7 @@ Maze m1 = new Maze("Level1Edited.txt", 30, 40);
 Level l1 = new Level(1, m1, "Level1_Items.txt");
 
 boolean[] keys = new boolean[6];
-
+PFont myFont;
 void setup() {
   size(800, 600);
   PIXEL_WIDTH = height/m1.width();
@@ -20,13 +20,23 @@ void setup() {
   catch(FileNotFoundException e) {
     System.out.println("Invalid filename");
   }
-
-  FireBoy = new Character(color(255, 0, 0), 150, 40);
-  WaterGirl = new Character(color(0, 0, 255), 150, 40 );
-
+  
+  //positions for testing door
+  //FireBoy = new Character(color(255, 0, 0), 350, 57);
+  //WaterGirl = new Character(color(0, 0, 255), 350, 57 );
+  FireBoy = new Character(color(255, 0, 0), 70, 520);
+  WaterGirl = new Character(color(0, 0, 255), 70, 450 );
+  
   FireBoy.levelAccess(l1);
   WaterGirl.levelAccess(l1);
   //System.out.print(FireBoy.checkXRange(70, 100, 585));
+  //background(51); 
+  PFont myFont = createFont("Georgia", 32);
+  textFont(myFont);
+  //textAlign(CENTER, CENTER);
+  //fill(218,165,32);
+  //text("FireBoy & WaterGirl",100, 200);
+  
 }
 
 
@@ -117,6 +127,6 @@ void draw() {
   if(FireBoy.complete() && WaterGirl.complete()){
     l1.setCompleted(true);
     l1.completeLevel();
-    background(51);
+    
   }
 }
