@@ -138,9 +138,10 @@ public class Level {
   void completeLevel() {
     //needs to be figured out later
     if (isCompleted) {
-      textSize(75);
+      background(51);
+      textSize(60);
       fill(255);
-      text("LEVEL COMPLETED", 50, 100);
+      text("LEVEL COMPLETED", 130, 150);
     }
   }
 }
