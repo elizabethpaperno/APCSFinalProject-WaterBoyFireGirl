@@ -30,5 +30,6 @@ public class Door extends Item {
   
   void setOpen(boolean open){
     isOpen = open;
+    println("door set:" + open);
   }
 }

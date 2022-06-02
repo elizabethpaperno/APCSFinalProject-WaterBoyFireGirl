@@ -50,9 +50,11 @@ public class Character {
     stroke(1);
   }
   void check() {
+    /*
     if (pos.x > 600 && pos.x< width && pos.y <= 100) {
       changeC(true);
     }
+    */
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
       Gem a = gem.get(i); 
@@ -75,11 +77,15 @@ public class Character {
     ArrayList<Door> d = b.getDoors();
     for (int i = 0; i< d.size(); i++) {
       Door a = d.get(i);
-      if (range(pos.x, pos.x +playerWidth, pos.y, pos.y +playerHeight -5, a.getPixelX(), a.getPixelY()) && a.getColor() == getColor()) {
-        a.setOpen(true);
-        changeC(true);
-      } else {
-        a.setOpen(false);
+      if (a.getColor() == getColor()){
+        if ( (pos.x >= a.getPixelX() -5 && pos.x + playerWidth <= a.getPixelX() +5 +  a.getPixelWidth()) && (pos.y >= a.getPixelY() -5  && pos.y + playerHeight <= a.getPixelY() + 5 + a.getPixelHeight())) {
+          a.setOpen(true);
+          changeC(true);
+          //System.out.println("door Opened");
+        } else {
+          a.setOpen(false);
+          changeC(false);
+        }
       }
     }
   }
