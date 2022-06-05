@@ -5,12 +5,14 @@ Character WaterGirl;
 int PIXEL_WIDTH;
 int PIXEL_LENGTH;
 
-//for continuye button
+//for continue button
 int contX, contY;
-int contWid = 150;
-int contHgt = 40;
-color contColor;
+int contWid = 300;
+int contHgt = 70;
+color contColor = color(130, 127, 129);
 boolean contOver = false;
+
+color goldColor = color(218,165,32);
 
 Maze m1;
 Level l1;
@@ -25,6 +27,8 @@ void setup() {
   size(800, 600);
   Maze m1 = new Maze("Level1Edited.txt", 30, 40);
   Level l1 = new Level(1, m1, "Level1_Items.txt");
+  Maze m2 = new Maze("Level1Edited.txt", 30, 40);
+  Level l2 = new Level(1, m1, "Level1_Items.txt");
   PIXEL_WIDTH = height/m1.width();
   PIXEL_LENGTH = (int)width/m1.height();
   currLevelIndex = 0;
@@ -46,10 +50,10 @@ void setup() {
   }
   
   //positions for testing door
-  //FireBoy = new Character(color(255, 0, 0), 350, 57);
-  //WaterGirl = new Character(color(0, 0, 255), 350, 57 );
-  FireBoy = new Character(color(255, 0, 0), 70, 520);
-  WaterGirl = new Character(color(0, 0, 255), 70, 450 );
+  FireBoy = new Character(color(255, 0, 0), 350, 57);
+  WaterGirl = new Character(color(0, 0, 255), 350, 57 );
+  //FireBoy = new Character(color(255, 0, 0), 70, 520);
+  //WaterGirl = new Character(color(0, 0, 255), 70, 450 );
   
   FireBoy.levelAccess(levels.get(currLevelIndex));
   WaterGirl.levelAccess(levels.get(currLevelIndex));
@@ -61,21 +65,32 @@ void setup() {
   //fill(218,165,32);
   //text("FireBoy & WaterGirl",100, 200);
   
+  contX = width/2 - contWid/2;
+  contY = height/2 - contHgt/2;
 }
 
 void mousePressed() {
-  if (rectOver) {
+  if (overRect()) {
     if (currLevelIndex + 1 < levels.size()){
+      currLevelIndex += 1;
       FireBoy.changeC(false);
       WaterGirl.changeC(false);
-      currLevelIndex += 1;
     } else {
+      FireBoy.justice(false);
+      WaterGirl.justice(false);
+      background(contColor);
       fill(218,165,32);
-      text("Sorry :( No more Levels Available", 10,200);
+      textSize(30);
+      text("Sorry :( No more Levels Available", 170,200);
+      //background(contColor);
+      
     }
   }
 }
 
+boolean overRect()  {
+  return (mouseX >= contX && mouseX <= contX + contWid && mouseY >= contY && mouseY <= contY + contHgt);
+}
 
 void keyPressed() {
   if (key == 'w') {
@@ -154,15 +169,19 @@ void draw() {
     }
     
   } 
-  if ( !FireBoy.survival() || !WaterGirl.survival()){
+  if ( (!FireBoy.survival() || !WaterGirl.survival()) && !levels.get(currLevelIndex).isCompleted()){
       textSize(128);
       fill(255);
       text("U Done", 150, 200);
   }
-  if(FireBoy.complete() && WaterGirl.complete()){
+  if(FireBoy.complete() && WaterGirl.complete() && FireBoy.survival() && WaterGirl.survival()){
     levels.get(currLevelIndex).setCompleted(true);
     levels.get(currLevelIndex).completeLevel();
-    background(130, 127, 129);
-    
+  }
+  
+  if (overRect()) {
+    contColor = color(53);
+  }else{
+    contColor = color(130, 127, 129);
   }
 }
