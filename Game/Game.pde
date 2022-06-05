@@ -4,18 +4,34 @@ Character FireBoy;
 Character WaterGirl;
 int PIXEL_WIDTH;
 int PIXEL_LENGTH;
-Maze m1 = new Maze("Level1Edited.txt", 30, 40);
-Level l1 = new Level(1, m1, "Level1_Items.txt");
+Maze m1;
+Level l1;
+ArrayList<Level> levels;
+int currLevelIndex;
+ArrayList<Maze> mazes;
 
 boolean[] keys = new boolean[6];
 PFont myFont;
+
 void setup() {
   size(800, 600);
+  Maze m1 = new Maze("Level1Edited.txt", 30, 40);
+  Level l1 = new Level(1, m1, "Level1_Items.txt");
   PIXEL_WIDTH = height/m1.width();
   PIXEL_LENGTH = (int)width/m1.height();
+  currLevelIndex = 0;
+  levels = new ArrayList<Level>();
+  mazes = new ArrayList<Maze>();
+  
+  //add all levels (as needed)
+  levels.add(l1);
+  mazes.add(m1);
+  
   try {
-    m1.readFileAndConstruct();
-    l1.createLevel();
+    for (int i = 0; i < levels.size(); i++){
+      mazes.get(i).readFileAndConstruct();
+      levels.get(i).createLevel();
+    } 
   }
   catch(FileNotFoundException e) {
     System.out.println("Invalid filename");
@@ -27,8 +43,8 @@ void setup() {
   FireBoy = new Character(color(255, 0, 0), 70, 520);
   WaterGirl = new Character(color(0, 0, 255), 70, 450 );
   
-  FireBoy.levelAccess(l1);
-  WaterGirl.levelAccess(l1);
+  FireBoy.levelAccess(levels.get(currLevelIndex));
+  WaterGirl.levelAccess(levels.get(currLevelIndex));
   //System.out.print(FireBoy.checkXRange(70, 100, 585));
   //background(51); 
   PFont myFont = createFont("Georgia", 32);
@@ -89,7 +105,7 @@ void draw() {
   //cgeck if borth are alive, else, backgroun(0), game over
 
   if (FireBoy.survival() && WaterGirl.survival() && (!FireBoy.complete() || !WaterGirl.complete())) {
-    l1.play();
+    levels.get(currLevelIndex).play();
 
     FireBoy.display();
     WaterGirl.display();
@@ -120,13 +136,13 @@ void draw() {
     
   } 
   if ( !FireBoy.survival() || !WaterGirl.survival()){
-   textSize(128);
+      textSize(128);
       fill(255);
       text("U Done", 150, 200);
   }
   if(FireBoy.complete() && WaterGirl.complete()){
-    l1.setCompleted(true);
-    l1.completeLevel();
+    levels.get(currLevelIndex).setCompleted(true);
+    levels.get(currLevelIndex).completeLevel();
     
   }
 }
