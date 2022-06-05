@@ -97,4 +97,24 @@
     * future plan --> work on creating transition page between levels + some array list of levels to inde through them for the future
  * Katherine:
    * Modified file read in for lava- ability to jump
+
+  6/2
+  * Elizabeth:
+    * Very sick and dying
+
+  6/3
+  * Elizabeth:
+    * Very sick and dying
+
+  6/4
+  * Elizabeth:
+    * Very sick and dying
+
+  6/5
+  * Elizabeth:
+    * Add button and transition screen between Levels
+    * Move code for characters into Level instead of in game
+    * Fix small bug in door
+
+
 ## Running Instructions
