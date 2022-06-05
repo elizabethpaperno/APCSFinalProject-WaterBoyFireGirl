@@ -14,11 +14,17 @@ public class Level {
   //file should be CSV in format --> Item Sub class,x,y,h,w, additional features
   String fname;
   boolean isCompleted;
-
-  public Level(int diff, Maze linkedBoard, String filename) {
+  private Character FireBoy;
+  private Character WaterGirl;
+   
+  public Level(int diff, Maze linkedBoard, String filename, int xPos1, int yPos1, int xPos2, int yPos2) {
     difficulty = diff;
     board = linkedBoard;
     fname = filename;
+    FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
+    WaterGirl = new Character(color(0, 0, 255), xPos2, yPos2);
+    FireBoy.levelAccess(this);
+    WaterGirl.levelAccess(this);
   }
 
 
@@ -123,9 +129,32 @@ public class Level {
       for (int i = 0; i < lavas.size(); i++) {
         lavas.get(i).display();
       }
-    } else {
-      background(51);
-      completeLevel();
+      FireBoy.display();
+      WaterGirl.display();
+      FireBoy.run();
+      WaterGirl.run();
+      if (keys[1] && !keys[2] && keys[0]) {
+        WaterGirl.move(new PVector(-1, 1));
+      } else if (!keys[1] && keys[2] && keys[0]) {
+        WaterGirl.move(new PVector(1, 1));
+      } else if (keys[1] && !keys[2]) {
+        WaterGirl.move(new PVector(-1, 0));
+      } else if (keys[2] && !keys[1]) {
+        WaterGirl.move(new PVector(1, 0));
+      } else if (keys[0]) {
+        WaterGirl.move(new PVector(0, 1));
+      }
+      if (keys[4] && !keys[5] && keys[3]) {
+        FireBoy.move(new PVector(-1, 1));
+      } else if (keys[5] && !keys[4] && keys[3]) {
+        FireBoy.move(new PVector(1, 1));
+      } else if (keys[4] && !keys[5]) {
+        FireBoy.move(new PVector(-1, 0));
+      } else if (keys[5] && !keys[4]) {
+        FireBoy.move(new PVector(1, 0));
+      } else if (keys[3]) {
+        FireBoy.move(new PVector(0, 1));
+      }
     }
   }
   ArrayList<Lava> getLava() {
@@ -153,5 +182,13 @@ public class Level {
   
   boolean isCompleted(){
     return isCompleted;
+  }
+  
+  Character FireBoy(){
+    return FireBoy; 
+  }
+  
+  Character WaterGirl(){
+    return WaterGirl;
   }
 }
