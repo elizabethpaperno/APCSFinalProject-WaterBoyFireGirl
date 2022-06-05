@@ -4,6 +4,14 @@ Character FireBoy;
 Character WaterGirl;
 int PIXEL_WIDTH;
 int PIXEL_LENGTH;
+
+//for continuye button
+int contX, contY;
+int contWid = 150;
+int contHgt = 40;
+color contColor;
+boolean contOver = false;
+
 Maze m1;
 Level l1;
 ArrayList<Level> levels;
@@ -55,7 +63,18 @@ void setup() {
   
 }
 
-
+void mousePressed() {
+  if (rectOver) {
+    if (currLevelIndex + 1 < levels.size()){
+      FireBoy.changeC(false);
+      WaterGirl.changeC(false);
+      currLevelIndex += 1;
+    } else {
+      fill(218,165,32);
+      text("Sorry :( No more Levels Available", 10,200);
+    }
+  }
+}
 
 
 void keyPressed() {
@@ -143,6 +162,7 @@ void draw() {
   if(FireBoy.complete() && WaterGirl.complete()){
     levels.get(currLevelIndex).setCompleted(true);
     levels.get(currLevelIndex).completeLevel();
+    background(130, 127, 129);
     
   }
 }
