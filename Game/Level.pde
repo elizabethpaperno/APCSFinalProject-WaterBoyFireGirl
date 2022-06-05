@@ -138,10 +138,20 @@ public class Level {
   void completeLevel() {
     //needs to be figured out later
     if (isCompleted) {
-      background(51);
+      background(130, 127, 129);
       textSize(60);
-      fill(255);
+      fill(goldColor);
+      stroke(0);
       text("LEVEL COMPLETED", 130, 150);
+      fill(contColor);
+      rect(contX, contY, contWid, contHgt);
+      fill(goldColor);
+      text("Continue", contX + contWid/9, contY + 7 * contHgt/8);
+      
     }
+  }
+  
+  boolean isCompleted(){
+    return isCompleted;
   }
 }
