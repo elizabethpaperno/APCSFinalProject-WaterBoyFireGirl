@@ -28,7 +28,7 @@ public class Character {
     vel = new PVector(0, 0);
     a = cool;
     gemsCollected =  0;
-    GRAVITY = 0.2;
+    GRAVITY =0.5;
     MOVE_MAG = 0.3;
     MAX_XVEL = 3;
     JUMP_MAG = -5;
@@ -91,34 +91,37 @@ public class Character {
     if (survival()) {
       if (!horizontalPressed) {
         vel.set(vel.x * FRICTION, vel.y);
-      }
-        if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-        vel.set( vel.x, 0);
-        vel.add(new PVector(0, GRAVITY));
-      } 
-      if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
-        jumped = false;
-        vel.set(vel.x, 0);
-      } 
-      if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {//detects left collision
+      } //<>//
+        if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {//detects left collision
         vel.set(0, 0);
-        vel.add(new PVector(0, GRAVITY));
+        //vel.add(new PVector(0, GRAVITY)); //<>//
       }
       if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {//detect right collisiion
         vel.set(0, 0);
+        //vel.add(new PVector(0, GRAVITY));
+      } 
+      
+      if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
+        vel.set( vel.x, 0);
         vel.add(new PVector(0, GRAVITY));
       } 
-      //else {
+      else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
+        jumped = false;
+        vel.set(vel.x, 0);
+      } 
+      else{vel.add(new PVector(0, GRAVITY));}
+    
+      //else if(checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))&& !checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x)) && !checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth)) ){
       //  vel.add(new PVector(0, GRAVITY));
       //}
       
 
-      if (pos.x >= width - playerWidth-20 || pos.x <= playerWidth-20) {
-        vel.set(-vel.x, vel.y);
-      }
-      if (pos.y >= height - playerHeight-20 || pos.y <= playerHeight-20) {
-        vel.set(vel.x, 0);
-      }
+      //if (pos.x >= width - playerWidth-20 || pos.x <= playerWidth-20) {
+      //  vel.set(-vel.x, vel.y);
+      //}
+      //if (pos.y >= height - playerHeight-20 || pos.y <= playerHeight-20) {
+      //  vel.set(vel.x, 0);
+      //}
 
       pos.add(vel);
       horizontalPressed = false;
@@ -167,8 +170,10 @@ public class Character {
   //collision check 
   //returns true if there is somethinng blocking it 
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
+    fill(0);
+    rect(xBegin, yCor, xEnd-xBegin, 10);
     for (int i = xBegin; i <= xEnd; i++) {
-      rect(i, yCor, 10, 10);
+      
       if (b.hitGround(i, yCor) == true) return true;
     }
     return false;

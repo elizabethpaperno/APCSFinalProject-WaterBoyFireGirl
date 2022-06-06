@@ -11,10 +11,10 @@ boolean[] keys = new boolean[6];
 
 void setup() {
   size(800, 600);
-  PIXEL_WIDTH = height/m1.width();
+  PIXEL_WIDTH = height/m1.width(); //<>//
   PIXEL_LENGTH = (int)width/m1.height();
   try {
-    m1.readFileAndConstruct();
+    m1.readFileAndConstruct(); //<>//
     l1.createLevel();
   }
   catch(FileNotFoundException e) {
@@ -110,7 +110,7 @@ void draw() {
     
   } 
   if ( !FireBoy.survival() || !WaterGirl.survival()) {
-    background(255);
+    background(255); //<>//
     textSize(128);
     fill(0);
     text("OH NO!", 150, 200);
