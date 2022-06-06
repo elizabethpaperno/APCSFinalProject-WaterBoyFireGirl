@@ -77,13 +77,13 @@ public class Character {
     ArrayList<Door> d = b.getDoors();
     for (int i = 0; i< d.size(); i++) {
       Door a = d.get(i);
-<<<<<<< HEAD
-      if ((pos.x >= a.getPixelX() -5&& pos.x + playerWidth <= a.getPixelX() +5 +  a.getPixelWidth()) && (pos.y >= a.getPixelY() -5  && pos.y + playerHeight <= a.getPixelY() + 5 + a.getPixelHeight()) && a.getColor() == getColor()) {
+
+      if ((pos.x >= a.getPixelX() -5&& pos.x + playerWidth <= a.getPixelX() +5 +  a.getPixelWidth()) && (pos.y >= a.getPixelY() -5  && pos.y + playerHeight <= a.getPixelY() + 5 + a.getPixelHeight())) {
         a.setOpen(true);
         changeC(true);
       } else {
         a.setOpen(false);
-=======
+
       if (a.getOgColor() == getColor()){
         if ( (pos.x >= a.getPixelX() -5 && pos.x + playerWidth <= a.getPixelX() +5 +  a.getPixelWidth()) && (pos.y >= a.getPixelY() -5  && pos.y + playerHeight <= a.getPixelY() + 5 + a.getPixelHeight())) {
           a.setOpen(true);
@@ -93,9 +93,10 @@ public class Character {
           a.setOpen(false);
           changeC(false);
         }
->>>>>>> main
+
       }
     }
+  }
   }
   boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
     return (oX >= x1 && oX <=x2 && oY >= y1 && oY <=y2);
@@ -112,7 +113,7 @@ public class Character {
       }
       if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {//detect right collisiion
         vel.set(0, 0);
-        //vel.add(new PVector(0, GRAVITY));
+        vel.add(new PVector(0, GRAVITY));
       } 
       
       if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
