@@ -14,11 +14,17 @@ public class Level {
   //file should be CSV in format --> Item Sub class,x,y,h,w, additional features
   String fname;
   boolean isCompleted;
-
-  public Level(int diff, Maze linkedBoard, String filename) {
+  private Character FireBoy;
+  private Character WaterGirl;
+   
+  public Level(int diff, Maze linkedBoard, String filename, int xPos1, int yPos1, int xPos2, int yPos2) {
     difficulty = diff;
     board = linkedBoard;
     fname = filename;
+    FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
+    WaterGirl = new Character(color(0, 0, 255), xPos2, yPos2);
+    FireBoy.levelAccess(this);
+    WaterGirl.levelAccess(this);
   }
 
 
@@ -35,11 +41,11 @@ public class Level {
         Lava toBeAdded2 = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col2);
         lavas.add(toBeAdded2);
         //println("lava:" + rowStr[0] + Arrays.toString(rowStr));
-      //} else if (rowStr[0].equals("Door")) {
-      //  color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
-      //  Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
-      //  doors.add(toBeAdded3);
-      //  println("door:" + rowStr[0] + Arrays.toString(rowStr));
+      } else if (rowStr[0].equals("Door")) {
+        color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
+        Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
+        doors.add(toBeAdded3);
+        println("door:" + rowStr[0] + Arrays.toString(rowStr));
       } 
       else if (rowStr[0].equals("Gem")) {
         color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
@@ -123,9 +129,32 @@ public class Level {
       for (int i = 0; i < lavas.size(); i++) {
         lavas.get(i).display();
       }
-    } else {
-      background(51);
-      completeLevel();
+      FireBoy.display();
+      WaterGirl.display();
+      FireBoy.run();
+      WaterGirl.run();
+      if (keys[1] && !keys[2] && keys[0]) {
+        WaterGirl.move(new PVector(-1, 1));
+      } else if (!keys[1] && keys[2] && keys[0]) {
+        WaterGirl.move(new PVector(1, 1));
+      } else if (keys[1] && !keys[2]) {
+        WaterGirl.move(new PVector(-1, 0));
+      } else if (keys[2] && !keys[1]) {
+        WaterGirl.move(new PVector(1, 0));
+      } else if (keys[0]) {
+        WaterGirl.move(new PVector(0, 1));
+      }
+      if (keys[4] && !keys[5] && keys[3]) {
+        FireBoy.move(new PVector(-1, 1));
+      } else if (keys[5] && !keys[4] && keys[3]) {
+        FireBoy.move(new PVector(1, 1));
+      } else if (keys[4] && !keys[5]) {
+        FireBoy.move(new PVector(-1, 0));
+      } else if (keys[5] && !keys[4]) {
+        FireBoy.move(new PVector(1, 0));
+      } else if (keys[3]) {
+        FireBoy.move(new PVector(0, 1));
+      }
     }
   }
   ArrayList<Lava> getLava() {
@@ -138,9 +167,28 @@ public class Level {
   void completeLevel() {
     //needs to be figured out later
     if (isCompleted) {
-      textSize(75);
-      fill(255);
-      text("LEVEL COMPLETED", 50, 100);
+      background(130, 127, 129);
+      textSize(60);
+      fill(goldColor);
+      stroke(0);
+      text("LEVEL COMPLETED", 130, 150);
+      fill(contColor);
+      rect(contX, contY, contWid, contHgt);
+      fill(goldColor);
+      text("Continue", contX + contWid/9, contY + 7 * contHgt/8);
+      
     }
+  }
+  
+  boolean isCompleted(){
+    return isCompleted;
+  }
+  
+  Character FireBoy(){
+    return FireBoy; 
+  }
+  
+  Character WaterGirl(){
+    return WaterGirl;
   }
 }

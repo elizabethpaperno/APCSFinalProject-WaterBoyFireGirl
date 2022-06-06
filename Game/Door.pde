@@ -19,16 +19,17 @@ public class Door extends Item {
     }else{
       col = ogCol;
     }
-    fill(getColor());
+    fill(col);
     rect(getX() * PIXEL_WIDTH, getY() * PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
     noFill();
   }
 
-  color getColor() {
-    return col;
+  color getOgColor() {
+    return ogCol;
   }
   
   void setOpen(boolean open){
     isOpen = open;
+    println("door set:" + open);
   }
 }
