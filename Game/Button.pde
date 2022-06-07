@@ -7,6 +7,14 @@ public class Button extends Item{
     linkedPlat = link;
   }
   
+  void setPushed(boolean p){
+    isPushed = p;
+  }
+  
+  boolean isPushed(){
+    return isPushed;
+  }
+  
   void display(){
     //katherine fill in 
   }
