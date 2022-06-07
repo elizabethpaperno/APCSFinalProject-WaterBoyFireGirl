@@ -1,8 +1,8 @@
 public class Lever extends Item{
   boolean isPulled;
   Platform linkedPlat;
-  public Lever(int x_, int y_, int h, int w, Platform link){
-    super(x_, y_, h, w);
+  public Lever(int x_, int y_, Platform link){
+    super(x_, y_, 1, 1);
     linkedPlat = link;
   }
   
