@@ -29,9 +29,9 @@ public class Character {
     a = cool;
     gemsCollected =  0;
     GRAVITY =0.5;
-    MOVE_MAG = 0.3;
+    MOVE_MAG = 0.5;
     MAX_XVEL = 3;
-    JUMP_MAG = -5;
+    JUMP_MAG = -8;
     FRICTION = 0.5;
     playerWidth = 30;
     playerHeight = 40;
@@ -52,9 +52,9 @@ public class Character {
   void check() {
     /*
     if (pos.x > 600 && pos.x< width && pos.y <= 100) {
-      changeC(true);
-    }
-    */
+     changeC(true);
+     }
+     */
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
       Gem a = gem.get(i); 
@@ -84,19 +84,18 @@ public class Character {
       } else {
         a.setOpen(false);
 
-      if (a.getOgColor() == getColor()){
-        if ( (pos.x >= a.getPixelX() -5 && pos.x + playerWidth <= a.getPixelX() +5 +  a.getPixelWidth()) && (pos.y >= a.getPixelY() -5  && pos.y + playerHeight <= a.getPixelY() + 5 + a.getPixelHeight())) {
-          a.setOpen(true);
-          changeC(true);
-          //System.out.println("door Opened");
-        } else {
-          a.setOpen(false);
-          changeC(false);
+        if (a.getOgColor() == getColor()) {
+          if ( (pos.x >= a.getPixelX() -5 && pos.x + playerWidth <= a.getPixelX() +5 +  a.getPixelWidth()) && (pos.y >= a.getPixelY() -5  && pos.y + playerHeight <= a.getPixelY() + 5 + a.getPixelHeight())) {
+            a.setOpen(true);
+            changeC(true);
+            //System.out.println("door Opened");
+          } else {
+            a.setOpen(false);
+            changeC(false);
+          }
         }
-
       }
     }
-  }
   }
   boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
     return (oX >= x1 && oX <=x2 && oY >= y1 && oY <=y2);
@@ -107,36 +106,35 @@ public class Character {
       if (!horizontalPressed) {
         vel.set(vel.x * FRICTION, vel.y);
       } //<>//
-        if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {//detects left collision
-        vel.set(0, 0);
-        //vel.add(new PVector(0, GRAVITY)); //<>//
-      }
-      if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {//detect right collisiion
-        vel.set(0, 0);
-        vel.add(new PVector(0, GRAVITY));
-      } 
-      
+
+
       if (checkXRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
         vel.set( vel.x, 0);
         vel.add(new PVector(0, GRAVITY));
-      } 
-      else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
+      } else if (checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         vel.set(vel.x, 0);
-      } 
-      else{vel.add(new PVector(0, GRAVITY));}
-    
+      } else if (checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x))) {//detects left collision
+        vel.set(0, 0);
+        vel.add(new PVector(0, GRAVITY)); //<>//
+      } else if (checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth))) {//detect right collisiion
+        vel.set(0, 0);
+        vel.add(new PVector(0, GRAVITY));
+      } else {
+        vel.add(new PVector(0, GRAVITY));
+      }
+
       //else if(checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))&& !checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x)) && !checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth)) ){
       //  vel.add(new PVector(0, GRAVITY));
       //}
-      
 
-      //if (pos.x >= width - playerWidth-20 || pos.x <= playerWidth-20) {
-      //  vel.set(-vel.x, vel.y);
-      //}
-      //if (pos.y >= height - playerHeight-20 || pos.y <= playerHeight-20) {
-      //  vel.set(vel.x, 0);
-      //}
+
+      if (pos.x >= width - playerWidth-20 || pos.x <= playerWidth-20) {
+        vel.set(-vel.x, vel.y);
+      }
+      if (pos.y >= height - playerHeight-20 || pos.y <= playerHeight-20) {
+        vel.set(vel.x, 0);
+      }
 
       pos.add(vel);
       horizontalPressed = false;
@@ -187,15 +185,15 @@ public class Character {
   public boolean checkXRange(int xBegin, int xEnd, int yCor) {
     fill(0);
     rect(xBegin, yCor, xEnd-xBegin, 10);
-    for (int i = xBegin; i <= xEnd; i++) {
-      
+    for (int i = xBegin; i <= xEnd; i+=10) {
+
       if (b.hitGround(i, yCor) == true) return true;
     }
     return false;
   }
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkYRange(int yBegin, int yEnd, int xCor) {
-    for (int i = yBegin; i <=yEnd; i ++) {
+    for (int i = yBegin; i <=yEnd; i +=10) {
       rect(xCor, i, 10, 10);
       if (b.hitGround(xCor, i) == true) return true;
     } 
