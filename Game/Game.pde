@@ -23,6 +23,7 @@ ArrayList<Maze> mazes;
 boolean[] keys = new boolean[6];
 PFont myFont;
 
+boolean PAUSE_SCREEN = false;
 
 void setup() {
   size(800, 600);
@@ -108,6 +109,10 @@ void keyPressed() {
     //println("RIGHT");
     keys[5] = true;
   }
+  
+  if (key == 'p'){
+    PAUSE_SCREEN = true; 
+  }
 }
 void keyReleased() {
   if (key == 'w') {
@@ -134,6 +139,14 @@ void draw() {
   //cgeck if borth are alive, else, backgroun(0), game over
   FireBoy = levels.get(currLevelIndex).FireBoy(); 
   WaterGirl = levels.get(currLevelIndex).WaterGirl(); 
+  if (PAUSE_SCREEN){
+    background(contColor);
+    fill(218, 165, 32);
+    textSize(30);
+    text("PAUSED",250,100);
+    textSize(15);
+    text("Click E for End, Click R for retry, Click Space for resume", 50, 275);
+  }
   if (FireBoy.survival() && WaterGirl.survival() && (!FireBoy.complete() || !WaterGirl.complete())) {
     levels.get(currLevelIndex).play();
     //added code from here to play() in level
