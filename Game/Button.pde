@@ -1,4 +1,5 @@
 public class Button extends Item{
+  PImage a; 
   boolean isPushed;
   Platform linkedPlat;
   
@@ -17,5 +18,6 @@ public class Button extends Item{
   
   void display(){
     //katherine fill in 
+    
   }
 }

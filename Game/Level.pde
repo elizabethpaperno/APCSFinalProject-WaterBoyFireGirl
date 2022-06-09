@@ -45,7 +45,7 @@ public class Level {
         color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
         doors.add(toBeAdded3);
-        println("door:" + rowStr[0] + Arrays.toString(rowStr));
+        //println("door:" + rowStr[0] + Arrays.toString(rowStr));
       } 
       else if (rowStr[0].equals("Gem")) {
         color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
