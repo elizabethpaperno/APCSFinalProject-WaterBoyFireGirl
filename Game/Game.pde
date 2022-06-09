@@ -27,7 +27,7 @@ PFont myFont;
 void setup() {
   size(800, 600);
   Maze m1 = new Maze("Level1Edited.txt", 30, 40);
-  Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 520, 70, 450);
+  Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 40, 70, 40);
   PIXEL_WIDTH = height/m1.width();
   PIXEL_LENGTH = (int)width/m1.height();
   currLevelIndex = 0;
@@ -64,7 +64,7 @@ void setup() {
   contX = width/2 - contWid/2;
   contY = height/2 - contHgt/2;
 }
-
+/*
 void mousePressed() {
   if (overRect()) {
     if (currLevelIndex + 1 < levels.size()) {
@@ -81,7 +81,7 @@ void mousePressed() {
       //background(contColor);
     }
   }
-}
+}*/
 
 boolean overRect() {
   return (mouseX >= contX && mouseX <= contX + contWid && mouseY >= contY && mouseY <= contY + contHgt);
