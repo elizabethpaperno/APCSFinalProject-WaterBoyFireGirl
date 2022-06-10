@@ -139,8 +139,14 @@ void draw() {
   }
   if ( (!FireBoy.survival() || !WaterGirl.survival()) && !levels.get(currLevelIndex).isCompleted()) {
     textSize(128);
-    fill(255);
-    text("U Done", 150, 200);
+    background(255);
+    fill(0);
+    if (!FireBoy.survival()) {
+      text("Oh No!", 150, 200);
+    }
+    if (!WaterGirl.survival()) {
+      text("Oh No!", 150, 200);
+    }
   }
   if (FireBoy.complete() && WaterGirl.complete() && FireBoy.survival() && WaterGirl.survival()) {
     levels.get(currLevelIndex).setCompleted(true);
