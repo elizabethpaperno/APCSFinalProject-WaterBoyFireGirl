@@ -121,7 +121,8 @@ public class Character {
         vel.set( vel.x, 0);
         pos.set(pos.x, pos.y + 5);
         //vel.add(new PVector(0, GRAVITY));
-      } else if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
+      } 
+      if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         pos.set(pos.x, 10 * (int(pos.y / 10)));
         vel.set(vel.x, 0);
@@ -129,12 +130,12 @@ public class Character {
       //else {
       //  vel.add(new PVector(0, GRAVITY));
       //}
-      if (checkXRange(int(pos.y), int (pos.y+playerHeight-2), int(pos.x-2))) {//detects left collision
-        vel.set(-vel.x, 0); //<>//
+      if (checkXRange(int(pos.y), int (pos.y+playerHeight-2), int(pos.x)-2)) {//detects left collision
+        vel.set(-vel.x, vel.y); //<>//
         //pos.set((int(pos.x / 20)) * 20 + 2, pos.y);
       } 
-      if (checkXRange(int(pos.y), int(pos.y+playerHeight-2), int(pos.x +playerWidth+2))) {//detect right collisiion
-        vel.set(-vel.x, 0);
+      if (checkXRange(int(pos.y), int(pos.y+playerHeight-2), int(pos.x +playerWidth))) {//detect right collisiion
+        vel.set(-vel.x, vel.y);
         //pos.set((int((pos.x+playerWidth) / 20) + 1) * 20 - 1 - playerWidth, pos.y);
       } 
 
@@ -191,7 +192,7 @@ public class Character {
   //returns true if there is somethinng blocking it 
   public boolean checkYRange(int xBegin, int xEnd, int yCor) {
     fill(0, 0, 0, 100);
-    //rect(xBegin, yCor, xEnd-xBegin, 5);
+    rect(xBegin, yCor, xEnd-xBegin, 5);
     for (int i = xBegin; i <= xEnd; i++) {
 
       if (b.hitGround(i, yCor) == true) return true;
@@ -201,7 +202,7 @@ public class Character {
   // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
   public boolean checkXRange(int yBegin, int yEnd, int xCor) {
     fill(0, 0, 0, 100);
-    //rect(xCor, yBegin, 5,yEnd- yBegin);
+    rect(xCor, yBegin, 5,yEnd- yBegin);
     for (int i = yBegin; i <=yEnd; i ++) {
       
       if (b.hitGround(xCor, i) == true) return true;
