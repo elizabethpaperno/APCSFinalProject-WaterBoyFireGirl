@@ -20,7 +20,7 @@ public class Level {
   private int yPos1;
   private int xPos2; 
   private int yPos2;
-   
+
   public Level(int diff, Maze linkedBoard, String filename, int x_Pos1, int y_Pos1, int x_Pos2, int y_Pos2) {
     difficulty = diff;
     board = linkedBoard;
@@ -31,7 +31,7 @@ public class Level {
     yPos2 = y_Pos2;
     FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
     WaterGirl = new Character(color(0, 0, 255), xPos2, yPos2);
-    
+
     FireBoy.levelAccess(this);
     WaterGirl.levelAccess(this);
   }
@@ -42,7 +42,7 @@ public class Level {
     FireBoy.levelAccess(this);
     WaterGirl.levelAccess(this);
   }
-    
+
 
   //1. read in file initalize all Items and add them to ArrayList items
   //
@@ -62,8 +62,7 @@ public class Level {
         Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
         doors.add(toBeAdded3);
         //println("door:" + rowStr[0] + Arrays.toString(rowStr));
-      } 
-      else if (rowStr[0].equals("Gem")) {
+      } else if (rowStr[0].equals("Gem")) {
         color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
         gems.add(toBeAdded4);
@@ -114,7 +113,7 @@ public class Level {
   boolean hitGround(int x, int y) {
     int[][] mz = board.getBoard();
     fill(0);
-    
+
     try {
       return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 1);
     }
@@ -192,20 +191,29 @@ public class Level {
       rect(contX, contY, contWid, contHgt);
       fill(goldColor);
       text("Continue", contX + contWid/9, contY + 7 * contHgt/8);
-      
+      textSize(20);
     }
   }
-  
-  boolean isCompleted(){
+  void gameOver() {    
+    textSize(128);
+    background(255);
+    fill(0);
+    if (!FireBoy.survival()) {
+      text("Oh No!", 150, 200);
+    }
+    if (!WaterGirl.survival()) {
+      text("Oh No!", 150, 200);
+    }
+  }
+  boolean isCompleted() {
     return isCompleted;
   }
-  
-  Character FireBoy(){
-    return FireBoy; 
+
+  Character FireBoy() {
+    return FireBoy;
   }
-  
-  Character WaterGirl(){
+
+  Character WaterGirl() {
     return WaterGirl;
   }
- 
 }

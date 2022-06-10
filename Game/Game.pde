@@ -165,15 +165,7 @@ void draw() {
     //added code from here to play() in level
   }
   if ( (!FireBoy.survival() || !WaterGirl.survival()) && !levels.get(currLevelIndex).isCompleted()) {
-    textSize(128);
-    background(255);
-    fill(0);
-    if (!FireBoy.survival()) {
-      text("Oh No!", 150, 200);
-    }
-    if (!WaterGirl.survival()) {
-      text("Oh No!", 150, 200);
-    }
+levels.get(currLevelIndex).gameOver();
   }
   if (FireBoy.complete() && WaterGirl.complete() && FireBoy.survival() && WaterGirl.survival()) {
     levels.get(currLevelIndex).setCompleted(true);
