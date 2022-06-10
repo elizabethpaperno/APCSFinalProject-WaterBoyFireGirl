@@ -90,6 +90,7 @@ public class Character {
         }
       }
     }
+    //ArrayList<Button> butt = 
   }
   boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
     return (oX >= x1 && oX <=x2 && oY >= y1 && oY <=y2);

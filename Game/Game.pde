@@ -109,16 +109,16 @@ void keyPressed() {
     keys[5] = true;
   }
 
-  if (key == 'p' && !PAUSE_SCREEN){
+  if (key == 'p' && !PAUSE_SCREEN) {
     print("p is pressed");
     PAUSE_SCREEN = true;
   }
 
-  if (key == ' ' && PAUSE_SCREEN){
+  if (key == ' ' && PAUSE_SCREEN) {
     PAUSE_SCREEN = false;
   }
 
-  if (key == 'r' && PAUSE_SCREEN){
+  if (key == 'r' && PAUSE_SCREEN) {
     PAUSE_SCREEN = false;
     try {
       mazes.get(currLevelIndex).readFileAndConstruct();
@@ -126,14 +126,13 @@ void keyPressed() {
       //FireBoy = levels.get(currLevelIndex).FireBoy();
       //WaterGirl = levels.get(currLevelIndex).WaterGirl();
       FireBoy = levels.get(currLevelIndex).FireBoy();
-  WaterGirl = levels.get(currLevelIndex).WaterGirl();
+      WaterGirl = levels.get(currLevelIndex).WaterGirl();
       levels.get(currLevelIndex).resetChars();
-    } catch(FileNotFoundException e) {
+    } 
+    catch(FileNotFoundException e) {
       System.out.println("Invalid filename");
     }
   }
-
-
 }
 void keyReleased() {
   if (key == 'w') {
@@ -165,7 +164,7 @@ void draw() {
     //added code from here to play() in level
   }
   if ( (!FireBoy.survival() || !WaterGirl.survival()) && !levels.get(currLevelIndex).isCompleted()) {
-levels.get(currLevelIndex).gameOver();
+    levels.get(currLevelIndex).gameOver();
   }
   if (FireBoy.complete() && WaterGirl.complete() && FireBoy.survival() && WaterGirl.survival()) {
     levels.get(currLevelIndex).setCompleted(true);

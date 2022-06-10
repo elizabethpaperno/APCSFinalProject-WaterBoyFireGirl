@@ -179,6 +179,7 @@ public class Level {
     isCompleted = comp;
   }
 
+
   void completeLevel() {
     //needs to be figured out later
     if (isCompleted) {
@@ -198,12 +199,8 @@ public class Level {
     textSize(128);
     background(255);
     fill(0);
-    if (!FireBoy.survival()) {
-      text("Oh No!", 150, 200);
-    }
-    if (!WaterGirl.survival()) {
-      text("Oh No!", 150, 200);
-    }
+
+    text("GAME OVER", 150, 200);
   }
   boolean isCompleted() {
     return isCompleted;
