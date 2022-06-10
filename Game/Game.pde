@@ -64,7 +64,6 @@ void setup() {
   contX = width/2 - contWid/2;
   contY = height/2 - contHgt/2;
 }
-/*
 void mousePressed() {
   if (overRect()) {
     if (currLevelIndex + 1 < levels.size()) {
@@ -81,7 +80,7 @@ void mousePressed() {
       //background(contColor);
     }
   }
-}*/
+}
 
 boolean overRect() {
   return (mouseX >= contX && mouseX <= contX + contWid && mouseY >= contY && mouseY <= contY + contHgt);
