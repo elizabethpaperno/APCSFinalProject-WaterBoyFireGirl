@@ -39,6 +39,8 @@ public class Level {
   void resetChars() {
     FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
     WaterGirl = new Character(color(0, 0, 255), xPos2, yPos2);
+    FireBoy.levelAccess(this);
+    WaterGirl.levelAccess(this);
   }
     
 
