@@ -16,17 +16,33 @@ public class Level {
   boolean isCompleted;
   private Character FireBoy;
   private Character WaterGirl;
+  private int xPos1; 
+  private int yPos1;
+  private int xPos2; 
+  private int yPos2;
    
-  public Level(int diff, Maze linkedBoard, String filename, int xPos1, int yPos1, int xPos2, int yPos2) {
+  public Level(int diff, Maze linkedBoard, String filename, int x_Pos1, int y_Pos1, int x_Pos2, int y_Pos2) {
     difficulty = diff;
     board = linkedBoard;
     fname = filename;
+    xPos1 = x_Pos1;
+    yPos1 = y_Pos1;
+    xPos2 = x_Pos2; 
+    yPos2 = y_Pos2;
+    FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
+    WaterGirl = new Character(color(0, 0, 255), xPos2, yPos2);
+    
+    FireBoy.levelAccess(this);
+    WaterGirl.levelAccess(this);
+  }
+
+  void resetChars() {
     FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
     WaterGirl = new Character(color(0, 0, 255), xPos2, yPos2);
     FireBoy.levelAccess(this);
     WaterGirl.levelAccess(this);
   }
-
+    
 
   //1. read in file initalize all Items and add them to ArrayList items
   //
@@ -191,4 +207,5 @@ public class Level {
   Character WaterGirl(){
     return WaterGirl;
   }
+ 
 }

@@ -23,11 +23,12 @@ ArrayList<Maze> mazes;
 boolean[] keys = new boolean[6];
 PFont myFont;
 
+boolean PAUSE_SCREEN = false;
 
 void setup() {
   size(800, 600);
   Maze m1 = new Maze("Level1Edited.txt", 30, 40);
-  Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 520, 70, 450);
+  Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 520, 70, 420);
   PIXEL_WIDTH = height/m1.width();
   PIXEL_LENGTH = (int)width/m1.height();
   currLevelIndex = 0;
@@ -107,6 +108,32 @@ void keyPressed() {
     //println("RIGHT");
     keys[5] = true;
   }
+
+  if (key == 'p' && !PAUSE_SCREEN){
+    print("p is pressed");
+    PAUSE_SCREEN = true;
+  }
+
+  if (key == ' ' && PAUSE_SCREEN){
+    PAUSE_SCREEN = false;
+  }
+
+  if (key == 'r' && PAUSE_SCREEN){
+    PAUSE_SCREEN = false;
+    try {
+      mazes.get(currLevelIndex).readFileAndConstruct();
+      levels.get(currLevelIndex).createLevel();
+      //FireBoy = levels.get(currLevelIndex).FireBoy();
+      //WaterGirl = levels.get(currLevelIndex).WaterGirl();
+      FireBoy = levels.get(currLevelIndex).FireBoy();
+  WaterGirl = levels.get(currLevelIndex).WaterGirl();
+      levels.get(currLevelIndex).resetChars();
+    } catch(FileNotFoundException e) {
+      System.out.println("Invalid filename");
+    }
+  }
+
+
 }
 void keyReleased() {
   if (key == 'w') {
