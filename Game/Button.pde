@@ -1,4 +1,5 @@
 public class Button extends Item{
+  PImage a; 
   boolean isPushed;
   Platform linkedPlat;
   
@@ -17,5 +18,7 @@ public class Button extends Item{
   
   void display(){
     //katherine fill in 
+    fill(255,98,253);
+    rect(getX(), getY(), 15,7);
   }
 }
