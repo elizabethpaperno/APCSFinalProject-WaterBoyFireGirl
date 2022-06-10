@@ -110,12 +110,7 @@ public class Character {
       } //<>//
       vel.add(new PVector(0, GRAVITY));
       if(MAX_YVEL < vel.y){vel.y = MAX_YVEL;}
-      if (pos.x > width - playerWidth-20 || pos.x <20) {
-        vel.set(-vel.x, 0);
-      }
-      if (pos.y > height - playerHeight-20 || pos.y < 20) {
-        vel.set(0, -vel.y);
-      }
+     
       
       if (checkYRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
         vel.set( vel.x, 0);
@@ -138,9 +133,11 @@ public class Character {
         vel.set(-vel.x, vel.y);
         //pos.set((int((pos.x+playerWidth) / 20) + 1) * 20 - 1 - playerWidth, pos.y);
       } 
-
-      //else if(checkXRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))&& !checkYRange(int(pos.y), int (pos.y+playerHeight), int(pos.x)) && !checkYRange(int(pos.y), int(pos.y+playerHeight), int(pos.x +playerWidth)) ){
-      //  vel.add(new PVector(0, GRAVITY));
+      // if (pos.x > width - playerWidth-20 || pos.x <20) {
+      //  vel.set(-vel.x, vel.y);
+      //}
+      //if (pos.y > height - playerHeight-20 || pos.y < 20) {
+      //  vel.set(0, -vel.y);
       //}
 
       pos.add(vel);
