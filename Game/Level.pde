@@ -41,8 +41,11 @@ public class Level {
       }
     }
   }
-  void kmsEdit(int x, int y, int type) {
-    kms[y][x] = type;
+  void kmsEdit(int x, int y, int x2, int y2, int type) {
+    for (int i = x; i <=x2; i++){
+    for (int d = y; d <=y2; d++){
+    kms[d][i] = type;}}
+    
   }
   void resetChars() {
     FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
@@ -72,14 +75,14 @@ public class Level {
         Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
         gems.add(toBeAdded4);
       } else if (rowStr[0].equals("2Button")) {
-        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), Integer.parseInt(rowStr[9]), Integer.parseInt(rowStr[10]));
+        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), Integer.parseInt(rowStr[9]), Integer.parseInt(rowStr[10]),this);
         Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
         Button toBeAdded6 = new Button(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), linkedPlat);
         buttons.add(toBeAdded5);
         buttons.add(toBeAdded6);
         platforms.add(linkedPlat);
       } else if (rowStr[0].equals("Button")) {
-        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]));
+        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]),this);
         Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
         buttons.add(toBeAdded5);
         platforms.add(linkedPlat);
@@ -88,7 +91,7 @@ public class Level {
         Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
         blocks.add(toBeAdded1);
       } else if (rowStr[0].equals("Lever")) {
-        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]));
+        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]),this);
         Lever toBeAdded5 = new Lever(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
         levers.add(toBeAdded5);
         platforms.add(linkedPlat);

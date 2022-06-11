@@ -48,9 +48,6 @@ public class Character {
     stroke(1);
   }
   void check() {
-      b.kmsEdit(8,18,1);
-      b.kmsEdit(8,19,1);
-
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
       Gem a = gem.get(i); 
@@ -84,10 +81,16 @@ public class Character {
     ArrayList<Button> butt = b.getButtons();
     for (int i = 0; i<butt.size(); i++) {
       Button a = butt.get(i);
-      //if(a.){}
+       b.kmsEdit((int)(a.plat().getX()), (int)(a.plat().getY()), (int)(a.plat().getX() + a.plat().getWidth()), (int)a.plat().getY() + a.plat().getHeight(), 1);
+      if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)) {
+        if (!a.plat().hasArrived()) {
+          a.plat().move();
+        }
+      }
     }
   }
-  boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
+  boolean range(float x1, float x2, float y1, float y2
+    , float oX, float oY) {
     return (oX >= x1 && oX <=x2 && oY >= y1 && oY <=y2);
   }
   void run() {
@@ -97,10 +100,10 @@ public class Character {
         vel.set(vel.x * FRICTION, vel.y);
       } 
       vel.add(new PVector(0, GRAVITY));
-      if (MAX_YVEL < vel.y) {
+      if (MAX_YVEL < vel.y) { //<>//
         vel.y = MAX_YVEL;
       }
-      if (checkYRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision //<>//
+      if (checkYRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
         vel.set( vel.x, 0);
         pos.set(pos.x, pos.y + 5);
       } 
@@ -116,10 +119,10 @@ public class Character {
         vel.set(-vel.x, vel.y);
       } 
       pos.add(vel);
-      horizontalPressed = false;
+      horizontalPressed = false; //<>//
     }
   }
-  //Accessor Methods //<>//
+  //Accessor Methods
   public color getColor() {
     return a;
   }

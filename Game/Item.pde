@@ -17,13 +17,6 @@ public class Item {
     wdth = w;
   }
 
-  /*
- //changed sturcture of Level class, not necessay
-   //Level not yet created add these methods to Level and UML as well
-   void placeInLevel(Level l){
-   l.getItemBoard().set(x,y, this);
-   }
-   */
 
   int getX() {
     return x;
