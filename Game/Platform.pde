@@ -1,6 +1,5 @@
 public class Platform extends Item{
-  boolean isMoveable;
-  
+
   // position when the obstacle it is linked to is pulled
   int x2;
   int y2;

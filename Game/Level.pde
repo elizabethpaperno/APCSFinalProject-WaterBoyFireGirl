@@ -7,6 +7,8 @@ public class Level {
   private ArrayList<Item> blocks = new ArrayList<Item>();
   private ArrayList<Lava> lavas = new ArrayList<Lava>();
   private ArrayList<Door> doors = new ArrayList<Door>();
+  private ArrayList<Platform> platforms = new ArrayList<Platform>();
+  private ArrayList<Button> buttons = new ArrayList<Button>();
   //ArrayList<Lever> levers;
   //ArrayList<Platform> platforms;
   private ArrayList<Gem> gems =new ArrayList<Gem>();
@@ -66,6 +68,13 @@ public class Level {
         color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
         gems.add(toBeAdded4);
+        //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
+      } 
+      else if (rowStr[0].equals("Button")) {
+        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]),Integer.parseInt(rowStr[7]));
+        Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
+        buttons.add(toBeAdded5);
+        platforms.add(linkedPlat);
         //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
       } 
       //else if (rowStr[0].equals("Block")) {
@@ -143,6 +152,12 @@ public class Level {
       }
       for (int i = 0; i < lavas.size(); i++) {
         lavas.get(i).display();
+      }
+      for (int i = 0; i < buttons.size(); i++) {
+        buttons.get(i).display();
+      }
+      for (int i = 0; i < platforms.size(); i++) {
+        platforms.get(i).display();
       }
       FireBoy.display();
       WaterGirl.display();
