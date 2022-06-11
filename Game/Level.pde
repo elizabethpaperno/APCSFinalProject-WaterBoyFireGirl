@@ -1,15 +1,12 @@
 public class Level {
-  /* Interactions with Character (for Katherine):
-   - use ArrayLists of diff types of Items to index through whne checking for collisions
-   - if both characters are in front of Door (at the SAME TIME) --> setCompleted(true) --> completeLevel() --> stop running (shld be done for the level using if statement in play but stops charccters also)
-   */
   private int difficulty;
   private ArrayList<Item> blocks = new ArrayList<Item>();
   private ArrayList<Lava> lavas = new ArrayList<Lava>();
   private ArrayList<Door> doors = new ArrayList<Door>();
   private ArrayList<Platform> platforms = new ArrayList<Platform>();
   private ArrayList<Button> buttons = new ArrayList<Button>();
-  //ArrayList<Lever> levers;
+  private ArrayList<Lever> levers = new ArrayList<Lever>();
+  ;
   //ArrayList<Platform> platforms;
   private ArrayList<Gem> gems =new ArrayList<Gem>();
   private Maze board;
@@ -69,18 +66,29 @@ public class Level {
         Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
         gems.add(toBeAdded4);
         //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
-      } 
-      //else if (rowStr[0].equals("Button")) {
-      //  Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]),Integer.parseInt(rowStr[7]));
-      //  Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
-      //  buttons.add(toBeAdded5);
-      //  platforms.add(linkedPlat);
-      //  //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
-      //} 
-      //else if (rowStr[0].equals("Block")) {
-      //  Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
-      //  blocks.add(toBeAdded1);
-      //}
+      } else if (rowStr[0].equals("2Button")) {
+        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), Integer.parseInt(rowStr[9]), Integer.parseInt(rowStr[10]));
+        Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
+        Button toBeAdded6 = new Button(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), linkedPlat);
+        buttons.add(toBeAdded5);
+        buttons.add(toBeAdded6);
+        platforms.add(linkedPlat);
+        //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
+      } else if (rowStr[0].equals("Button")) {
+        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]));
+        Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
+        buttons.add(toBeAdded5);
+        platforms.add(linkedPlat);
+        //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
+      } else if (rowStr[0].equals("Block")) {
+        Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
+        blocks.add(toBeAdded1);
+      } else if (rowStr[0].equals("Lever")) {
+        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]));
+        Lever toBeAdded5 = new Lever(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
+        levers.add(toBeAdded5);
+        platforms.add(linkedPlat);
+      }
 
       /*
       case "Block":
@@ -134,8 +142,14 @@ public class Level {
   ArrayList<Gem> getGems() {
     return gems;
   }
+  int totalGems() {
+    return gems.size();
+  }
   ArrayList<Door> getDoors() {
     return doors;
+  }
+  ArrayList<Button> getButtons() {
+    return buttons;
   }
   void play() {
     //needs to be written much later on
@@ -158,6 +172,9 @@ public class Level {
       }
       for (int i = 0; i < platforms.size(); i++) {
         platforms.get(i).display();
+      }
+      for (int i = 0; i < levers.size(); i++) {
+        levers.get(i).display();
       }
       FireBoy.display();
       WaterGirl.display();

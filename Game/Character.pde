@@ -41,28 +41,17 @@ public class Character {
     completed = false;
     MAX_YVEL = 10;
   }
-
-  //displaying characters
   void display() {
     fill(a);
     noStroke();
-    //System.out.print(pos.x);
-    //System.out.print(pos.y);
     rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
   }
   void check() {
-    /*
-    if (pos.x > 600 && pos.x< width && pos.y <= 100) {
-     changeC(true);
-     }
-     */
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
       Gem a = gem.get(i); 
       if (range(pos.x, pos.x+playerWidth, pos.y, pos.y +playerHeight, a.getPixelX()+5, a.getPixelY()+5) &&  gem.get(i).getColor() == getColor()) {
-        //System.out.print(pos.y);
-        //System.out.print(a.getPixelY());
         gem.get(i).setCollected(true);
         a.hide();
         addGem();
@@ -79,18 +68,23 @@ public class Character {
     ArrayList<Door> d = b.getDoors();
     for (int i = 0; i< d.size(); i++) {
       Door a = d.get(i);
-      if (a.getOgColor() == getColor()){
+      if (a.getOgColor() == getColor()) {
         if ( (pos.x >= a.getPixelX() -5 && pos.x + playerWidth <= a.getPixelX() +5 +  a.getPixelWidth()) && (pos.y >= a.getPixelY() -5  && pos.y + playerHeight <= a.getPixelY() + 5 + a.getPixelHeight())) {
           a.setOpen(true);
           changeC(true);
-          //System.out.println("door Opened");
         } else {
           a.setOpen(false);
           changeC(false);
         }
       }
     }
-    //ArrayList<Button> butt = 
+    ArrayList<Button> butt = b.getButtons();
+    for (int i = 0; i<butt.size(); i++) {
+      Button a = butt.get(i);
+      if(a.){}
+    }
+    
+    
   }
   boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
     return (oX >= x1 && oX <=x2 && oY >= y1 && oY <=y2);
@@ -100,47 +94,32 @@ public class Character {
     if (survival()) {
       if (!horizontalPressed) {
         vel.set(vel.x * FRICTION, vel.y);
-      } //<>//
+      } 
       vel.add(new PVector(0, GRAVITY));
-      if(MAX_YVEL < vel.y){vel.y = MAX_YVEL;}
-     
-      
+      if (MAX_YVEL < vel.y) {
+        vel.y = MAX_YVEL;
+      }
       if (checkYRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-        vel.set( vel.x, 0);
+        vel.set( vel.x, 0); //<>//
         pos.set(pos.x, pos.y + 5);
-        //vel.add(new PVector(0, GRAVITY));
       } 
       if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         pos.set(pos.x, 10 * (int(pos.y / 10)));
         vel.set(vel.x, 0);
       } 
-      //else {
-      //  vel.add(new PVector(0, GRAVITY));
-      //}
       if (checkXRange(int(pos.y), int (pos.y+playerHeight-2), int(pos.x)-2)) {//detects left collision
-        vel.set(-vel.x, vel.y); //<>//
-        //pos.set((int(pos.x / 20)) * 20 + 2, pos.y);
+        vel.set(-vel.x, vel.y);
       } 
       if (checkXRange(int(pos.y), int(pos.y+playerHeight-2), int(pos.x +playerWidth))) {//detect right collisiion
         vel.set(-vel.x, vel.y);
-        //pos.set((int((pos.x+playerWidth) / 20) + 1) * 20 - 1 - playerWidth, pos.y);
       } 
-      // if (pos.x > width - playerWidth-20 || pos.x <20) {
-      //  vel.set(-vel.x, vel.y);
-      //}
-      //if (pos.y > height - playerHeight-20 || pos.y < 20) {
-      //  vel.set(0, -vel.y);
-      //}
-
       pos.add(vel);
       horizontalPressed = false;
-      ////index through all f the arraylist
-      
     }
   }
   //Accessor Methods
-  public color getColor() {
+  public color getColor() { //<>//
     return a;
   }
   public boolean survival() {
@@ -194,7 +173,7 @@ public class Character {
     fill(0, 0, 0, 100);
     //rect(xCor, yBegin, 5,yEnd- yBegin);
     for (int i = yBegin; i <=yEnd; i ++) {
-      
+
       if (b.hitGround(xCor, i) == true) return true;
     } 
     return false;
@@ -226,6 +205,4 @@ public class Character {
   //    b.setY();
   //  }
   //}
-
-  //keyboard stuff
 }

@@ -11,6 +11,9 @@ public class Platform extends Item{
   
   void display(){
     //katherine fill in 
+    fill(255,98,253);
+    noStroke();
+    rect(getX() *PIXEL_WIDTH, getY() *PIXEL_LENGTH , getWidth() * PIXEL_WIDTH, getHeight()*PIXEL_LENGTH);
   }
   
   void move() {

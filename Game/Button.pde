@@ -4,7 +4,7 @@ public class Button extends Item{
   Platform linkedPlat;
   
   public Button (int x_, int y_, Platform link){
-    super(x_, y_, 1, 1);
+    super(x_, y_, 1, 2);
     linkedPlat = link;
   }
   
@@ -15,10 +15,12 @@ public class Button extends Item{
   boolean isPushed(){
     return isPushed;
   }
+  Platform plat(){return linkedPlat;}
   
   void display(){
     //katherine fill in 
     fill(255,98,253);
-    rect(getX(), getY(), 15,7);
+    stroke(249,255,298);
+    rect(getX()*PIXEL_WIDTH, getY()* PIXEL_LENGTH + (PIXEL_LENGTH * 0.5), PIXEL_WIDTH* getWidth(),PIXEL_LENGTH *0.5* getHeight());
   }
 }

@@ -2,7 +2,7 @@ public class Lever extends Item{
   boolean isPulled;
   Platform linkedPlat;
   public Lever(int x_, int y_, Platform link){
-    super(x_, y_, 1, 1);
+    super(x_, y_, 2, 1);
     linkedPlat = link;
   }
   
@@ -20,6 +20,7 @@ public class Lever extends Item{
   }
   
   void display(){
-    //katherine fill in 
+    fill(246,255,3);
+    rect(getX() *PIXEL_WIDTH, getY() *PIXEL_LENGTH + (PIXEL_LENGTH * 0.5) , getWidth() * PIXEL_WIDTH * 0.5, getHeight()*PIXEL_LENGTH * 0.75);
   }
 }
