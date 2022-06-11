@@ -70,13 +70,13 @@ public class Level {
         gems.add(toBeAdded4);
         //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
       } 
-      else if (rowStr[0].equals("Button")) {
-        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]),Integer.parseInt(rowStr[7]));
-        Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
-        buttons.add(toBeAdded5);
-        platforms.add(linkedPlat);
-        //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
-      } 
+      //else if (rowStr[0].equals("Button")) {
+      //  Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]),Integer.parseInt(rowStr[7]));
+      //  Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
+      //  buttons.add(toBeAdded5);
+      //  platforms.add(linkedPlat);
+      //  //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
+      //} 
       //else if (rowStr[0].equals("Block")) {
       //  Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
       //  blocks.add(toBeAdded1);
@@ -211,7 +211,7 @@ public class Level {
     }
   }
   void gameOver() {    
-    textSize(128);
+    textSize(108);
     background(255);
     fill(0);
 
