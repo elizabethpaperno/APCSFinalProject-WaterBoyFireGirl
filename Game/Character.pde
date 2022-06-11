@@ -19,7 +19,7 @@ public class Character {
   float bottom;
   float top;
   Level b;
-
+  Maze z;
   //(x,y) = top left???? yeah that makes sense 
   //constructor
   public Character(color cool, int x, int y) {
@@ -48,6 +48,9 @@ public class Character {
     stroke(1);
   }
   void check() {
+      b.kmsEdit(8,18,1);
+      b.kmsEdit(8,19,1);
+
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
       Gem a = gem.get(i); 
@@ -81,10 +84,8 @@ public class Character {
     ArrayList<Button> butt = b.getButtons();
     for (int i = 0; i<butt.size(); i++) {
       Button a = butt.get(i);
-      if(a.){}
+      //if(a.){}
     }
-    
-    
   }
   boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
     return (oX >= x1 && oX <=x2 && oY >= y1 && oY <=y2);
@@ -99,8 +100,8 @@ public class Character {
       if (MAX_YVEL < vel.y) {
         vel.y = MAX_YVEL;
       }
-      if (checkYRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-        vel.set( vel.x, 0); //<>//
+      if (checkYRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision //<>//
+        vel.set( vel.x, 0);
         pos.set(pos.x, pos.y + 5);
       } 
       if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
@@ -118,8 +119,8 @@ public class Character {
       horizontalPressed = false;
     }
   }
-  //Accessor Methods
-  public color getColor() { //<>//
+  //Accessor Methods //<>//
+  public color getColor() {
     return a;
   }
   public boolean survival() {
@@ -150,6 +151,9 @@ public class Character {
 
   public void levelAccess(Level a) {
     b = a;
+  }
+  public void mazeAccess(Maze b ) {
+    z = b;
   }
   public PVector place() {
     return pos;

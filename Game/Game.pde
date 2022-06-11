@@ -43,6 +43,7 @@ void setup() {
     for (int i = 0; i < levels.size(); i++) {
       mazes.get(i).readFileAndConstruct();
       levels.get(i).createLevel();
+      levels.get(i).kmsSet();
     }
   }
   catch(FileNotFoundException e) {
@@ -128,6 +129,7 @@ void keyPressed() {
       FireBoy = levels.get(currLevelIndex).FireBoy();
       WaterGirl = levels.get(currLevelIndex).WaterGirl();
       levels.get(currLevelIndex).resetChars();
+      
     } 
     catch(FileNotFoundException e) {
       System.out.println("Invalid filename");

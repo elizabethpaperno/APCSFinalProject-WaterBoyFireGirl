@@ -6,8 +6,6 @@ public class Level {
   private ArrayList<Platform> platforms = new ArrayList<Platform>();
   private ArrayList<Button> buttons = new ArrayList<Button>();
   private ArrayList<Lever> levers = new ArrayList<Lever>();
-  ;
-  //ArrayList<Platform> platforms;
   private ArrayList<Gem> gems =new ArrayList<Gem>();
   private Maze board;
   //file should be CSV in format --> Item Sub class,x,y,h,w, additional features
@@ -19,7 +17,7 @@ public class Level {
   private int yPos1;
   private int xPos2; 
   private int yPos2;
-
+  private int[][] kms;
   public Level(int diff, Maze linkedBoard, String filename, int x_Pos1, int y_Pos1, int x_Pos2, int y_Pos2) {
     difficulty = diff;
     board = linkedBoard;
@@ -30,18 +28,28 @@ public class Level {
     yPos2 = y_Pos2;
     FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
     WaterGirl = new Character(color(0, 0, 255), xPos2, yPos2);
-
     FireBoy.levelAccess(this);
     WaterGirl.levelAccess(this);
+    FireBoy.mazeAccess(board);
+    WaterGirl.mazeAccess(board);
   }
-
+  void kmsSet() {
+    kms = new int[board.getBoard().length][board.getBoard()[0].length];
+    for (int i = 0; i < kms.length; i ++) {
+      for (int d = 0; d < kms[i].length; d++) {
+        kms[i][d] = board.getBoard()[i][d];
+      }
+    }
+  }
+  void kmsEdit(int x, int y, int type) {
+    kms[y][x] = type;
+  }
   void resetChars() {
     FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
     WaterGirl = new Character(color(0, 0, 255), xPos2, yPos2);
     FireBoy.levelAccess(this);
     WaterGirl.levelAccess(this);
   }
-
 
   //1. read in file initalize all Items and add them to ArrayList items
   //
@@ -55,17 +63,14 @@ public class Level {
         color col2 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Lava toBeAdded2 = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col2);
         lavas.add(toBeAdded2);
-        //println("lava:" + rowStr[0] + Arrays.toString(rowStr));
       } else if (rowStr[0].equals("Door")) {
         color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
         doors.add(toBeAdded3);
-        //println("door:" + rowStr[0] + Arrays.toString(rowStr));
       } else if (rowStr[0].equals("Gem")) {
         color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
         Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
         gems.add(toBeAdded4);
-        //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
       } else if (rowStr[0].equals("2Button")) {
         Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), Integer.parseInt(rowStr[9]), Integer.parseInt(rowStr[10]));
         Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
@@ -73,7 +78,6 @@ public class Level {
         buttons.add(toBeAdded5);
         buttons.add(toBeAdded6);
         platforms.add(linkedPlat);
-        //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
       } else if (rowStr[0].equals("Button")) {
         Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]));
         Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat);
@@ -89,36 +93,7 @@ public class Level {
         levers.add(toBeAdded5);
         platforms.add(linkedPlat);
       }
-
-      /*
-      case "Block":
-       Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2);
-       blocks.add(toBeAdded1);
-       
-       case "Lava":
-       
-       case "Door":
-       color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
-       Door toBeAdded3 = new Door(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col3);
-       doors.add(toBeAdded3);
-       println("door:" + rowStr[0] + Arrays.toString(rowStr));
-       case "Gem":
-       color col4 =  color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
-       Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4);
-       gems.add(toBeAdded4);
-       println("gem:" + rowStr[0] + Arrays.toString(rowStr));
-       default:
-       println("default");
-       }
-       
-       case "Lever":
-       case "Platform":
-       case "Button":
-       */
     }
-    //println(gems.size());
-    //println(lavas.size());
-    //println(doors.size());
   }
 
 
@@ -128,11 +103,9 @@ public class Level {
 
   //returns if the BOARD is empty in position (does not take Items into acct)
   boolean hitGround(int x, int y) {
-    int[][] mz = board.getBoard();
     fill(0);
-
     try {
-      return (mz[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 1);
+      return (kms[y/PIXEL_LENGTH][x/PIXEL_WIDTH] == 1);
     }
     catch(Exception e) {
       return false;
