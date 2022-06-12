@@ -29,6 +29,8 @@ void setup() {
   size(800, 600);
   Maze m1 = new Maze("Level1Edited.txt", 30, 40);
   Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 520, 70, 420);
+  Maze m2 = new Maze("Level2.txt", 30, 40);
+  Level l2 = new Level(2, m2, "Level2_Items.txt", 20 * 3, 20 * 3, 20 * 36, 20 * 3);
   PIXEL_WIDTH = height/m1.width();
   PIXEL_LENGTH = (int)width/m1.height();
   currLevelIndex = 0;
@@ -38,6 +40,8 @@ void setup() {
   //add all levels (as needed)
   levels.add(l1);
   mazes.add(m1);
+  levels.add(l2);
+  mazes.add(m2);
 
   try {
     for (int i = 0; i < levels.size(); i++) {
