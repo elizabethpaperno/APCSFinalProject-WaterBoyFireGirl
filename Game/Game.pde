@@ -45,14 +45,13 @@ void mousePressed() {
     } else {
       FireBoy.justice(false);
       WaterGirl.justice(false);
-      background(contColor);
-      fill(lightGrey);
+      background(lightGrey);
       noStroke();
       fill(darkGrey);
-      drawBoarder(20);
+      drawBoarder(40);
       textSize(30);
-      text("Sorry :( No more Levels Available", 170, 200);
-      //background(contColor);
+      textAlign(CENTER, CENTER);
+      text("Sorry :( No more Levels Available", width/2, height/2);
     }
   }
 }
@@ -83,7 +82,7 @@ void keyPressed() {
     keys[5] = true;
   }
 
-  if (key == 'p' && !PAUSE_SCREEN) {
+  if (key == 'p' && !PAUSE_SCREEN && !INTRO_SCREEN) {
     //print("p is pressed");
     PAUSE_SCREEN = true;
   }
@@ -208,39 +207,54 @@ void draw() {
     text("Fireboy can walk in lava but cannot walk in water or green goo.", width/2, height/2 + 60);
     text("Watergirl can walk in water but cannot walk in lava or green goo.", width/2, height/2 + 80);
     text("Use the arrows to control Fireboy and A, W, S, D to control WaterGirl.", width/2, height/2 + 100);
-    text("Click anywhere on the screen to play.", width/2, height/2 + 120);
+    text("Click anywhere on the screen to play, and press P to pause.", width/2, height/2 + 120);
     rectMode(CORNER);
   } else {
     FireBoy = levels.get(currLevelIndex).FireBoy();
     WaterGirl = levels.get(currLevelIndex).WaterGirl();
-    if (FireBoy.survival() && WaterGirl.survival() && (!FireBoy.complete() || !WaterGirl.complete())) {
-      levels.get(currLevelIndex).play();
-    }
-    if ( (!FireBoy.survival() || !WaterGirl.survival()) && !levels.get(currLevelIndex).isCompleted()) {
+    if (PAUSE_SCREEN){
+      //println("I AM HERE");
       background(lightGrey);
-      if (!FireBoy.survival() || !WaterGirl.survival()) {
-        GAMEOVER_SCREEN = true;
-        noStroke();
-        fill(darkGrey);
-        drawBoarder(20);
-        textFont(basicFont);
-        fill(goldColor);
-        textSize(70);
-        textAlign(CENTER, CENTER);
-        text("GAME OVER", width/2, height/4);
-        textAlign(CENTER, CENTER);
-        textSize(20);
-        text("Retry by clicking R", width/2, height/2);
+      noStroke();
+      fill(darkGrey);
+      drawBoarder(40);
+      fill(goldColor);
+      textFont(basicFont);
+      textSize(60);
+      textAlign(CENTER, CENTER);
+      text("PAUSED",width/2,height/4);
+      textSize(20);
+      text("Click R to retry, Click Space-Bar to resume", width/2,height/2);
+    }else{
+      if (FireBoy.survival() && WaterGirl.survival() && (!FireBoy.complete() || !WaterGirl.complete())) {
+        levels.get(currLevelIndex).play();
       }
-    }
-    if (FireBoy.complete() && WaterGirl.complete() && FireBoy.survival() && WaterGirl.survival()) {
-      levels.get(currLevelIndex).setCompleted(true);
-      levels.get(currLevelIndex).completeLevel();
-    }
-    if (overRect()) {
-      contColor = color(lightGrey);
-    } else {
-      contColor = color(darkGrey);
+      if ( (!FireBoy.survival() || !WaterGirl.survival()) && !levels.get(currLevelIndex).isCompleted()) {
+        background(lightGrey);
+        if (!FireBoy.survival() || !WaterGirl.survival()) {
+          GAMEOVER_SCREEN = true;
+          noStroke();
+          fill(darkGrey);
+          drawBoarder(40);
+          textFont(basicFont);
+          fill(goldColor);
+          textSize(70);
+          textAlign(CENTER, CENTER);
+          text("GAME OVER", width/2, height/4);
+          textAlign(CENTER, CENTER);
+          textSize(20);
+          text("Retry by clicking R", width/2, height/2);
+        }
+      }
+      if (FireBoy.complete() && WaterGirl.complete() && FireBoy.survival() && WaterGirl.survival()) {
+        levels.get(currLevelIndex).setCompleted(true);
+        levels.get(currLevelIndex).completeLevel();
+      }
+      if (overRect()) {
+        contColor = color(lightGrey);
+      } else {
+        contColor = color(darkGrey);
+      }
     }
   }
 }

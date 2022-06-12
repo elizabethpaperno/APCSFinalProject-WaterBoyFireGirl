@@ -201,7 +201,7 @@ public class Level {
       background(lightGrey);
       noStroke();
       fill(darkGrey);
-      drawBoarder(20);
+      drawBoarder(40);
       textFont(basicFont);
       textSize(60);
       fill(goldColor);
