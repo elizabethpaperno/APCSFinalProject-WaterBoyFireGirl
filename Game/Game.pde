@@ -1,9 +1,15 @@
 import java.io.*;
 import java.util.*;
+
+//for game setup
 Character FireBoy;
 Character WaterGirl;
 int PIXEL_WIDTH;
 int PIXEL_LENGTH;
+ArrayList<Level> levels;
+int currLevelIndex;
+ArrayList<Maze> mazes;
+boolean[] keys = new boolean[6];
 
 //for continue button
 int contX, contY;
@@ -12,22 +18,21 @@ int contHgt = 70;
 color contColor = color(130, 127, 129);
 boolean contOver = false;
 
-//for introscreen
-boolean INTRO_SCREEN = true;
-color goldColor = color(218, 165, 32);
-
-Maze m1;
-Level l1;
-ArrayList<Level> levels;
-int currLevelIndex;
-ArrayList<Maze> mazes;
-
-boolean[] keys = new boolean[6];
-PFont myFont;
-
+//for switching between screens
 boolean PAUSE_SCREEN = false;
+boolean INTRO_SCREEN = true;
 
-PImage intro;
+//for text and colors
+PFont basicFont;
+PFont introFont;
+PImage introText;
+PImage introBg;
+color goldColor = color(218, 165, 32);
+color lightGrey = color(117,112,111);
+color darkGrey = color(71,74,77);
+color fireRed = color(222,67,35);
+color waterBlue = color(108,172,231);
+
 void setup() {
   size(800, 600);
   Maze m1 = new Maze("Level1Edited.txt", 30, 40);
@@ -64,16 +69,14 @@ void setup() {
   //FireBoy = new Character(color(255, 0, 0), 70, 520);
   //WaterGirl = new Character(color(0, 0, 255), 70, 450 );
 
-  PFont myFont = createFont("Georgia", 32);
-  textFont(myFont);
-  //textAlign(CENTER, CENTER);
-  //fill(218,165,32);
-  //text("FireBoy & WaterGirl",100, 200);
-
+  basicFont = createFont("Didot", 32);
+  introFont = createFont("MarkerFelt-Thin",70);
+  introText = loadImage("GameNameElements.png");
+  introBg = loadImage("TempleHallForest.jpg");
   contX = width/2 - contWid/2;
   contY = height/2 - contHgt/2;
-  intro = loadImage("introScreenResized.jpg");
 }
+
 void mousePressed() {
   if (overRect()) {
     if (currLevelIndex + 1 < levels.size()) {
@@ -84,7 +87,7 @@ void mousePressed() {
       FireBoy.justice(false);
       WaterGirl.justice(false);
       background(contColor);
-      fill(218, 165, 32);
+      fill(lightGrey);
       textSize(30);
       text("Sorry :( No more Levels Available", 170, 200);
       //background(contColor);
@@ -174,8 +177,25 @@ void mouseClicked(){
 void draw() {
   //check if borth are alive, else, backgroun(0), game over
   if (INTRO_SCREEN){
-    textSize(30);
-    text("INTRO - FIX LATER",50,50);
+    background(introBg);
+    image(introText,width/2 - 200, height/4 - 30);
+    //textFont(introFont);
+    //textAlign(LEFT, CENTER);
+    //fill(fireRed);
+    //text("FIREBOY",width/2 + 40, height/4);
+    //textAlign(CENTER, CENTER);
+    //fill(goldColor);
+    //text("&",width/2 + 20, height/4);
+    //textAlign(RIGHT, CENTER);
+    //fill(waterBlue);
+    //text("WATERGIRL",width/2, height/4);
+    //text("INTRO - FIX LATER",50,50);
+    textFont(basicFont);
+    fill(goldColor);
+    textAlign(CENTER, CENTER);
+    text("IN",width/2, height/3);
+    textAlign(CENTER, CENTER);
+    text("THE FOREST TEMPLE",width/2, height/2.5);
   } else {
     FireBoy = levels.get(currLevelIndex).FireBoy();
     WaterGirl = levels.get(currLevelIndex).WaterGirl();
