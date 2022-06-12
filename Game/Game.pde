@@ -22,6 +22,7 @@ boolean contOver = false;
 boolean PAUSE_SCREEN = false;
 boolean INTRO_SCREEN = true;
 boolean GAMEOVER_SCREEN = false;
+boolean CONTINUE_SCREEN = false;
 
 //for text and colors
 PFont basicFont;
@@ -41,7 +42,7 @@ PImage fireboy;
 PImage watergirl;
 
 void mousePressed() {
-  if (!INTRO_SCREEN && overRect()) {
+  if (CONTINUE_SCREEN && !INTRO_SCREEN && overRect()) {
     if (currLevelIndex + 1 < levels.size()) {
       currLevelIndex += 1;
       FireBoy.changeC(false);
@@ -57,6 +58,7 @@ void mousePressed() {
       textAlign(CENTER, CENTER);
       text("Sorry :( No more Levels Available", width/2, height/2);
     }
+    CONTINUE_SCREEN = false;
   }
 }
 
@@ -149,6 +151,8 @@ void setup() {
   Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 520, 70, 450);
   Maze m2 = new Maze("Level2.txt", 30, 40);
   Level l2 = new Level(2, m2, "Level2_Items.txt", 20 * 3, 20 * 3, 20 * 36, 20 * 3);
+  Maze m3 = new Maze("Level3.txt", 30, 40);
+  Level l3 = new Level(1, m3, "Level3_Items.txt", 70, 520, 70, 450);
   PIXEL_WIDTH = height/m2.width();
   PIXEL_LENGTH = (int)width/m2.height();
   currLevelIndex = 0;
@@ -160,6 +164,8 @@ void setup() {
   mazes.add(m1);
   levels.add(l2);
   mazes.add(m2);
+  levels.add(l3);
+  mazes.add(m3);
 
   try {
     for (int i = 0; i < levels.size(); i++) {
@@ -257,6 +263,7 @@ void draw() {
         }
       }
       if (FireBoy.complete() && WaterGirl.complete() && FireBoy.survival() && WaterGirl.survival()) {
+        CONTINUE_SCREEN = true;
         levels.get(currLevelIndex).setCompleted(true);
         levels.get(currLevelIndex).completeLevel();
       }
