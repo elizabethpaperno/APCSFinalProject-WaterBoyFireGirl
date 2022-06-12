@@ -116,5 +116,42 @@
     * Move code for characters into Level instead of in game
     * Fix small bug in door
 
+6/6
+* Elizabeth:
+  * Fix another bug in door where the color (after it was changed) no longer matched up to the color of character --> compare to the original color of door instead of the current color.
+  * Begin work on the lever class.
 
+6/7
+* Elizabeth:
+  * Complete methods for class platform, lever, and button (with the exception of the display methods katherine's writing).
+  * Begin working on Pause screen
+
+6/8
+* Elizabeth:
+  * continue working on a pause screen for the Game
+  * Plan: press key 'p' for pause screen then press 'r' for retry and 'p' again for unpause --> had issue's with using "p" for both --> decided to use enter to unpause
+  * With retry character are not moving back to original positions --> decide to fix using retry function
+
+6/9
+* Elizabeth:
+  * Finish reset() function in character
+  * Call reset function from level when the screen is on
+  * realize that we have to give characters access to the new level once it's read in --> fix null pointer exception
+
+6/10
+* Elizabeth:
+  * Figure out how the file read in for button and lever will work --> Essentially pass in lever/button in one line and initialize both and add to ArrayLists
+  * Add positions of additional obstacles to item file
+
+6/11
+* Elizabeth:
+  * Begin working on writing the files and finding a level we can replicate
+
+
+6/12
+* Elizabeth:
+  * Forgot to branch. So sorry :(
+  * Write file for Level2
+  * Write file for items in level 2
+  * Begin working on intro screen for game --> all thats left is design
 ## Running Instructions
