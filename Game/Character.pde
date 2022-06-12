@@ -27,7 +27,7 @@ public class Character { //<>// //<>// //<>// //<>// //<>// //<>//
     a = cool;
     gemsCollected =  0;
     GRAVITY =0.27;
-    MOVE_MAG = 0.37;
+    MOVE_MAG = 0.27;
     MAX_XVEL = 3;
     JUMP_MAG = -6.5;
     FRICTION = 0.5;
