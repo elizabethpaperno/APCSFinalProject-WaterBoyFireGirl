@@ -96,35 +96,51 @@
     * create pfont to centralize text
     * future plan --> work on creating transition page between levels + some array list of levels to inde through them for the future
  * Katherine:
-   * Modified file read in for lava- ability to jump
+   * Modified file read in for lava- ability to jump over
+   * Collision testing still won't fully work 
 
   6/2
   * Elizabeth:
     * Very sick and dying
+  * Katherine:
+    * Collision works on top and bottom, does not work with sides because of conditionals 
+    * also very sick and dying 
 
   6/3
   * Elizabeth:
     * Very sick and dying
+  * Katherine:
+    * Also very sick and dying 
 
   6/4
   * Elizabeth:
     * Very sick and dying
-
+  * Katherine:
+    * Also very sick and dying 
+ 
   6/5
   * Elizabeth:
     * Add button and transition screen between Levels
     * Move code for characters into Level instead of in game
     * Fix small bug in door
+  * Katherine:
+    * Deciding what action happens when collision with sides occur, bounce back, or let the character slide down
+    * Include boundary checking for the edges of the screen 
 
 6/6
 * Elizabeth:
-  * Fix another bug in door where the color (after it was changed) no longer matched up to the color of character --> compare to the original color of door instead of the current color.
+  * Fix another bug in door where the color (after it was changed) no longer matched up to the color of character --> compare to the original color of    door instead of the current color.
   * Begin work on the lever class.
-
+* Katherine:
+  * Display for items like lever, platform and button
+  * Started read-in for the arraylists in every character frame 
 6/7
 * Elizabeth:
   * Complete methods for class platform, lever, and button (with the exception of the display methods katherine's writing).
   * Begin working on Pause screen
+* Katherine:
+  * More experimenting with collision! 
+  * I think that the jump mag and gravity mag also have a hand to do with the detection 
 
 6/8
 * Elizabeth:
@@ -137,15 +153,29 @@
   * Finish reset() function in character
   * Call reset function from level when the screen is on
   * realize that we have to give characters access to the new level once it's read in --> fix null pointer exception
+ * Katherine 
+  * Finally managed to figure collisions! can interact with the maze successfully!
+  * Displays for the items on both the pixel screen, and maze board 
+  * It doesn't directly correate to the actions on the actual game, but gravity is much stronger in this version
 
 6/10
 * Elizabeth:
-  * Figure out how the file read in for button and lever will work --> Essentially pass in lever/button in one line and initialize both and add to ArrayLists
+  * Figure out how the file read in for button and lever will work --> Essentially pass in lever/button in one line and initialize both and add to    
+    ArrayLists
   * Add positions of additional obstacles to item file
+* Katherine:
+  * Linking Items to levels so that they could have more immersive interactions
+  * Created a game over screen when one of the characters touches lava 
+  * Added to the file read in for Level that would look through more of the elements on the items document
 
 6/11
 * Elizabeth:
   * Begin working on writing the files and finding a level we can replicate
+* Katherine:
+  * Finalized Display 
+  * Character interactions with each item requires immense amount of linking different Levels and obejcts
+  * Had to add constructors that would directly link to levels and platforms they are changing
+  * Moving the platforms and blocks is causing much of an issue- especially when it comes to treating the platform and block likke part of the maze as to avoid collision testing 
 
 
 6/12
@@ -154,4 +184,9 @@
   * Write file for Level2
   * Write file for items in level 2
   * Begin working on intro screen for game --> all thats left is design
+* Katherine:
+  * Added some touches to the constructors, booleans for access
+  * Block will literally not work 
+  * But platform and lever does- we did not go with unpulling lever because that just wont fly
 ## Running Instructions
+Press Play on Game.pde to run!
