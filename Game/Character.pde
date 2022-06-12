@@ -1,4 +1,4 @@
-public class Character { //<>// //<>//
+public class Character { //<>// //<>// //<>// //<>// //<>// //<>//
   color a; 
   //top left corner of rectangle 
   PVector pos;
@@ -27,7 +27,7 @@ public class Character { //<>// //<>//
     a = cool;
     gemsCollected =  0;
     GRAVITY =0.27;
-    MOVE_MAG = 0.5;
+    MOVE_MAG = 0.37;
     MAX_XVEL = 3;
     JUMP_MAG = -6.5;
     FRICTION = 0.5;
