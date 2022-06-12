@@ -53,6 +53,7 @@ public class Platform extends Item {
         }
       }
     }
+    else{arrived=true;}
   }
   void moveBack() {
     if (beginX != super.x ||  beginY !=super.y ) {
@@ -62,13 +63,11 @@ public class Platform extends Item {
             super.y++;
             //place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
             place.kmsEdit((int)(getX()), (int)(getY())-1, (int)(getX() + getWidth()), (int)getY() + getHeight()-1, 0);
-     
           }
           if (super.y > beginY) {
             super.y--;
-           // place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
+            // place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
             place.kmsEdit((int)(getX()), (int)(getY())+1, (int)(getX() + getWidth()), (int)getY() + getHeight()+1, 0);
-           
           }
         }
         if (super.y == beginY) {
@@ -76,17 +75,14 @@ public class Platform extends Item {
             super.x++;
             //place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
             place.kmsEdit((int)(getX())-1, (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight(), 0);
-         
           }
           if (super.x> beginX) {
             super.x--;
-           // place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
+            // place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
             place.kmsEdit((int)(getX())+1, (int)(getY()), (int)(getX() + getWidth())+1, (int)getY() + getHeight(), 0);
-        
           }
         }
       }
     }
-
   }
 }

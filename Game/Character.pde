@@ -1,4 +1,4 @@
-public class Character {
+public class Character { //<>// //<>//
   color a; 
   //top left corner of rectangle 
   PVector pos;
@@ -16,15 +16,12 @@ public class Character {
   int gemsCollected;
   int playerWidth;
   int playerHeight;
-  float bottom;
-  float top;
   Level b;
   Maze z;
+  Character other; 
   //(x,y) = top left???? yeah that makes sense 
   //constructor
   public Character(color cool, int x, int y) {
-    top = y;
-    bottom = y-20;
     pos = new PVector(x, y);
     vel = new PVector(0, 0);
     a = cool;
@@ -40,6 +37,9 @@ public class Character {
     horizontalPressed = false;
     completed = false;
     MAX_YVEL = 10;
+  }
+  void characterC(Character c) {
+    other = c;
   }
   void display() {
     fill(a);
@@ -82,26 +82,40 @@ public class Character {
     for (int i = 0; i<butt.size(); i++) {
       Button a = butt.get(i);
       b.kmsEdit((int)(a.plat().getX()), (int)(a.plat().getY()), (int)(a.plat().getX() + a.plat().getWidth()), (int)a.plat().getY() + a.plat().getHeight(), 1);
-      if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)) {
+      if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)|| range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), other.pos.x, other.pos.y +  other.playerHeight)) {
         a.plat().move();
+        if (range(a.plat().getPixelX(), a.plat().getPixelX() + a.plat().getPixelWidth(), a.plat().getPixelY()-playerHeight-2, a.plat().getPixelY() + a.plat().getPixelHeight(), pos.x, pos.y)) {
+          pos.set(pos.x, a.plat().getPixelY()-playerHeight);
+        }
       }
-      if (!range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)){}
+      if ((!range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight()+2, other.pos.x, other.pos.y +  other.playerHeight)&& a.plat().hasArrived()) && !range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)&& a.plat().hasArrived()) {
+    
+        if (range(a.plat().getPixelX(), a.plat().getPixelX() + a.plat().getPixelWidth(), a.plat().getPixelY()-playerHeight-2, a.plat().getPixelY() + a.plat().getPixelHeight(), pos.x, pos.y)) {
+          pos.set(pos.x, a.plat().getPixelY()-playerHeight);
+        }
+            a.plat().moveBack();
+         
+      }
     }
-    ArrayList<Item> block = b.getBlocks();
-    for (int i = 0; i<block.size(); i++) {
-      Item a = block.get(i);
-      b.kmsEdit((int)(a.getX()), (int)(a.getY()), (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight(), 1);
-      if (range(a.getPixelX() - a.getPixelWidth(), a.getPixelX(), a.getPixelY(), a.getPixelY()+a.getPixelHeight(), pos.x,pos.y)) {
-        a.run();
-        a.move(new PVector(pos.x+playerWidth + 5, pos.y));
-     
-      } else if (range(a.getPixelX() + a.getPixelWidth(), a.getPixelX() + 2* a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y)) {
-        a.run();
-        a.move(new PVector(pos.x-playerWidth -5,0));
-        
-      }
-    } //<>//
+    //ArrayList<Item> block = b.getBlocks();
+    //for (int i = 0; i<block.size(); i++) {
+    //  Item a = block.get(i);
+    //  b.kmsEdit((int)(a.getX()), (int)(a.getY()-1), (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()-1, 1);
+    //  if (range(a.getPixelX() - playerWidth-2, a.getPixelX(), a.getPixelY(), a.getPixelY()+a.getPixelHeight(), pos.x,pos.y)) {
+
+    //    a.run();
+
+    //    b.kmsEdit((int)(a.getX()), (int)(a.getY())-1, (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()-1, 0);
+    //    a.move(new PVector(pos.x +MOVE_MAG,pos.y));
+
+    //  } else if (range(a.getPixelX() + a.getPixelWidth(), a.getPixelX() +  a.getPixelWidth()+4, a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y)) {
+
+    //    a.run();
+    //    b.kmsEdit((int)(a.getX()), (int)(a.getY())-1, (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()-1, 0);
+    //    a.move(new PVector(pos.x -MOVE_MAG,pos.y));
+    //  }
   }
+
   boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
     return (oX >= x1 && oX <=x2 && oY >= y1 && oY <=y2);
   }
@@ -119,7 +133,7 @@ public class Character {
         vel.set( vel.x, 0);
         pos.set(pos.x, pos.y + 5);
       } 
-      if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision //<>//
+      if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         pos.set(pos.x, 10 * (int(pos.y / 10)));
         vel.set(vel.x, 0);
@@ -213,15 +227,4 @@ public class Character {
       horizontalPressed = true;
     }
   }
-
-  //Obstacle methods
-  //public void moveWithPlatform(int vel) {
-  //  pos.x += vel;
-  //
-  //public void moveWithBlock(Item b, int velocity) {
-  //  if (b.getX == pos.x && b.getY == pos.y ) {
-  //    b.setX();
-  //    b.setY();
-  //  }
-  //}
 }

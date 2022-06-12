@@ -28,6 +28,8 @@ public class Level {
     yPos2 = y_Pos2;
     FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
     WaterGirl = new Character(color(0, 0, 255), xPos2, yPos2);
+    FireBoy.characterC(WaterGirl);
+    WaterGirl.characterC(FireBoy);
     FireBoy.levelAccess(this);
     WaterGirl.levelAccess(this);
     FireBoy.mazeAccess(board);
@@ -51,6 +53,8 @@ public class Level {
   void resetChars() {
     FireBoy = new Character(color(255, 0, 0), xPos1, yPos1);
     WaterGirl = new Character(color(0, 0, 255), xPos2, yPos2);
+    FireBoy.characterC(WaterGirl);
+    WaterGirl.characterC(FireBoy);
     FireBoy.levelAccess(this);
     WaterGirl.levelAccess(this);
   }
@@ -65,7 +69,7 @@ public class Level {
       //println(Arrays.toString(rowStr));
       if (rowStr[0].equals("Lava")) {
         color col2 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));
-        Lava toBeAdded2 = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col2, this);
+        Lava toBeAdded2 = new Lava(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col2, this, Integer.parseInt(rowStr[6]));
         lavas.add(toBeAdded2);
       } else if (rowStr[0].equals("Door")) {
         color col3 = color(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]));

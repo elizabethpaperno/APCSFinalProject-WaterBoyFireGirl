@@ -25,7 +25,7 @@ public class Item {
     place = new PVector(x * PIXEL_WIDTH, y* PIXEL_LENGTH);
     hgt = h; 
     wdth = w;
-    GRAVITY =0.27;
+    GRAVITY =0.37;
     MOVE_MAG = 0.3;
     MAX_XVEL = 3;
     JUMP_MAG = -6.5;
@@ -88,8 +88,7 @@ public class Item {
     horizontalPressed = false;
   }
   public void move( PVector dir) {
-    lane.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 0);
-    place.set(dir);
+    place.set(dir.x, dir.y);
     setX((int)place.x/PIXEL_WIDTH);
     setY((int)place.y/PIXEL_LENGTH);
   }
