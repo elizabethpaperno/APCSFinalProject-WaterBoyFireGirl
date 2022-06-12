@@ -1,4 +1,4 @@
-public class Character { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+public class Character { 
   color a;
   //top left corner of rectangle
   PVector pos;

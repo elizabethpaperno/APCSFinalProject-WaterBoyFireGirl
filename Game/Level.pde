@@ -80,17 +80,19 @@ public class Level {
         Gem toBeAdded4 = new Gem(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), col4, this);
         gems.add(toBeAdded4);
       } else if (rowStr[0].equals("2Button")) {
-        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), Integer.parseInt(rowStr[9]), Integer.parseInt(rowStr[10]), this, Integer.parseInt(rowStr[11]));
-        Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat, this, );
-        Button toBeAdded6 = new Button(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), linkedPlat, this);
+        color col5 =  color(Integer.parseInt(rowStr[11]), Integer.parseInt(rowStr[12]), Integer.parseInt(rowStr[13]));
+        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), Integer.parseInt(rowStr[9]), Integer.parseInt(rowStr[10]), this, col5);
+        Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat, this, col5);
+        Button toBeAdded6 = new Button(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), linkedPlat, this, col5);
         linkedPlat.editb1(toBeAdded5);
         linkedPlat.editb2(toBeAdded6);
         buttons.add(toBeAdded5);
         buttons.add(toBeAdded6);
         platforms.add(linkedPlat);
       } else if (rowStr[0].equals("Button")) {
-        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), this);
-        Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat, this);
+        color col6 =  color(Integer.parseInt(rowStr[9]), Integer.parseInt(rowStr[10]), Integer.parseInt(rowStr[11]));
+        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), this, col6);
+        Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat, this, col6);
         buttons.add(toBeAdded5);
         platforms.add(linkedPlat);
         //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
@@ -98,8 +100,9 @@ public class Level {
         Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2, this,Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]) );
         blocks.add(toBeAdded1);
       } else if (rowStr[0].equals("Lever")) {
-        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), this);
-        Lever toBeAdded5 = new Lever(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat, this);
+        color col7 =  color(Integer.parseInt(rowStr[9]), Integer.parseInt(rowStr[10]), Integer.parseInt(rowStr[11]));
+        Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), this, col7);
+        Lever toBeAdded5 = new Lever(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat, this, col7);
         levers.add(toBeAdded5);
         linkedPlat.editL(toBeAdded5);
         platforms.add(linkedPlat);
