@@ -154,7 +154,7 @@ void setup() {
   mazes = new ArrayList<Maze>();
 
   //add all levels (as needed)
-  levels.add(l1);
+ levels.add(l1);
   mazes.add(m1);
   levels.add(l2);
   mazes.add(m2);

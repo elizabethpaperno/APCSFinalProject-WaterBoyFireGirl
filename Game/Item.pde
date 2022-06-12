@@ -18,8 +18,11 @@ public class Item {
   private PVector velocity;
   private Level lane;
   private boolean horizontalPressed;
+  public int x2;
+  public int y2;
+  boolean z =false;
   public Item(int x_, int y_, int h, int w, Level a) {
-    
+  
     x = x_; 
     y = y_;
     place = new PVector(x * PIXEL_WIDTH, y* PIXEL_LENGTH);
@@ -34,6 +37,25 @@ public class Item {
     velocity = new PVector(0, 0);
     lane=a;
     horizontalPressed = false;
+  }
+  public Item(int x_, int y_, int h, int w, Level a, int endX, int endY ) {
+
+    x = x_; 
+    y = y_;
+    place = new PVector(x * PIXEL_WIDTH, y* PIXEL_LENGTH);
+    hgt = h; 
+    wdth = w;
+    GRAVITY =0.37;
+    MOVE_MAG = 0.3;
+    MAX_XVEL = 3;
+    JUMP_MAG = -6.5;
+    MAX_YVEL = 10;
+    FRICTION = 0.5;
+    velocity = new PVector(0, 0);
+    lane=a;
+    horizontalPressed = false;
+    x2 = endX; 
+    y2= endY;
   }
   Level getPlace() {
     return lane;
@@ -64,17 +86,17 @@ public class Item {
   void display() {
     fill(153);
     rect(place.x, place.y, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
-     //lane.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight() , 1);
+    lane.kmsEdit((int)(x2), (int)y2+2, (int)(x2 + getWidth()), (int)y2 + getHeight() , 1);
   }
   void run() {
     velocity.add(new PVector(0, GRAVITY));
     if (MAX_YVEL < velocity.y) {
       velocity.y = MAX_YVEL;
     }
-    
+
     if (!horizontalPressed) {
-        velocity.set(velocity.x * FRICTION, velocity.y);
-      } 
+      velocity.set(velocity.x * FRICTION, velocity.y);
+    } 
     if (checkYRange(int(place.x) -20, int(place.x+getPixelWidth())+20, int(place.y+getPixelHeight())+20)) { //detects floor collision
       place.set(place.x, 10 * (int(place.y / 10)));
       velocity.set(velocity.x, 0);
@@ -89,9 +111,11 @@ public class Item {
     horizontalPressed = false;
   }
   public void move( PVector dir) {
-    place.set(dir.x, dir.y);
-    setX((int)place.x/PIXEL_WIDTH);
-    setY((int)place.y/PIXEL_LENGTH);
+  if (x == x2+1&& y==y2+2){z =true;}
+      place.set(dir.x, dir.y);
+      setX((int)place.x/PIXEL_WIDTH);
+      setY((int)place.y/PIXEL_LENGTH);
+   
   }
   public boolean checkYRange(int xBegin, int xEnd, int yCor) {
     fill(0, 0, 0, 100);

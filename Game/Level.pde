@@ -95,7 +95,7 @@ public class Level {
         platforms.add(linkedPlat);
         //println("gem:" + rowStr[0] + Arrays.toString(rowStr));
       } else if (rowStr[0].equals("Block")) {
-        Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2, this);
+        Item toBeAdded1 = new Item(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), 2, 2, this,Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]) );
         blocks.add(toBeAdded1);
       } else if (rowStr[0].equals("Lever")) {
         Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), this);
