@@ -19,8 +19,10 @@ public class Item {
   private Level lane;
   private boolean horizontalPressed;
   public Item(int x_, int y_, int h, int w, Level a) {
+    
     x = x_; 
     y = y_;
+    place = new PVector(x * PIXEL_WIDTH, y* PIXEL_LENGTH);
     hgt = h; 
     wdth = w;
     GRAVITY =0.27;
@@ -29,7 +31,6 @@ public class Item {
     JUMP_MAG = -6.5;
     MAX_YVEL = 10;
     FRICTION = 0.5;
-    place = new PVector(x * PIXEL_WIDTH, y* PIXEL_LENGTH);
     velocity = new PVector(0, 0);
     lane=a;
     horizontalPressed = false;
@@ -88,8 +89,9 @@ public class Item {
   }
   public void move( PVector dir) {
     lane.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 0);
-    place.add( dir.x * MOVE_MAG, 0);
-    horizontalPressed = true;
+    place.set(dir);
+    setX((int)place.x/PIXEL_WIDTH);
+    setY((int)place.y/PIXEL_LENGTH);
   }
   public boolean checkYRange(int xBegin, int xEnd, int yCor) {
     fill(0, 0, 0, 100);

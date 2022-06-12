@@ -85,22 +85,22 @@ public class Character {
       if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)) {
         a.plat().move();
       }
-      if (!range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)
+      if (!range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)){}
     }
-    //ArrayList<Item> block = b.getBlocks();
-    //for (int i = 0; i<block.size(); i++) {
-    //  Item a = block.get(i);
-    //  b.kmsEdit((int)(a.getX()), (int)(a.getY()), (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight(), 1);
-    //  if (range(a.getPixelX() - a.getPixelWidth(), a.getPixelX(), a.getPixelY(), a.getPixelY()+a.getPixelHeight(), pos.x,pos.y)) {
-    //    a.run();
-    //    a.move(new PVector(1,0));
+    ArrayList<Item> block = b.getBlocks();
+    for (int i = 0; i<block.size(); i++) {
+      Item a = block.get(i);
+      b.kmsEdit((int)(a.getX()), (int)(a.getY()), (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight(), 1);
+      if (range(a.getPixelX() - a.getPixelWidth(), a.getPixelX(), a.getPixelY(), a.getPixelY()+a.getPixelHeight(), pos.x,pos.y)) {
+        a.run();
+        a.move(new PVector(pos.x+playerWidth + 5, pos.y));
      
-    //  } else if (range(a.getPixelX() + a.getPixelWidth(), a.getPixelX() + 2* a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y)) {
-    //    a.run();
-    //    a.move(new PVector(-1,0));
+      } else if (range(a.getPixelX() + a.getPixelWidth(), a.getPixelX() + 2* a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y)) {
+        a.run();
+        a.move(new PVector(pos.x-playerWidth -5,0));
         
-    //  }
-    //} //<>//
+      }
+    } //<>//
   }
   boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
     return (oX >= x1 && oX <=x2 && oY >= y1 && oY <=y2);
