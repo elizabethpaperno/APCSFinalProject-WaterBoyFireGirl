@@ -1,4 +1,4 @@
-public class Character { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+public class Character { //<>// //<>// //<>// //<>// //<>// //<>//
   color a;
   //top left corner of rectangle
   PVector pos;
@@ -81,10 +81,11 @@ public class Character { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     ArrayList<Button> butt = b.getButtons();
     for (int i = 0; i<butt.size(); i++) {
       Button a = butt.get(i);
-      b.kmsEdit((int)(a.plat().getX()), (int)(a.plat().getY()), (int)(a.plat().getX() + a.plat().getWidth()), (int)a.plat().getY() + a.plat().getHeight(), 1);
+     
         
       if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight) ||range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), other.pos.x, other.pos.y +  other.playerHeight)) {
         a.plat().move();
+         b.kmsEdit((int)(a.plat().getX()), (int)(a.plat().getY()), (int)(a.plat().getX() + a.plat().getWidth()), (int)a.plat().getY() + a.plat().getHeight(), 1);
       } else if (!buttonRange(a, pos.x, pos.y+playerHeight) && !buttonRange(a, other.pos.x, other.pos.y +other.playerHeight)&& !buttonRange(a.plat().returnOther(a), pos.x, pos.y+playerHeight) && !buttonRange(a.plat().returnOther(a), other.pos.x, other.pos.y +other.playerHeight)) {
         a.plat().moveBack();
 
@@ -97,19 +98,19 @@ public class Character { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
       }
     }
 
-    ArrayList<Item> block = b.getBlocks();
-    for (int i = 0; i<block.size(); i++) {
-      Item a = block.get(i);
-      if (range(a.getPixelX() - playerWidth-2, a.getPixelX(), a.getPixelY(), a.getPixelY()+a.getPixelHeight(), pos.x, pos.y)) {
-        a.run();
-       // b.kmsEdit((int)(a.getX()), (int)(a.getY())-1, (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()-1, 0);
-        a.move(new PVector(pos.x +MOVE_MAG, pos.y));
-      } else if (range(a.getPixelX(), a.getPixelX() +  a.getPixelWidth() +4, a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y+playerHeight)) {
-        a.run();
-        //b.kmsEdit((int)(a.getX()), (int)(a.getY())+1, (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()+1, 0);
-        a.move(new PVector(pos.x -MOVE_MAG, pos.y));
-      }
-    }
+    //ArrayList<Item> block = b.getBlocks();
+    //for (int i = 0; i<block.size(); i++) {
+    //  Item a = block.get(i);
+    //  if (range(a.getPixelX() - playerWidth-2, a.getPixelX(), a.getPixelY(), a.getPixelY()+a.getPixelHeight(), pos.x, pos.y)) {
+    //    a.run();
+    //    b.kmsEdit((int)(a.getX()), (int)(a.getY())-1, (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()-1, 0);
+    //    a.move(new PVector(pos.x +MOVE_MAG, pos.y));
+    //  } else if (range(a.getPixelX(), a.getPixelX() +  a.getPixelWidth() +4, a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y+playerHeight)) {
+    //    a.run();
+    //    b.kmsEdit((int)(a.getX()), (int)(a.getY())+1, (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()+1, 0);
+    //    a.move(new PVector(pos.x -MOVE_MAG, pos.y));
+    //  }
+    //}
     ArrayList<Lever> pull = b.getLevers();
     for (int i = 0; i < pull.size(); i++) {
       Lever a = pull.get(i);
