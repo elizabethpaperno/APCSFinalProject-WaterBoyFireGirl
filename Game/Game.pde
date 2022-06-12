@@ -47,6 +47,9 @@ void mousePressed() {
       WaterGirl.justice(false);
       background(contColor);
       fill(lightGrey);
+      noStroke();
+      fill(darkGrey);
+      drawBoarder(20);
       textSize(30);
       text("Sorry :( No more Levels Available", 170, 200);
       //background(contColor);
@@ -81,7 +84,7 @@ void keyPressed() {
   }
 
   if (key == 'p' && !PAUSE_SCREEN) {
-    print("p is pressed");
+    //print("p is pressed");
     PAUSE_SCREEN = true;
   }
 
@@ -140,7 +143,7 @@ void drawBoarder(int borderW) {
 void setup() {
   size(800, 600);
   Maze m1 = new Maze("Level1Edited.txt", 30, 40);
-  Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 520, 70, 420);
+  Level l1 = new Level(1, m1, "Level1_Items.txt", 350, 57, 350, 57);
   Maze m2 = new Maze("Level2.txt", 30, 40);
   Level l2 = new Level(2, m2, "Level2_Items.txt", 20 * 3, 20 * 3, 20 * 36, 20 * 3);
   PIXEL_WIDTH = height/m2.width();
@@ -235,9 +238,9 @@ void draw() {
       levels.get(currLevelIndex).completeLevel();
     }
     if (overRect()) {
-      contColor = color(53);
+      contColor = color(lightGrey);
     } else {
-      contColor = color(130, 127, 129);
+      contColor = color(darkGrey);
     }
   }
 }
