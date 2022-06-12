@@ -34,7 +34,9 @@ color darkGrey = color(71, 74, 77);
 color fireRed = color(222, 67, 35);
 color waterBlue = color(108, 172, 231);
 
-
+//for gems display
+PImage redGem;
+PImage blueGem;
 
 void mousePressed() {
   if (!INTRO_SCREEN && overRect()) {
@@ -177,8 +179,12 @@ void setup() {
 
   basicFont = createFont("Didot", 32);
   introFont = createFont("MarkerFelt-Thin", 70);
+  
   introText = loadImage("GameNameElements.png");
   introBg = loadImage("TempleHallForest.jpg");
+  blueGem = loadImage("blueGem.png");
+  redGem = loadImage("redGem.png");
+  
   contX = width/2 - contWid/2;
   contY = height/2 - contHgt/2;
 }
