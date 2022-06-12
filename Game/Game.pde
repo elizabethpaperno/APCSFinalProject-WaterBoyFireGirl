@@ -37,6 +37,8 @@ color waterBlue = color(108, 172, 231);
 //for gems display
 PImage redGem;
 PImage blueGem;
+PImage fireboy;
+PImage watergirl;
 
 void mousePressed() {
   if (!INTRO_SCREEN && overRect()) {
@@ -144,7 +146,7 @@ void drawBoarder(int borderW) {
 void setup() {
   size(800, 600);
   Maze m1 = new Maze("Level1Edited.txt", 30, 40);
-  Level l1 = new Level(1, m1, "Level1_Items.txt", 350, 57, 350, 57);
+  Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 520, 70, 450);
   Maze m2 = new Maze("Level2.txt", 30, 40);
   Level l2 = new Level(2, m2, "Level2_Items.txt", 20 * 3, 20 * 3, 20 * 36, 20 * 3);
   PIXEL_WIDTH = height/m2.width();
@@ -184,6 +186,8 @@ void setup() {
   introBg = loadImage("TempleHallForest.jpg");
   blueGem = loadImage("blueGem.png");
   redGem = loadImage("redGem.png");
+  fireboy = loadImage("Fireboy.png");
+  watergirl = loadImage("Watergirl.png");
   
   contX = width/2 - contWid/2;
   contY = height/2 - contHgt/2;
