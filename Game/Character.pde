@@ -1,4 +1,4 @@
-public class Character { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+public class Character { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
   color a;
   //top left corner of rectangle
   PVector pos;
@@ -81,7 +81,7 @@ public class Character { //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     ArrayList<Button> butt = b.getButtons();
     for (int i = 0; i<butt.size(); i++) {
       Button a = butt.get(i);
-      b.kmsEdit((int)(a.plat().getX()), (int)(a.plat().getY()), (int)(a.plat().getX() + a.plat().getWidth()), (int)a.plat().getY() + a.plat().getHeight(), 1);
+      //b.kmsEdit((int)(a.plat().getX()), (int)(a.plat().getY()), (int)(a.plat().getX() + a.plat().getWidth()), (int)a.plat().getY() + a.plat().getHeight(), 1);
         
       if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight) ||range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), other.pos.x, other.pos.y +  other.playerHeight)) {
         a.plat().move();
