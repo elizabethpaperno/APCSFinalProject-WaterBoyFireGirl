@@ -101,6 +101,7 @@ public class Level {
         Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), this);
         Lever toBeAdded5 = new Lever(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat, this);
         levers.add(toBeAdded5);
+        linkedPlat.editL(toBeAdded5);
         platforms.add(linkedPlat);
       }
     }

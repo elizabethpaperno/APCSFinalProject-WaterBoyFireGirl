@@ -99,35 +99,31 @@ public class Character { //<>// //<>// //<>// //<>// //<>//
     ArrayList<Item> block = b.getBlocks();
     for (int i = 0; i<block.size(); i++) {
       Item a = block.get(i);
-      b.kmsEdit((int)(a.getX()), (int)(a.getY()-1), (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()-1, 1);
       if (range(a.getPixelX() - playerWidth-2, a.getPixelX(), a.getPixelY(), a.getPixelY()+a.getPixelHeight(), pos.x, pos.y)) {
-
         a.run();
-
         b.kmsEdit((int)(a.getX()), (int)(a.getY())-1, (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()-1, 0);
         a.move(new PVector(pos.x +MOVE_MAG, pos.y));
-      } else if (range(a.getPixelX(), a.getPixelX() +  a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y+playerHeight)) {
-
+      } else if (range(a.getPixelX(), a.getPixelX() +  a.getPixelWidth() +4, a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y+playerHeight)) {
         a.run();
-        b.kmsEdit((int)(a.getX()), (int)(a.getY())-1, (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()-1, 0);
+        b.kmsEdit((int)(a.getX()), (int)(a.getY())+1, (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight()+1, 0);
         a.move(new PVector(pos.x -MOVE_MAG, pos.y));
       }
     }
     ArrayList<Lever> pull = b.getLevers();
     for (int i = 0; i < pull.size(); i++) {
       Lever a = pull.get(i);
-      b.kmsEdit(a.linkedPlat.getX(), a.linkedPlat.getY(), a.linkedPlat.getX() +a.linkedPlat.getWidth(), a.linkedPlat.getY() + a.linkedPlat.getHeight(), 1);
-      if (range(pos.x, pos.x +playerWidth, pos.y, pos.y+playerHeight, a.getPixelX(), a.getPixelY())&& !a.isPuller()) {
+      b.kmsEdit(a.linkedPlat.getX(), a.linkedPlat.getY(), a.linkedPlat.getX() +a.linkedPlat.getWidth()-1, a.linkedPlat.getY() + a.linkedPlat.getHeight(), 1);
+      if (range(pos.x, pos.x +playerWidth, pos.y, pos.y+playerHeight, a.getPixelX(), a.getPixelY())/*&& !a.isPuller()*/) {
         a.linkedPlat.move();
-        
-      }
-      else if (!range(pos.x, pos.x +playerWidth, pos.y, pos.y+playerHeight, a.getPixelX(), a.getPixelY()) &&range(other.pos.x, other.pos.x +other.playerWidth, other.pos.y, other.pos.y+playerHeight, a.getPixelX(), a.getPixelY())) {
-        a.pullLever();
-        a.linkedPlat.moveBack();
-        if(range(a.linkedPlat.getPixelX(), a.linkedPlat.getPixelX()+a.linkedPlat.getPixelWidth(), a.linkedPlat.getPixelY(), a.linkedPlat.getPixelY() + a.linkedPlat.getPixelHeight(), pos.x, pos.y+playerHeight)){
-        pos.set(pos.x, a.linkedPlat.getPixelY() - playerHeight);pos.set(pos.x, a.linkedPlat.getPixelY() - playerHeight);}
-        
-      }
+        //a.pullLever();
+      } 
+      //else if ((range(other.pos.x, other.pos.x +other.playerWidth, other.pos.y, other.pos.y+playerHeight, a.getPixelX(), a.getPixelY())) && a.isPuller()) {
+      //  a.linkedPlat.moveBack();
+      //  if (range(a.linkedPlat.getPixelX(), a.linkedPlat.getPixelX()+a.linkedPlat.getPixelWidth(), a.linkedPlat.getPixelY(), a.linkedPlat.getPixelY() + a.linkedPlat.getPixelHeight(), pos.x, pos.y+playerHeight)) {
+      //    pos.set(pos.x, a.linkedPlat.getPixelY() - playerHeight);
+
+      //  }
+      //}
     }
   }
   boolean buttonRange(Button a, float x, float y) {

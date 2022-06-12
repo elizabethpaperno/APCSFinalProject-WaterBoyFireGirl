@@ -8,6 +8,7 @@ public class Platform extends Item {
   boolean arrived;
   Button b1;
   Button b2;
+  Lever l1;
   Level place;
   public Platform(int x_, int y_, int x2_, int y2_, int h, int w, Level a) {
     super(x_, y_, h, w, a);
@@ -18,7 +19,7 @@ public class Platform extends Item {
     arrived = false;
     place= a;
   }
-  public Platform(int x_, int y_, int x2_, int y2_, int h, int w, Level a, Button c, Button d) {
+  public Platform(int x_, int y_, int x2_, int y2_, int h, int w, Level a, Button c, Button d ) {
     super(x_, y_, h, w, a);
     x2 = x2_;
     y2 = y2_;
@@ -28,6 +29,9 @@ public class Platform extends Item {
     place= a;
     b1= c;
     b2=d;
+  }
+  void editL(Lever d) {
+    l1 = d;
   }
   void editb1(Button a) {
     b1=a;
@@ -77,7 +81,7 @@ public class Platform extends Item {
         }
       }
     }
-    //else{arrived=true;}
+    else if(l1 != null  && super.x == x2 && super.y == y2){l1.pullLever();}
   }
   void moveBack() {
     if (beginX != super.x ||  beginY !=super.y ) {

@@ -64,6 +64,7 @@ public class Item {
   void display() {
     fill(153);
     rect(place.x, place.y, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
+     lane.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight() , 1);
   }
   void run() {
     velocity.add(new PVector(0, GRAVITY));
@@ -74,14 +75,14 @@ public class Item {
     if (!horizontalPressed) {
         velocity.set(velocity.x * FRICTION, velocity.y);
       } 
-    if (checkYRange(int(place.x), int(place.x+getPixelWidth()), int(place.y+getPixelHeight()))) { //detects floor collision
+    if (checkYRange(int(place.x) -20, int(place.x+getPixelWidth())+20, int(place.y+getPixelHeight())+20)) { //detects floor collision
       place.set(place.x, 10 * (int(place.y / 10)));
       velocity.set(velocity.x, 0);
     } 
-    if (checkXRange(int(place.y), int (place.y+getPixelHeight()-2), int(place.x)-2)) {//detects left collision
+    if (checkXRange(int(place.y)-20, int (place.y+getPixelHeight()-2)+20, int(place.x)-20)) {//detects left collision
       velocity.set(-velocity.x, velocity.y);
     } 
-    if (checkXRange(int(place.y), int(place.y+getPixelHeight()-2), int(place.x +getPixelWidth()))) {//detect right collisiion
+    if (checkXRange(int(place.y)-20, int(place.y+getPixelHeight()-2)+20, int(place.x +getPixelWidth()+20))) {//detect right collisiion
       velocity.set(-velocity.x, velocity.y);
     } 
     place.add(velocity);
