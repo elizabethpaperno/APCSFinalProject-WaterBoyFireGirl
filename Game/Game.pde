@@ -78,7 +78,7 @@ void setup() {
 }
 
 void mousePressed() {
-  if (overRect()) {
+  if (!INTRO_SCREEN && overRect()) {
     if (currLevelIndex + 1 < levels.size()) {
       currLevelIndex += 1;
       FireBoy.changeC(false);
@@ -179,24 +179,29 @@ void draw() {
   if (INTRO_SCREEN){
     background(introBg);
     image(introText,width/2 - 200, height/4 - 30);
-    //textFont(introFont);
-    //textAlign(LEFT, CENTER);
-    //fill(fireRed);
-    //text("FIREBOY",width/2 + 40, height/4);
-    //textAlign(CENTER, CENTER);
-    //fill(goldColor);
-    //text("&",width/2 + 20, height/4);
-    //textAlign(RIGHT, CENTER);
-    //fill(waterBlue);
-    //text("WATERGIRL",width/2, height/4);
-    //text("INTRO - FIX LATER",50,50);
     textFont(basicFont);
     fill(goldColor);
     textAlign(CENTER, CENTER);
     text("IN",width/2, height/3);
     textAlign(CENTER, CENTER);
     text("THE FOREST TEMPLE",width/2, height/2.5);
+    fill(darkGrey);
+    rectMode(CENTER);
+    rect(width/2,height/2 + 100,400,200);
+    textAlign(CENTER, TOP);
+    textSize(20);
+    fill(goldColor);
+    text("INSTRUCTIONS",width/2, height/2 + 10);
+    textAlign(CENTER, CENTER);
+    textSize(12);
+    text("There are two characters, Fireboy and Watergirl.",width/2,height/2 + 40);
+    text("Fireboy can walk in lava but cannot walk in water or green goo.",width/2,height/2 + 60);
+    text("Watergirl can walk in water but cannot walk in lava or green goo.",width/2,height/2 + 80);
+    text("Use the arrows to control Fireboy and A, W, S, D to control WaterGirl.",width/2,height/2 + 100);
+    text("Click anywhere on the screen to play.",width/2,height/2 + 120);
+    rectMode(CORNER);
   } else {
+    //background(51);
     FireBoy = levels.get(currLevelIndex).FireBoy();
     WaterGirl = levels.get(currLevelIndex).WaterGirl();
     if (FireBoy.survival() && WaterGirl.survival() && (!FireBoy.complete() || !WaterGirl.complete())) {
