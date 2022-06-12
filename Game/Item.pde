@@ -15,21 +15,28 @@ public class Item {
   private int hgt; 
   private int wdth;
   private PVector place;
-  private PVector 
-  public Item(int x_, int y_, int h, int w) {
+  private PVector velocity;
+  private Level lane;
+  private boolean horizontalPressed;
+  public Item(int x_, int y_, int h, int w, Level a) {
     x = x_; 
     y = y_;
     hgt = h; 
     wdth = w;
     GRAVITY =0.27;
-    MOVE_MAG = 0.5;
+    MOVE_MAG = 0.3;
     MAX_XVEL = 3;
     JUMP_MAG = -6.5;
     MAX_YVEL = 10;
     FRICTION = 0.5;
-    place = new PVector(x,y);
+    place = new PVector(x * PIXEL_WIDTH, y* PIXEL_LENGTH);
+    velocity = new PVector(0, 0);
+    lane=a;
+    horizontalPressed = false;
   }
-
+  Level getPlace() {
+    return lane;
+  }
   int getX() {
     return x;
   }
@@ -55,29 +62,53 @@ public class Item {
 
   void display() {
     fill(153);
-    rect(getX() * PIXEL_WIDTH, getY() * PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
+    rect(place.x, place.y, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
   }
-  void move() {
-    vel.add(new PVector(0, GRAVITY));
-    if (MAX_YVEL < vel.y) {
-      vel.y = MAX_YVEL;
+  void run() {
+    velocity.add(new PVector(0, GRAVITY));
+    if (MAX_YVEL < velocity.y) {
+      velocity.y = MAX_YVEL;
     }
-    if (checkYRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
-      vel.set( vel.x, 0);
-      pos.set(pos.x, pos.y + 5);
+    
+    if (!horizontalPressed) {
+        velocity.set(velocity.x * FRICTION, velocity.y);
+      } 
+    if (checkYRange(int(place.x), int(place.x+getPixelWidth()), int(place.y+getPixelHeight()))) { //detects floor collision
+      place.set(place.x, 10 * (int(place.y / 10)));
+      velocity.set(velocity.x, 0);
     } 
-    if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
-      jumped = false;
-      pos.set(pos.x, 10 * (int(pos.y / 10)));
-      vel.set(vel.x, 0);
+    if (checkXRange(int(place.y), int (place.y+getPixelHeight()-2), int(place.x)-2)) {//detects left collision
+      velocity.set(-velocity.x, velocity.y);
     } 
-    if (checkXRange(int(pos.y), int (pos.y+playerHeight-2), int(pos.x)-2)) {//detects left collision
-      vel.set(-vel.x, vel.y);
+    if (checkXRange(int(place.y), int(place.y+getPixelHeight()-2), int(place.x +getPixelWidth()))) {//detect right collisiion
+      velocity.set(-velocity.x, velocity.y);
     } 
-    if (checkXRange(int(pos.y), int(pos.y+playerHeight-2), int(pos.x +playerWidth))) {//detect right collisiion
-      vel.set(-vel.x, vel.y);
+    place.add(velocity);
+    horizontalPressed = false;
+  }
+  public void move( PVector dir) {
+    lane.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 0);
+    place.add( dir.x * MOVE_MAG, 0);
+    horizontalPressed = true;
+  }
+  public boolean checkYRange(int xBegin, int xEnd, int yCor) {
+    fill(0, 0, 0, 100);
+    //rect(xBegin, yCor, xEnd-xBegin, 5);
+    for (int i = xBegin; i <= xEnd; i++) {
+
+      if (lane.hitGround(i, yCor) == true) return true;
+    }
+    return false;
+  }
+  // returns empty or not- not on ground, returns true  if vertically it isnt empty return false (something blocking it)
+  public boolean checkXRange(int yBegin, int yEnd, int xCor) {
+    fill(0, 0, 0, 100);
+    //rect(xCor, yBegin, 5,yEnd- yBegin);
+    for (int i = yBegin; i <=yEnd; i ++) {
+
+      if (lane.hitGround(xCor, i) == true) return true;
     } 
-    place.add(vel);
+    return false;
   }
   //TOP LEFT CORNER
   int getPixelX() {

@@ -5,8 +5,8 @@ public class Gem extends Item {
   */
   private color col;
   private boolean isCollected = false; 
-  public Gem(int x_, int y_, color c) {
-    super(x_, y_, 1, 1);
+  public Gem(int x_, int y_, color c, Level a) {
+    super(x_, y_, 1, 1,a);
     col = c;
   }
 

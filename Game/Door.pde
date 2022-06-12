@@ -7,8 +7,8 @@ public class Door extends Item {
   private color col;
   private boolean isOpen = false; 
   private color ogCol;
-  public Door(int x_, int y_, color c) {
-    super(x_, y_, 3, 2);
+  public Door(int x_, int y_, color c, Level a) {
+    super(x_, y_, 3, 2, a);
     col = c;
     ogCol = c;
   }

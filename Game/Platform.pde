@@ -8,7 +8,7 @@ public class Platform extends Item {
   boolean arrived;
   Level place;
   public Platform(int x_, int y_, int x2_, int y2_, int h, int w, Level a) {
-    super(x_, y_, h, w);
+    super(x_, y_, h, w, a);
     x2 = x2_;
     y2 = y2_;
     beginX = x_;
@@ -30,7 +30,7 @@ public class Platform extends Item {
 
   void move() {
     if ((super.x!= x2 || super.y != y2)) {
-      if (frameCount % 15 ==0) {
+      if (frameCount % 10 ==0) {
         if (super.x == x2) {
           if (y2 > super.y) {
             super.y++;
@@ -56,7 +56,7 @@ public class Platform extends Item {
   }
   void moveBack() {
     if (beginX != super.x ||  beginY !=super.y ) {
-      if (frameCount % 15 ==0) {
+      if (frameCount % 10 ==0) {
         if (super.x == beginX) {
           if (beginY > super.y) {
             super.y++;

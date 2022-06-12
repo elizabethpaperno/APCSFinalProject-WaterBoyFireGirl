@@ -2,8 +2,8 @@ public class Button extends Item {
   PImage a; 
   boolean isPushed;
   Platform linkedPlat;
-  public Button (int x_, int y_, Platform link) {
-    super(x_, y_, 1, 2);
+  public Button (int x_, int y_, Platform link, Level a) {
+    super(x_, y_, 1, 2, a);
     linkedPlat = link;
   }
 

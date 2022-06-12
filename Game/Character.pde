@@ -85,10 +85,24 @@ public class Character {
       if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)) {
         a.plat().move();
       }
+      if (!range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)
     }
+    //ArrayList<Item> block = b.getBlocks();
+    //for (int i = 0; i<block.size(); i++) {
+    //  Item a = block.get(i);
+    //  b.kmsEdit((int)(a.getX()), (int)(a.getY()), (int)(a.getX() + a.getWidth()), (int)a.getY() + a.getHeight(), 1);
+    //  if (range(a.getPixelX() - a.getPixelWidth(), a.getPixelX(), a.getPixelY(), a.getPixelY()+a.getPixelHeight(), pos.x,pos.y)) {
+    //    a.run();
+    //    a.move(new PVector(1,0));
+     
+    //  } else if (range(a.getPixelX() + a.getPixelWidth(), a.getPixelX() + 2* a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y)) {
+    //    a.run();
+    //    a.move(new PVector(-1,0));
+        
+    //  }
+    //} //<>//
   }
-  boolean range(float x1, float x2, float y1, float y2
-    , float oX, float oY) {
+  boolean range(float x1, float x2, float y1, float y2, float oX, float oY) {
     return (oX >= x1 && oX <=x2 && oY >= y1 && oY <=y2);
   }
   void run() {
@@ -100,12 +114,12 @@ public class Character {
       vel.add(new PVector(0, GRAVITY));
       if (MAX_YVEL < vel.y) {
         vel.y = MAX_YVEL;
-      } //<>//
+      }
       if (checkYRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
         vel.set( vel.x, 0);
         pos.set(pos.x, pos.y + 5);
       } 
-      if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
+      if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision //<>//
         jumped = false;
         pos.set(pos.x, 10 * (int(pos.y / 10)));
         vel.set(vel.x, 0);
@@ -119,7 +133,7 @@ public class Character {
       pos.add(vel);
       horizontalPressed = false;
     }
-  } //<>//
+  }
   //Accessor Methods
   public color getColor() {
     return a;
