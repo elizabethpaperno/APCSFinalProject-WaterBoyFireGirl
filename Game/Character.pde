@@ -81,11 +81,9 @@ public class Character {
     ArrayList<Button> butt = b.getButtons();
     for (int i = 0; i<butt.size(); i++) {
       Button a = butt.get(i);
-       b.kmsEdit((int)(a.plat().getX()), (int)(a.plat().getY()), (int)(a.plat().getX() + a.plat().getWidth()), (int)a.plat().getY() + a.plat().getHeight(), 1);
+      b.kmsEdit((int)(a.plat().getX()), (int)(a.plat().getY()), (int)(a.plat().getX() + a.plat().getWidth()), (int)a.plat().getY() + a.plat().getHeight(), 1);
       if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight)) {
-        if (!a.plat().hasArrived()) {
-          a.plat().move();
-        }
+        a.plat().move();
       }
     }
   }
@@ -100,9 +98,9 @@ public class Character {
         vel.set(vel.x * FRICTION, vel.y);
       } 
       vel.add(new PVector(0, GRAVITY));
-      if (MAX_YVEL < vel.y) { //<>//
+      if (MAX_YVEL < vel.y) {
         vel.y = MAX_YVEL;
-      }
+      } //<>//
       if (checkYRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
         vel.set( vel.x, 0);
         pos.set(pos.x, pos.y + 5);
@@ -119,9 +117,9 @@ public class Character {
         vel.set(-vel.x, vel.y);
       } 
       pos.add(vel);
-      horizontalPressed = false; //<>//
+      horizontalPressed = false;
     }
-  }
+  } //<>//
   //Accessor Methods
   public color getColor() {
     return a;
