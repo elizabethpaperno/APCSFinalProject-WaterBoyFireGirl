@@ -53,7 +53,7 @@ public class Platform extends Item {
         }
       }
     }
-    else{arrived=true;}
+    //else{arrived=true;}
   }
   void moveBack() {
     if (beginX != super.x ||  beginY !=super.y ) {
