@@ -214,6 +214,8 @@ public class Level {
       stroke(0);
       textAlign(CENTER, CENTER);
       text("LEVEL " + getDifficulty() + " COMPLETED", width/2, height/4);
+      textSize(30);
+      text(FireBoy.gemsTotal() + WaterGirl.gemsTotal() + "/" + gems.size() + " gems collected", width/2, height/4 + 60);
       fill(contColor);
       rect(contX, contY, contWid, contHgt);
       fill(goldColor);
