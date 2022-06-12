@@ -42,9 +42,14 @@ public class Character { //<>// //<>// //<>// //<>// //<>// //<>//
     other = c;
   }
   void display() {
-    fill(a);
-    noStroke();
-    rect(pos.x, pos.y, playerWidth, playerHeight);
+    //fill(a);
+    //noStroke();
+    if (a == color(255,0,0)){
+      image(fireboy, pos.x,pos.y,playerWidth, playerHeight);
+    } else if (a == color(0,0,255)){
+      image(watergirl,pos.x,pos.y,playerWidth, playerHeight);
+    }
+   // rect(pos.x, pos.y, playerWidth, playerHeight);
     stroke(1);
   }
   void check() {
