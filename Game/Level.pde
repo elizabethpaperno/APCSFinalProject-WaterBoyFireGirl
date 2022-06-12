@@ -83,6 +83,8 @@ public class Level {
         Platform linkedPlat =  new Platform(Integer.parseInt(rowStr[5]), Integer.parseInt(rowStr[6]), Integer.parseInt(rowStr[7]), Integer.parseInt(rowStr[8]), Integer.parseInt(rowStr[9]), Integer.parseInt(rowStr[10]), this);
         Button toBeAdded5 = new Button(Integer.parseInt(rowStr[1]), Integer.parseInt(rowStr[2]), linkedPlat, this);
         Button toBeAdded6 = new Button(Integer.parseInt(rowStr[3]), Integer.parseInt(rowStr[4]), linkedPlat, this);
+        linkedPlat.editb1(toBeAdded5);
+        linkedPlat.editb2(toBeAdded6);
         buttons.add(toBeAdded5);
         buttons.add(toBeAdded6);
         platforms.add(linkedPlat);
@@ -133,6 +135,9 @@ public class Level {
   }
   ArrayList<Button> getButtons() {
     return buttons;
+  }
+  ArrayList<Lever> getLevers() {
+    return levers;
   }
   void play() {
     //needs to be written much later on

@@ -6,6 +6,8 @@ public class Platform extends Item {
   int beginX;
   int beginY;
   boolean arrived;
+  Button b1;
+  Button b2;
   Level place;
   public Platform(int x_, int y_, int x2_, int y2_, int h, int w, Level a) {
     super(x_, y_, h, w, a);
@@ -15,6 +17,28 @@ public class Platform extends Item {
     beginY = y_;
     arrived = false;
     place= a;
+  }
+  public Platform(int x_, int y_, int x2_, int y2_, int h, int w, Level a, Button c, Button d) {
+    super(x_, y_, h, w, a);
+    x2 = x2_;
+    y2 = y2_;
+    beginX = x_;
+    beginY = y_;
+    arrived = false;
+    place= a;
+    b1= c;
+    b2=d;
+  }
+  void editb1(Button a) {
+    b1=a;
+  }
+  void editb2 (Button a) {
+    b2=a;
+  }
+  Button returnOther(Button a) {
+    if (a ==b1) return b2;
+    else if (a==b2) return b1;
+    return a;
   }
   boolean hasArrived() {
     return arrived;
