@@ -121,13 +121,13 @@ public class Character { //<>// //<>// //<>// //<>// //<>//
         a.linkedPlat.move();
         
       }
-      //else if (!range(pos.x, pos.x +playerWidth, pos.y, pos.y+playerHeight, a.getPixelX(), a.getPixelY()) &&range(other.pos.x, other.pos.x +other.playerWidth, other.pos.y, other.pos.y+playerHeight, a.getPixelX(), a.getPixelY())) {
-      //  a.pullLever();
-      //  a.linkedPlat.moveBack();
-      //  if(range(a.linkedPlat.getPixelX(), a.linkedPlat.getPixelX()+a.linkedPlat.getPixelWidth(), a.linkedPlat.getPixelY(), a.linkedPlat.getPixelY() + a.linkedPlat.getPixelHeight(), pos.x, pos.y+playerHeight)){
-      //  pos.set(pos.x, a.linkedPlat.getPixelY() - playerHeight);pos.set(pos.x, a.linkedPlat.getPixelY() - playerHeight);}
+      else if (!range(pos.x, pos.x +playerWidth, pos.y, pos.y+playerHeight, a.getPixelX(), a.getPixelY()) &&range(other.pos.x, other.pos.x +other.playerWidth, other.pos.y, other.pos.y+playerHeight, a.getPixelX(), a.getPixelY())) {
+        a.pullLever();
+        a.linkedPlat.moveBack();
+        if(range(a.linkedPlat.getPixelX(), a.linkedPlat.getPixelX()+a.linkedPlat.getPixelWidth(), a.linkedPlat.getPixelY(), a.linkedPlat.getPixelY() + a.linkedPlat.getPixelHeight(), pos.x, pos.y+playerHeight)){
+        pos.set(pos.x, a.linkedPlat.getPixelY() - playerHeight);pos.set(pos.x, a.linkedPlat.getPixelY() - playerHeight);}
         
-      //}
+      }
     }
   }
   boolean buttonRange(Button a, float x, float y) {
