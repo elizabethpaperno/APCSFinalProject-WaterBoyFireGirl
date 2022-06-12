@@ -11,9 +11,13 @@ public class Gem extends Item {
   }
 
   void display() {
-    fill(getColor());
-    stroke(0);
-    rect(getX() * PIXEL_WIDTH, getY() * PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
+    if (getColor() == color(255,0,0)){
+      image(redGem,getX() * PIXEL_WIDTH,getY() * PIXEL_LENGTH);
+    } else if (getColor() == color(0,0,255)){
+      image(blueGem,getX() * PIXEL_WIDTH,getY() * PIXEL_LENGTH);
+    } else if (isCollected){
+      rect(getX() * PIXEL_WIDTH, getY() * PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
+    }
   }
 
   void hide() {

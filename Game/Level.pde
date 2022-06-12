@@ -198,16 +198,22 @@ public class Level {
   void completeLevel() {
     //needs to be figured out later
     if (isCompleted) {
-      background(130, 127, 129);
+      background(lightGrey);
+      noStroke();
+      fill(darkGrey);
+      drawBoarder(40);
+      textFont(basicFont);
       textSize(60);
       fill(goldColor);
       stroke(0);
-      text("LEVEL COMPLETED", 130, 150);
+      textAlign(CENTER, CENTER);
+      text("LEVEL " + getDifficulty() + " COMPLETED", width/2, height/4);
       fill(contColor);
       rect(contX, contY, contWid, contHgt);
       fill(goldColor);
-      text("Continue", contX + contWid/9, contY + 7 * contHgt/8);
-      textSize(20);
+      textAlign(CENTER, CENTER);
+      textSize(30);
+      text("CONTINUE", width/2, height/2);
     }
   }
   void gameOver() {    
