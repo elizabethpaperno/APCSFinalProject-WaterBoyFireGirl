@@ -1,6 +1,6 @@
-public class Character { //<>// //<>// //<>// //<>// //<>//
-  color a; 
-  //top left corner of rectangle 
+public class Character { //<>// //<>// //<>// //<>// //<>// //<>//
+  color a;
+  //top left corner of rectangle
   PVector pos;
   PVector vel;
   final float GRAVITY;
@@ -11,15 +11,15 @@ public class Character { //<>// //<>// //<>// //<>// //<>//
   final float MAX_YVEL;
   boolean living;
   boolean jumped;
-  boolean completed; 
+  boolean completed;
   boolean horizontalPressed;
   int gemsCollected;
   int playerWidth;
   int playerHeight;
   Level b;
   Maze z;
-  Character other; 
-  //(x,y) = top left???? yeah that makes sense 
+  Character other;
+  //(x,y) = top left???? yeah that makes sense
   //constructor
   public Character(color cool, int x, int y) {
     pos = new PVector(x, y);
@@ -27,7 +27,7 @@ public class Character { //<>// //<>// //<>// //<>// //<>//
     a = cool;
     gemsCollected =  0;
     GRAVITY =0.27;
-    MOVE_MAG = 0.5;
+    MOVE_MAG = 0.27;
     MAX_XVEL = 3;
     JUMP_MAG = -6.5;
     FRICTION = 0.5;
@@ -50,7 +50,7 @@ public class Character { //<>// //<>// //<>// //<>// //<>//
   void check() {
     ArrayList<Gem> gem = b.getGems();
     for (int i = 0; i < gem.size(); i++) {
-      Gem a = gem.get(i); 
+      Gem a = gem.get(i);
       if (range(pos.x, pos.x+playerWidth, pos.y, pos.y +playerHeight, a.getPixelX()+5, a.getPixelY()+5) &&  gem.get(i).getColor() == getColor()) {
         gem.get(i).setCollected(true);
         a.hide();
@@ -116,7 +116,7 @@ public class Character { //<>// //<>// //<>// //<>// //<>//
       if (range(pos.x, pos.x +playerWidth, pos.y, pos.y+playerHeight, a.getPixelX(), a.getPixelY())/*&& !a.isPuller()*/) {
         a.linkedPlat.move();
         //a.pullLever();
-      } 
+      }
       //else if ((range(other.pos.x, other.pos.x +other.playerWidth, other.pos.y, other.pos.y+playerHeight, a.getPixelX(), a.getPixelY())) && a.isPuller()) {
       //  a.linkedPlat.moveBack();
       //  if (range(a.linkedPlat.getPixelX(), a.linkedPlat.getPixelX()+a.linkedPlat.getPixelWidth(), a.linkedPlat.getPixelY(), a.linkedPlat.getPixelY() + a.linkedPlat.getPixelHeight(), pos.x, pos.y+playerHeight)) {
@@ -137,7 +137,7 @@ public class Character { //<>// //<>// //<>// //<>// //<>//
     if (survival()) {
       if (!horizontalPressed) {
         vel.set(vel.x * FRICTION, vel.y);
-      } 
+      }
       vel.add(new PVector(0, GRAVITY));
       if (MAX_YVEL < vel.y) {
         vel.y = MAX_YVEL;
@@ -145,18 +145,18 @@ public class Character { //<>// //<>// //<>// //<>// //<>//
       if (checkYRange(int(pos.x), int(pos.x + playerWidth), int(pos.y))) { //detects ceiling collision
         vel.set( vel.x, 0);
         pos.set(pos.x, pos.y + 5);
-      } 
+      }
       if (checkYRange(int(pos.x), int(pos.x+playerWidth), int(pos.y+playerHeight))) { //detects floor collision
         jumped = false;
         pos.set(pos.x, 10 * (int(pos.y / 10)));
         vel.set(vel.x, 0);
-      } 
+      }
       if (checkXRange(int(pos.y), int (pos.y+playerHeight-2), int(pos.x)-2)) {//detects left collision
         vel.set(-vel.x, vel.y);
-      } 
+      }
       if (checkXRange(int(pos.y), int(pos.y+playerHeight-2), int(pos.x +playerWidth))) {//detect right collisiion
         vel.set(-vel.x, vel.y);
-      } 
+      }
       pos.add(vel);
       horizontalPressed = false;
     }
@@ -203,8 +203,8 @@ public class Character { //<>// //<>// //<>// //<>// //<>//
   public void changeC(boolean a) {
     completed = a;
   }
-  //collision check 
-  //returns true if there is somethinng blocking it 
+  //collision check
+  //returns true if there is somethinng blocking it
   public boolean checkYRange(int xBegin, int xEnd, int yCor) {
     fill(0, 0, 0, 100);
     //rect(xBegin, yCor, xEnd-xBegin, 5);
@@ -221,13 +221,13 @@ public class Character { //<>// //<>// //<>// //<>// //<>//
     for (int i = yBegin; i <=yEnd; i ++) {
 
       if (b.hitGround(xCor, i) == true) return true;
-    } 
+    }
     return false;
   }
   //Movement Methods
   public void move(PVector dir) {
 
-    if (dir.y == 1&& !jumped) { 
+    if (dir.y == 1&& !jumped) {
       pos.set(new PVector(pos.x, pos.y-1));
       vel.add(new PVector(0, JUMP_MAG));
       //vel.set(vel.x, -JUMP_MAG);
