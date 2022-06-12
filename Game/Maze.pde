@@ -3,6 +3,7 @@ public class Maze {
   private int cols;
   private int[][] board;
   private String fname; 
+  private int[][] copyOfBoard;
 
   public Maze(String filename, int r, int c) {
     rows = r;
@@ -12,6 +13,7 @@ public class Maze {
 
   void readFileAndConstruct() throws FileNotFoundException {
     board = new int[rows][cols];
+    copyOfBoard = new int[rows][cols];
     String[] lines = loadStrings(fname);
     for (int i = 0; i < lines.length; i++) {
       String[] rowStr = lines[i].split(" "); 
@@ -20,13 +22,12 @@ public class Maze {
         row[j] = Integer.parseInt(rowStr[j]);
       }
       board[i] = row;
+      copyOfBoard[i] = row;
     }
   }
-
   int[][] getBoard() {
     return board;
   }
-
   int width() {
     return rows;
   }

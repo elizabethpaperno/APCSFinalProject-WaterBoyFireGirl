@@ -30,12 +30,19 @@ boolean PAUSE_SCREEN = false;
 PImage intro;
 void setup() {
   size(800, 600);
+<<<<<<< HEAD
   //Maze m1 = new Maze("Level1Edited.txt", 30, 40);
   //Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 520, 70, 420);
   Maze m2 = new Maze("Level2.txt", 30, 40);
   Level l2 = new Level(2, m2, "Level2_Items.txt", 20 * 3, 20 * 3, 20 * 36, 20 * 3);
   PIXEL_WIDTH = height/m2.width();
   PIXEL_LENGTH = (int)width/m2.height();
+=======
+  Maze m1 = new Maze("Level1Edited.txt", 30, 40);
+  Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 120, 70, 120);
+  PIXEL_WIDTH = height/m1.width();
+  PIXEL_LENGTH = (int)width/m1.height();
+>>>>>>> 0663ece72a4e7d02e174fafdda6c9395d7ae49f9
   currLevelIndex = 0;
   levels = new ArrayList<Level>();
   mazes = new ArrayList<Maze>();
@@ -50,6 +57,7 @@ void setup() {
     for (int i = 0; i < levels.size(); i++) {
       mazes.get(i).readFileAndConstruct();
       levels.get(i).createLevel();
+      levels.get(i).kmsSet();
     }
   }
   catch(FileNotFoundException e) {
@@ -117,16 +125,16 @@ void keyPressed() {
     keys[5] = true;
   }
 
-  if (key == 'p' && !PAUSE_SCREEN){
+  if (key == 'p' && !PAUSE_SCREEN) {
     print("p is pressed");
     PAUSE_SCREEN = true;
   }
 
-  if (key == ' ' && PAUSE_SCREEN){
+  if (key == ' ' && PAUSE_SCREEN) {
     PAUSE_SCREEN = false;
   }
 
-  if (key == 'r' && PAUSE_SCREEN){
+  if (key == 'r' && PAUSE_SCREEN) {
     PAUSE_SCREEN = false;
     try {
       mazes.get(currLevelIndex).readFileAndConstruct();
@@ -134,14 +142,14 @@ void keyPressed() {
       //FireBoy = levels.get(currLevelIndex).FireBoy();
       //WaterGirl = levels.get(currLevelIndex).WaterGirl();
       FireBoy = levels.get(currLevelIndex).FireBoy();
-  WaterGirl = levels.get(currLevelIndex).WaterGirl();
+      WaterGirl = levels.get(currLevelIndex).WaterGirl();
       levels.get(currLevelIndex).resetChars();
-    } catch(FileNotFoundException e) {
+      
+    } 
+    catch(FileNotFoundException e) {
       System.out.println("Invalid filename");
     }
   }
-
-
 }
 void keyReleased() {
   if (key == 'w') {
@@ -172,6 +180,7 @@ void mouseClicked(){
 
 void draw() {
   //cgeck if borth are alive, else, backgroun(0), game over
+<<<<<<< HEAD
   if (INTRO_SCREEN){
     textSize(30);
     text("INTRO - FIX LATER",50,50);
@@ -202,5 +211,24 @@ void draw() {
     } else {
       contColor = color(130, 127, 129);
     }
+=======
+  FireBoy = levels.get(currLevelIndex).FireBoy();
+  WaterGirl = levels.get(currLevelIndex).WaterGirl();
+  if (FireBoy.survival() && WaterGirl.survival() && (!FireBoy.complete() || !WaterGirl.complete())) {
+    levels.get(currLevelIndex).play();
+    //added code from here to play() in level
+  }
+  if ( (!FireBoy.survival() || !WaterGirl.survival()) && !levels.get(currLevelIndex).isCompleted()) {
+    levels.get(currLevelIndex).gameOver();
+  }
+  if (FireBoy.complete() && WaterGirl.complete() && FireBoy.survival() && WaterGirl.survival()) {
+    levels.get(currLevelIndex).setCompleted(true);
+    levels.get(currLevelIndex).completeLevel();
+  }
+  if (overRect()) {
+    contColor = color(53);
+  } else {
+    contColor = color(130, 127, 129);
+>>>>>>> 0663ece72a4e7d02e174fafdda6c9395d7ae49f9
   }
 }
