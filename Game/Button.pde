@@ -2,9 +2,11 @@ public class Button extends Item {
   PImage a; 
   boolean isPushed;
   Platform linkedPlat;
-  public Button (int x_, int y_, Platform link, Level a) {
+  color cool;
+  public Button (int x_, int y_, Platform link, Level a,color c) {
     super(x_, y_, 1, 2, a);
     linkedPlat = link;
+    cool = c;
   }
 
   void setPushed(boolean p) {
@@ -20,7 +22,7 @@ public class Button extends Item {
 
   void display() {
     //katherine fill in 
-    fill(255, 98, 253);
+    fill(cool);
     stroke(249, 255, 298);
     rect(getX()*PIXEL_WIDTH, getY()* PIXEL_LENGTH + (PIXEL_LENGTH * 0.5), PIXEL_WIDTH* getWidth(), PIXEL_LENGTH *0.5* getHeight());
   }
