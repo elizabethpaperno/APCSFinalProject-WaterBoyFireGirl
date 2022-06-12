@@ -64,7 +64,7 @@ public class Item {
   void display() {
     fill(153);
     rect(place.x, place.y, getWidth() * PIXEL_WIDTH, getHeight() * PIXEL_LENGTH);
-     lane.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight() , 1);
+     //lane.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight() , 1);
   }
   void run() {
     velocity.add(new PVector(0, GRAVITY));

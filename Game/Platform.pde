@@ -88,14 +88,16 @@ public class Platform extends Item {
       if (frameCount % 10 ==0) {
         if (super.x == beginX) {
           if (beginY > super.y) {
-            super.y++;
+            //super.y++;
             //place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
             place.kmsEdit((int)(getX()), (int)(getY())-1, (int)(getX() + getWidth()), (int)getY() + getHeight()-1, 0);
+            super.y++;
           }
           if (super.y > beginY) {
-            super.y--;
+            //super.y--;
             // place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
             place.kmsEdit((int)(getX()), (int)(getY())+1, (int)(getX() + getWidth()), (int)getY() + getHeight()+1, 0);
+            super.y--;
           }
         }
         if (super.y == beginY) {

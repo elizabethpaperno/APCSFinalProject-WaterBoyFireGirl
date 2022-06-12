@@ -16,8 +16,8 @@ boolean contOver = false;
 boolean INTRO_SCREEN = true;
 color goldColor = color(218, 165, 32);
 
-Maze m1;
-Level l1;
+//Maze m1;
+//Level l1;
 ArrayList<Level> levels;
 int currLevelIndex;
 ArrayList<Maze> mazes;
@@ -41,8 +41,8 @@ void setup() {
   mazes = new ArrayList<Maze>();
 
   //add all levels (as needed)
-  levels.add(l1);
-  mazes.add(m1);
+ levels.add(l1);
+mazes.add(m1);
   levels.add(l2);
   mazes.add(m2);
 
