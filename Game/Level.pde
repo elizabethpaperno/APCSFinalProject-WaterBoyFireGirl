@@ -1,12 +1,12 @@
 public class Level {
   private int difficulty;
-  private ArrayList<Item> blocks = new ArrayList<Item>();
-  private ArrayList<Lava> lavas = new ArrayList<Lava>();
-  private ArrayList<Door> doors = new ArrayList<Door>();
-  private ArrayList<Platform> platforms = new ArrayList<Platform>();
-  private ArrayList<Button> buttons = new ArrayList<Button>();
-  private ArrayList<Lever> levers = new ArrayList<Lever>();
-  private ArrayList<Gem> gems =new ArrayList<Gem>();
+  private ArrayList<Item> blocks;
+  private ArrayList<Lava> lavas;
+  private ArrayList<Door> doors;
+  private ArrayList<Platform> platforms;
+  private ArrayList<Button> buttons;
+  private ArrayList<Lever> levers;
+  private ArrayList<Gem> gems;
   private Maze board;
   //file should be CSV in format --> Item Sub class,x,y,h,w, additional features
   String fname;
@@ -64,6 +64,13 @@ public class Level {
   void createLevel() throws FileNotFoundException {
     String[] lines = loadStrings(fname);
     //println(Arrays.toString(lines));
+    blocks = new ArrayList<Item>();
+    lavas = new ArrayList<Lava>();
+    doors = new ArrayList<Door>();
+    buttons = new ArrayList<Button>();
+    platforms = new ArrayList<Platform>();
+    levers = new ArrayList<Lever>();
+    gems =new ArrayList<Gem>();
     for (int i = 0; i < lines.length; i++) {
       String[] rowStr = lines[i].split(",");
       //println(Arrays.toString(rowStr));
