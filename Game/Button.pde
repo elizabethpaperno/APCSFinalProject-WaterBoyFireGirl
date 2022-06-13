@@ -22,8 +22,14 @@ public class Button extends Item {
 
   void display() {
     //katherine fill in 
-    fill(cool);
-    stroke(249, 255, 298);
+    
+    //stroke(249, 255, 298);
+    fill(255,255,0);
     rect(getX()*PIXEL_WIDTH, getY()* PIXEL_LENGTH + (PIXEL_LENGTH * 0.5), PIXEL_WIDTH* getWidth(), PIXEL_LENGTH *0.5* getHeight());
+    if (!isPushed()){
+      fill(cool);
+      rect(getX()*PIXEL_WIDTH + 10, getY()* PIXEL_LENGTH + (PIXEL_LENGTH * 0.5) - PIXEL_LENGTH *0.5* getHeight()/2 , PIXEL_WIDTH* getWidth()/2, PIXEL_LENGTH *0.5* getHeight()/2);
+    }
+    
   }
 }

@@ -90,9 +90,10 @@ public class Character {  //<>// //<>//
         
       if (range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y +  playerHeight) ||range(a.getPixelX(), a.getPixelX() + a.getPixelWidth(), a.getPixelY(), a.getPixelY() + a.getPixelHeight(), other.pos.x, other.pos.y +  other.playerHeight)) {
         a.plat().move();
+        a.setPushed(true);
       } else if (!buttonRange(a, pos.x, pos.y+playerHeight) && !buttonRange(a, other.pos.x, other.pos.y +other.playerHeight)&& !buttonRange(a.plat().returnOther(a), pos.x, pos.y+playerHeight) && !buttonRange(a.plat().returnOther(a), other.pos.x, other.pos.y +other.playerHeight)) {
         a.plat().moveBack();
-
+        a.setPushed(false);
         if (range(a.plat().getPixelX(), a.plat().getPixelX() +a.plat().getPixelWidth(), a.plat().getPixelY()-2, a.plat().getPixelY() +a.plat().getPixelHeight(), pos.x, pos.y+playerHeight)) {
           pos.set(pos.x, a.plat().getPixelY() - playerHeight);
         }
