@@ -61,6 +61,7 @@ public class Platform extends Item {
     rect(getX() *PIXEL_WIDTH, getY() *PIXEL_LENGTH, getWidth() * PIXEL_WIDTH, getHeight()*PIXEL_LENGTH);
     place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight() , 1);
     strokeWeight(1);
+    noStroke(); 
   }
 
   void move() {
