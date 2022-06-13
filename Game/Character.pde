@@ -1,4 +1,4 @@
-public class Character {  //<>//
+public class Character {  //<>// //<>//
   color a;
   //top left corner of rectangle
   PVector pos;
@@ -119,7 +119,7 @@ public class Character {  //<>//
       b.kmsEdit(a.linkedPlat.getX(), a.linkedPlat.getY(), a.linkedPlat.getX() +a.linkedPlat.getWidth()-1, a.linkedPlat.getY() + a.linkedPlat.getHeight(), 1);
       if (range(pos.x, pos.x +playerWidth, pos.y, pos.y+playerHeight, a.getPixelX(), a.getPixelY())/*&& !a.isPuller()*/) {
         a.linkedPlat.move();
-        //a.pullLever();
+        a.pullLever();
       }
       //else if ((range(other.pos.x, other.pos.x +other.playerWidth, other.pos.y, other.pos.y+playerHeight, a.getPixelX(), a.getPixelY())) && a.isPuller()) {
       //  a.linkedPlat.moveBack();

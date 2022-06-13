@@ -65,24 +65,24 @@ public class Platform extends Item {
       if (frameCount % 10 ==0) {
         if (super.x == x2) {
           if (y2 > super.y) {
-            place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()-1, 0);
+            place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()+1, 0);
             super.y++;
             //place.kmsEdit((int)(getX()), (int)(getY())-1, (int)(getX() + getWidth()), (int)getY() + getHeight()-1, 0);
           }
           if (super.y > y2) {
-             place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()-1, 0);
+             place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()+1, 0);
             super.y--;
             //place.kmsEdit((int)(getX()), (int)(getY())+1, (int)(getX() + getWidth()), (int)getY() + getHeight()+1, 0);
           }
         }
         if (super.y == y2) {
           if (x2 > super.x) {
-             place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()-1, 0);
+             place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()+1, 0);
             super.x++;
             //place.kmsEdit((int)(getX())-1, (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight(), 0);
           }
           if (super.x> x2) {
-             place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()-1, 0);
+            place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()+1, 0);
             super.x--;
             //place.kmsEdit((int)(getX())+1, (int)(getY()), (int)(getX() + getWidth())+1, (int)getY() + getHeight(), 0);
           }
@@ -98,13 +98,13 @@ public class Platform extends Item {
           if (beginY > super.y) {
             //super.y++;
             //place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
-           place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()-1), (int)getY() + getHeight()-1, 0);
+           place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()+1, 0);
             super.y++;
           }
           if (super.y > beginY) {
             //super.y--;
             // place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
-            place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()-1, 0);
+            place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()+1, 0);
             super.y--;
           }
         }
@@ -112,12 +112,12 @@ public class Platform extends Item {
           if (beginX > super.x) {
             super.x++;
             //place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
-           place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()-1, 0);
+           place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()+1, 0);
           }
           if (super.x> beginX) {
             super.x--;
             // place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth()), (int)getY() + getHeight(), 1);
-          place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()-1, 0);
+          place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()+1, 0);
           }
         }
       }
