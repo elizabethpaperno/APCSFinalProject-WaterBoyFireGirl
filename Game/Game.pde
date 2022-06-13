@@ -23,6 +23,7 @@ boolean PAUSE_SCREEN = false;
 boolean INTRO_SCREEN = true;
 boolean GAMEOVER_SCREEN = false;
 boolean CONTINUE_SCREEN = false;
+boolean NOMORE_SCREEN = false;
 
 //for text and colors
 PFont basicFont;
@@ -96,7 +97,10 @@ void draw() {
   } else {
     FireBoy = levels.get(currLevelIndex).FireBoy();
     WaterGirl = levels.get(currLevelIndex).WaterGirl();
-    if (PAUSE_SCREEN) {
+    if (NOMORE_SCREEN) {
+      //PAUSE_SCREEN = false;
+      drawOutOfLevelScreen();
+    } else if (PAUSE_SCREEN) {
       drawPauseScreen();
     } else {
       if (FireBoy.survival() && WaterGirl.survival() && (!FireBoy.complete() || !WaterGirl.complete())) {
@@ -130,15 +134,9 @@ void mousePressed() {
       FireBoy.changeC(false);
       WaterGirl.changeC(false);
     } else {
-      FireBoy.justice(false);
-      WaterGirl.justice(false);
-      background(lightGrey);
-      noStroke();
-      fill(darkGrey);
-      drawBoarder(40);
-      textSize(30);
-      textAlign(CENTER, CENTER);
-      text("Sorry :( No more Levels Available", width/2, height/2);
+      NOMORE_SCREEN = true;
+      FireBoy.changeC(false);
+      WaterGirl.changeC(false);
     }
     CONTINUE_SCREEN = false;
   }
@@ -181,7 +179,17 @@ void keyPressed() {
       currLevelIndex += 1;
       FireBoy.changeC(false);
       WaterGirl.changeC(false);
+    } else {
+      NOMORE_SCREEN = true;
+      FireBoy.changeC(false);
+      WaterGirl.changeC(false);
     }
+  }
+  
+  if (NOMORE_SCREEN && key == ' '){
+    NOMORE_SCREEN = false;
+    currLevelIndex = 0;
+    INTRO_SCREEN = true;
   }
 
   if (key == 'r' && (PAUSE_SCREEN || GAMEOVER_SCREEN)) {
@@ -290,4 +298,17 @@ void drawGameOverScreen() {
   textAlign(CENTER, CENTER);
   textSize(20);
   text("Retry by clicking R", width/2, height/2);
+}
+
+void drawOutOfLevelScreen() {
+  noStroke();
+  background(lightGrey);
+  fill(darkGrey);
+  drawBoarder(40);
+  textFont(basicFont);
+  fill(goldColor);
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  text("Sorry :( No more Levels Available", width/2, height/4);
+  text("Click Space to return to Home", width/2, height/2);
 }
