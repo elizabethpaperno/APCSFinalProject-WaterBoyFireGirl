@@ -150,7 +150,7 @@ void setup() {
   //Maze m1 = new Maze("Level1Edited.txt", 30, 40);
   //Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 520, 70, 450);
   //Maze m2 = new Maze("Level2.txt", 30, 40);
-  // //Level l2 = new Level(2, m2, "Level2_Items.txt", 100, 520, 100, 450);
+   //Level l2 = new Level(2, m2, "Level2_Items.txt", 100, 520, 100, 450);
   //Level l2 = new Level(2, m2, "Level2_Items.txt", 20 * 3, 20 * 3, 20 * 36, 20 * 3);
   Maze m3 = new Maze("Level3.txt", 30, 40);
   Level l3 = new Level(1, m3, "Level3_Items.txt", 40, 40, 80, 40);
