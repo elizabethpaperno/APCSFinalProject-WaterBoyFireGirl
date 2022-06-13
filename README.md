@@ -189,4 +189,9 @@
   * Block will literally not work 
   * But platform and lever does- we did not go with unpulling lever because that just wont fly
 ## Running Instructions
-Press Play on Game.pde to run!
+#### Press Play on Game.pde to run!
+There are two characters, Fireboy and Watergirl.<br />
+Fireboy can walk in lava but cannot walk in water or green goo.<br />
+Watergirl can walk in water but cannot walk in lava or green goo. <br />
+Use the arrows to control Fireboy and A, W, S, D to control WaterGirl.<br /> 
+Click P to pause.
