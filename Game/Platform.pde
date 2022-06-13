@@ -66,7 +66,7 @@ public class Platform extends Item {
 
   void move() {
     if ((super.x!= x2 || super.y != y2)) {
-      if (frameCount % 10 ==0) {
+      if (frameCount % 6 ==0) {
         if (super.x == x2) {
           if (y2 > super.y) {
             place.kmsEdit((int)(getX()), (int)(getY()), (int)(getX() + getWidth())-1, (int)getY() + getHeight()+1, 0);
@@ -97,7 +97,7 @@ public class Platform extends Item {
   }
   void moveBack() {
     if (beginX != super.x ||  beginY !=super.y ) {
-      if (frameCount % 10 ==0) {
+      if (frameCount % 6 ==0) {
         if (super.x == beginX) {
           if (beginY > super.y) {
             //super.y++;
