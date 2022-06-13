@@ -25,12 +25,12 @@ public class Lever extends Item {
     if (!isPulled) {
       fill(cool);
       circle(getPixelX()  + getPixelWidth()/4, getPixelY() + getPixelHeight()/8, getPixelWidth()/2+2);
-      fill(255, 41, 252);
+      fill(254, 255, 21);
       rect(getX() *PIXEL_WIDTH, getY() *PIXEL_LENGTH + (PIXEL_LENGTH * 0.5), getWidth() * PIXEL_WIDTH * 0.5, getHeight()*PIXEL_LENGTH * 0.75);
     } else {
       fill(cool);
       circle(getPixelX()-10  + getPixelWidth()/4, getPixelY() + getPixelHeight()/8+5, getPixelWidth()/2+2);
-      fill(255, 41, 252);
+      fill(254, 255, 21);
       rect(getX() *PIXEL_WIDTH, getY() *PIXEL_LENGTH + (PIXEL_LENGTH * 0.5)+5, getWidth() * PIXEL_WIDTH * 0.5, getHeight()*PIXEL_LENGTH * 0.75*.5);
       rect(getX() *PIXEL_WIDTH +10, getY() *PIXEL_LENGTH + (PIXEL_LENGTH * 0.5)+10+5, getWidth() * PIXEL_WIDTH * 0.5, getHeight()*PIXEL_LENGTH * 0.75*.5);
     }
