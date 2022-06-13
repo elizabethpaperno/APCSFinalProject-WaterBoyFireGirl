@@ -135,8 +135,8 @@ void mousePressed() {
       WaterGirl.changeC(false);
     } else {
       NOMORE_SCREEN = true;
-      FireBoy.changeC(false);
-      WaterGirl.changeC(false);
+      FireBoy.justice(false);
+      WaterGirl.justice(false);
     }
     CONTINUE_SCREEN = false;
   }
@@ -181,8 +181,8 @@ void keyPressed() {
       WaterGirl.changeC(false);
     } else {
       NOMORE_SCREEN = true;
-      FireBoy.changeC(false);
-      WaterGirl.changeC(false);
+      FireBoy.justice(false);
+      WaterGirl.justice(false);
     }
   }
 
@@ -199,9 +199,9 @@ void keyPressed() {
       levels.get(currLevelIndex).createLevel();
       //FireBoy = levels.get(currLevelIndex).FireBoy();
       //WaterGirl = levels.get(currLevelIndex).WaterGirl();
+      levels.get(currLevelIndex).resetChars();
       FireBoy = levels.get(currLevelIndex).FireBoy();
       WaterGirl = levels.get(currLevelIndex).WaterGirl();
-      levels.get(currLevelIndex).resetChars();
     }
     catch(FileNotFoundException e) {
       System.out.println("Invalid filename");
