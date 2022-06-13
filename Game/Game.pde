@@ -245,29 +245,6 @@ void drawBoarder(int borderW) {
   rect(0, height-borderW, width, borderW);
   rect(0, 0, borderW, height);
 }
-void setup() {
-  size(800, 600);
-  //Maze m1 = new Maze("Level1Edited.txt", 30, 40);
-  //Level l1 = new Level(1, m1, "Level1_Items.txt", 70, 520, 70, 450);
-  //Maze m2 = new Maze("Level2.txt", 30, 40);
-   //Level l2 = new Level(2, m2, "Level2_Items.txt", 100, 520, 100, 450);
-  //Level l2 = new Level(2, m2, "Level2_Items.txt", 20 * 3, 20 * 3, 20 * 36, 20 * 3);
-  Maze m3 = new Maze("Level3.txt", 30, 40);
-  Level l3 = new Level(1, m3, "Level3_Items.txt", 40, 40, 80, 40);
-  PIXEL_WIDTH = height/m3.width();
-  PIXEL_LENGTH = (int)width/m3.height();
-  currLevelIndex = 0;
-  levels = new ArrayList<Level>();
-  mazes = new ArrayList<Maze>();
-
-  //add all levels (as needed)
-
-  //levels.add(l1);
-  //mazes.add(m1);
-  //levels.add(l2);
-  //mazes.add(m2);
-  levels.add(l3);
-  mazes.add(m3);
 
 void drawIntroScreen() {
   background(introBg);
