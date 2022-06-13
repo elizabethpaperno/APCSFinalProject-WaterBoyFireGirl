@@ -164,7 +164,7 @@ void keyPressed() {
     keys[5] = true;
   }
 
-  if (key == 'p' && !PAUSE_SCREEN && !INTRO_SCREEN) {
+  if (key == 'p' && !PAUSE_SCREEN && !INTRO_SCREEN && !GAMEOVER_SCREEN && !NOMORE_SCREEN && !CONTINUE_SCREEN) {
     //print("p is pressed");
     PAUSE_SCREEN = true;
   }
