@@ -269,7 +269,7 @@ void drawIntroScreen() {
   text("Watergirl can walk in water but cannot walk in lava or green goo.", width/2, height/2 + 80);
   text("Use the arrows to control Fireboy and A, W, S, D to control WaterGirl.", width/2, height/2 + 100);
   text("Click anywhere on the screen to play, and press P to pause.", width/2, height/2 + 120);
-  text("The goal is to for every character to reach the door of their corresponding character.", width/2, height/2 + 140);
+  text("The goal is for both characters to reach the door of their corresponding color.", width/2, height/2 + 140);
   rectMode(CORNER);
 }
 
