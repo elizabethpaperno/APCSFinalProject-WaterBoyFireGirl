@@ -42,8 +42,11 @@ public class Maze {
         //print(board[i][j]);
         if (board[i][j] == 0) {
           stroke(0);
+          strokeWeight(2);
           fill(51, 51, 0);
           rect(j * PIXEL_WIDTH, i * PIXEL_LENGTH, PIXEL_WIDTH, PIXEL_LENGTH);
+          strokeWeight(1);
+          noStroke();
         } else {
           noStroke();
           fill(102, 102, 0);
