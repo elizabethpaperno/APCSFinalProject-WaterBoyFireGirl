@@ -194,8 +194,10 @@
   * add colors to lever, platform, and button
 * Katherine:
   * Added some touches to the constructors, booleans for access
-  * Block will literally not work 
+  * Block will work only occasionally
   * But platform and lever does- we did not go with unpulling lever because that just wont fly
+  * Edited the levels so they're actually playable 
+  * changed how lever is displayed once pulled
 ## Running Instructions
 #### Press Play on Game.pde to run!
 There are two characters, Fireboy and Watergirl.<br />
