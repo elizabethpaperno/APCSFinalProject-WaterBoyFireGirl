@@ -23,7 +23,7 @@ public class Lever extends Item {
 
   void display() {
     if (!isPulled) {
-      fill(255, 162, 39);
+      fill(255, 41, 252);
       circle(getPixelX()  + getPixelWidth()/4, getPixelY() + getPixelHeight()/8, getPixelWidth()/2+2);
       fill(cool);
       rect(getX() *PIXEL_WIDTH, getY() *PIXEL_LENGTH + (PIXEL_LENGTH * 0.5), getWidth() * PIXEL_WIDTH * 0.5, getHeight()*PIXEL_LENGTH * 0.75);
