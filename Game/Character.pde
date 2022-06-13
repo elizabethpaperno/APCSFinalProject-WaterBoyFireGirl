@@ -1,4 +1,4 @@
-public class Character { 
+public class Character {  //<>//
   color a;
   //top left corner of rectangle
   PVector pos;
@@ -110,7 +110,7 @@ public class Character {
         a.move(new PVector(a.getPixelX() +MOVE_MAG, pos.y));}
       } else if (range(a.getPixelX(), a.getPixelX() +  a.getPixelWidth() +4, a.getPixelY(), a.getPixelY() + a.getPixelHeight(), pos.x, pos.y+playerHeight)&& !a.z) {
         if(a.getX() != a.x2 || a.getY() !=a.y2){
-        a.move(new PVector(a.getPixelX() +a.getPixelWidth() -MOVE_MAG, pos.y));}
+        a.move(new PVector(a.getPixelX() -MOVE_MAG, pos.y));}
       }
     }
     ArrayList<Lever> pull = b.getLevers();
