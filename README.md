@@ -202,3 +202,4 @@ There are two characters, Fireboy and Watergirl.<br />
 Fireboy can walk in lava but cannot walk in water or green goo.<br />
 Watergirl can walk in water but cannot walk in lava or green goo. <br />
 Use the arrows to control Fireboy and A, W, S, D to control WaterGirl.<br /> 
+Press p for pause.
