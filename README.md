@@ -171,6 +171,10 @@
 6/11
 * Elizabeth:
   * Begin working on writing the files and finding a level we can replicate
+  * Forgot to branch. So sorry :(
+  * Write file for Level2
+  * Write file for items in level 2
+  * Begin working on intro screen for game --> all thats left is design
 * Katherine:
   * Finalized Display 
   * Character interactions with each item requires immense amount of linking different Levels and obejcts
@@ -180,13 +184,21 @@
 
 6/12
 * Elizabeth:
-  * Forgot to branch. So sorry :(
   * Write file for Level2
-  * Write file for items in level 2
-  * Begin working on intro screen for game --> all thats left is design
+  * Write file for items in level 3
+  * design intro screen
+  * redesign, game over and pause screen, acounting for interactions (by clicking, etc.)
+  * fix bugs between screens
+  * Add pImages to represent gems
+  * Add PImages to represent character
+  * add colors to lever, platform, and button
 * Katherine:
   * Added some touches to the constructors, booleans for access
   * Block will literally not work 
   * But platform and lever does- we did not go with unpulling lever because that just wont fly
 ## Running Instructions
-Press Play on Game.pde to run!
+#### Press Play on Game.pde to run!
+There are two characters, Fireboy and Watergirl.<br />
+Fireboy can walk in lava but cannot walk in water or green goo.<br />
+Watergirl can walk in water but cannot walk in lava or green goo. <br />
+Use the arrows to control Fireboy and A, W, S, D to control WaterGirl.<br /> 
